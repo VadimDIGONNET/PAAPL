@@ -73,7 +73,6 @@ public class DatabaseTools {
      * Disconnect from database
      */
     public void disconnect() {
-        int x;
         if (this.connection != null) {
             try {
                 this.connection.close();
@@ -81,6 +80,47 @@ public class DatabaseTools {
             } catch (SQLException ex) {
                 Logger.getLogger(DatabaseTools.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+    }
+    public Integer getcorresid(String nom,String prenom,String entreprise){
+        try{
+            String idcorres ="SELECT id FROM correspondant WHERE nom=? AND prenom=? AND entreprise=?";
+            PreparedStatement stmt =connection.prepareStatement( idcorres);
+            stmt.setString(1, nom);
+            stmt.setString(2,prenom);
+            stmt.setString(3, entreprise);
+            ResultSet rs=stmt.executeQuery();
+            if (rs != null){
+                if (rs.next()!= false){
+                    return (rs.getInt("id"));
+                }
+            }
+        }catch(SQLException ex){
+            System.getLogger(DatabaseTools.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }return null;
+    }
+        
+    public void insertSujet(String intitule,String entreprise,String nom,String prenom){
+        try{
+            Integer idcorres;
+            if (getcorresid(nom,prenom,entreprise)!=null){
+                idcorres=getcorresid(nom,prenom,entreprise);
+            }else{
+                String que="INSERT INTO correspondant (nom,prenom,entreprise) VALUES (?,?,?) RETURNING id";
+                PreparedStatement st =connection.prepareStatement(que);
+                st.setString(1,nom);
+                st.setString(2,prenom);
+                st.setString(3,entreprise);
+                st.executeQuery();
+                idcorres=getcorresid(nom,prenom,entreprise);
+            }
+            String query ="INSERT INTO sujet (intitule,id_correspondant) VALUES (?,?) RETURNING numero";
+            PreparedStatement stmt=connection.prepareStatement(query);
+            stmt.setString(1,intitule);
+            stmt.setInt(2,idcorres);
+            stmt.executeQuery();
+        }catch(SQLException ex){
+            System.getLogger(DatabaseTools.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }
 }
