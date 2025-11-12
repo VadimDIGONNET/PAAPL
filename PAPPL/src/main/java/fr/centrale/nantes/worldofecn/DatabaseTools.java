@@ -146,4 +146,35 @@ public class DatabaseTools {
             System.getLogger(DatabaseTools.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }
+    
+    public void insertEleve(String nom,String prenom,String nationalite,String td,int annee){
+        try{
+            String email = prenom+"."+nom+"@eleves.ec-nantes.fr";
+            String que="INSERT INTO eleve (nom,prenom,nationalite,email,td,annee) VALUES (?,?,?,?,?,?) RETURNING id";
+            PreparedStatement st =connection.prepareStatement(que);
+            st.setString(1,nom);
+            st.setString(2,prenom);
+            st.setString(3,nationalite);
+            st.setString(4,email);
+            st.setString(5,td);
+            st.setInt(6, annee);
+            st.executeUpdate();
+        }catch(SQLException ex){
+            System.getLogger(DatabaseTools.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
+    
+    public void insertDescriptionSujet(String contexte,String travail,String livrable,String nom){
+        try{
+            String que="Insert into description_sujet(contexte,travail_realise,livrable,nom_entreprise) VALUES (?,?,?,?) RETURNING id";
+            PreparedStatement st =connection.prepareStatement(que);
+            st.setString(1,contexte);
+            st.setString(2,travail);
+            st.setString(3,livrable);
+            st.setString(4,nom);
+            st.executeUpdate();
+        }catch(SQLException ex){
+            System.getLogger(DatabaseTools.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
 }
