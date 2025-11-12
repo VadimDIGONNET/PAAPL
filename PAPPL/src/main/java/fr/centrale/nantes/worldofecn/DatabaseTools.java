@@ -82,4 +82,68 @@ public class DatabaseTools {
             }
         }
     }
+    public Integer getcorresid(String nom,String prenom,String entreprise){
+        try{
+            String idcorres ="SELECT id FROM correspondant WHERE nom=? AND prenom=? AND entreprise=?";
+            PreparedStatement stmt =connection.prepareStatement( idcorres);
+            stmt.setString(1, nom);
+            stmt.setString(2,prenom);
+            stmt.setString(3, entreprise);
+            ResultSet rs=stmt.executeQuery();
+            if (rs != null){
+                if (rs.next()!= false){
+                    return (rs.getInt("id"));
+                }
+            }
+        }catch(SQLException ex){
+            System.getLogger(DatabaseTools.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }return null;
+    }
+    
+    public int existenceentreprise(String nom){
+        try{
+            String que="SELECT nom FROM entreprise WHERE nom=?";
+            PreparedStatement st=connection.prepareStatement(que);
+            st.setString(1,nom);
+            ResultSet rs=st.executeQuery();
+            if(rs!=null){
+                if(rs.next()!=false){
+                    return 1;
+                }
+            }
+        }catch(SQLException ex){
+            System.getLogger(DatabaseTools.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        return 0;
+    }
+    
+    public void insertSujet(String intitule,String entreprise,String nom,String prenom){
+        try{
+            Integer idcorres;
+            if(existenceentreprise(entreprise)==0){
+                String q ="INSERT INTO entreprise(nom) VALUES(?)";
+                PreparedStatement s=connection.prepareStatement(q);
+                s.setString(1,entreprise);
+                s.executeQuery();
+            }
+            if (getcorresid(nom,prenom,entreprise)!=null){
+                idcorres=getcorresid(nom,prenom,entreprise);
+            }else{
+                String que="INSERT INTO correspondant (nom,prenom,entreprise) VALUES (?,?,?) RETURNING id";
+                PreparedStatement st =connection.prepareStatement(que);
+                st.setString(1,nom);
+                st.setString(2,prenom);
+                st.setString(3,entreprise);
+                st.executeQuery();
+                idcorres=getcorresid(nom,prenom,entreprise);
+            }
+            String query ="INSERT INTO sujet (intitule,id_correspondant) VALUES (?,?) RETURNING numero";
+            PreparedStatement stmt=connection.prepareStatement(query);
+            stmt.setString(1,intitule);
+            stmt.setInt(2,idcorres);
+            stmt.executeQuery();
+        }catch(SQLException ex){
+            System.getLogger(DatabaseTools.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
 }
