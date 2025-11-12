@@ -81,6 +81,5 @@ public class DatabaseTools {
                 Logger.getLogger(DatabaseTools.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        int x;
     }
 }
