@@ -99,10 +99,33 @@ public class DatabaseTools {
             System.getLogger(DatabaseTools.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }return null;
     }
-        
+    
+    public int existenceentreprise(String nom){
+        try{
+            String que="SELECT nom FROM entreprise WHERE nom=?";
+            PreparedStatement st=connection.prepareStatement(que);
+            st.setString(1,nom);
+            ResultSet rs=st.executeQuery();
+            if(rs!=null){
+                if(rs.next()!=false){
+                    return 1;
+                }
+            }
+        }catch(SQLException ex){
+            System.getLogger(DatabaseTools.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        return 0;
+    }
+    
     public void insertSujet(String intitule,String entreprise,String nom,String prenom){
         try{
             Integer idcorres;
+            if(existenceentreprise(entreprise)==0){
+                String q ="INSERT INTO entreprise(nom) VALUES(?)";
+                PreparedStatement s=connection.prepareStatement(q);
+                s.setString(1,entreprise);
+                s.executeQuery();
+            }
             if (getcorresid(nom,prenom,entreprise)!=null){
                 idcorres=getcorresid(nom,prenom,entreprise);
             }else{
