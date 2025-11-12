@@ -73,6 +73,7 @@ public class DatabaseTools {
      * Disconnect from database
      */
     public void disconnect() {
+        int x;
         if (this.connection != null) {
             try {
                 this.connection.close();
