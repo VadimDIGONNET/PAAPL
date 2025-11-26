@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+  <!-- Define Persistence Unit -->
+  <persistence-unit name=”infosi_prwebspring_war_1.0PU” transaction-type=”RESOURCE_LOCAL”>
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>fr.centrale.nantes.infosi.prwebspring.items.Person</class>
+    <class>fr.centrale.nantes.infosi.prwebspring.items.Book</class>
+    <class>fr.centrale.nantes.infosi.prwebspring.items.Borrow</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+        <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://appli-pfe.ec-nantes.fr:5432/infosi_29"/>
+        <property name="jakarta.persistence.jdbc.user" value="prweb"/>
+        <property name="jakarta.persistence.jdbc.password" value="prweb"/>
+        <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+    </properties>
+  </persistence-unit>
+</persistence>
