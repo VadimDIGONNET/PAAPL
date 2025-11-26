@@ -3,9 +3,9 @@
   <!-- Define Persistence Unit -->
   <persistence-unit name=”infosi_prwebspring_war_1.0PU” transaction-type=”RESOURCE_LOCAL”>
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>fr.centrale.nantes.infosi.prwebspring.items.Person</class>
-    <class>fr.centrale.nantes.infosi.prwebspring.items.Book</class>
-    <class>fr.centrale.nantes.infosi.prwebspring.items.Borrow</class>
+    <class>fr.centrale.nantes.pappl.items.Person</class>
+    <class>fr.centrale.nantes.pappl.items.Book</class>
+    <class>fr.centrale.nantes.infosi.pappl.Borrow</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
         <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://appli-pfe.ec-nantes.fr:5432/infosi_29"/>
