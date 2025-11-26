@@ -3,15 +3,23 @@
   <!-- Define Persistence Unit -->
   <persistence-unit name="pappl_war_1.0PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>fr.centrale.nantes.pappl.items.Person</class>
-    <class>fr.centrale.nantes.pappl.items.Book</class>
-    <class>fr.centrale.nantes.infosi.pappl.Borrow</class>
+    <class>fr.centrale.nantes.pappl.items.Annee</class>
+    <class>fr.centrale.nantes.pappl.items.DescriptionSujet</class>
+    <class>fr.centrale.nantes.pappl.items.ChoixEleveTypo</class>
+    <class>fr.centrale.nantes.pappl.items.Correspondant</class>
+    <class>fr.centrale.nantes.pappl.items.ChoixEleveDomaine</class>
+    <class>fr.centrale.nantes.pappl.items.Sujet</class>
+    <class>fr.centrale.nantes.pappl.items.Entreprise</class>
+    <class>fr.centrale.nantes.pappl.items.Typologiemission</class>
+    <class>fr.centrale.nantes.pappl.items.Tuteur</class>
+    <class>fr.centrale.nantes.pappl.items.Domaine</class>
+    <class>fr.centrale.nantes.pappl.items.Eleve</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-        <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://appli-pfe.ec-nantes.fr:5432/p2t"/>
-        <property name="jakarta.persistence.jdbc.user" value="p2t"/>
-        <property name="jakarta.persistence.jdbc.password" value="hzuwy"/>
-        <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://appli-pfe.ec-nantes.fr:5432/p2t"/>
+      <property name="jakarta.persistence.jdbc.user" value="p2t"/>
+      <property name="jakarta.persistence.jdbc.password" value="hzuwy"/>
+      <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
     </properties>
   </persistence-unit>
 </persistence>
