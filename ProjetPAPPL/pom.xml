@@ -4,7 +4,7 @@
 <artifactId>prwebspring</artifactId>
 <version>1.0</version>
 <packaging>war</packaging>
-<name>prwebspring-1.0</name>
+<name>PAPPL2</name>
 <properties>
 <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

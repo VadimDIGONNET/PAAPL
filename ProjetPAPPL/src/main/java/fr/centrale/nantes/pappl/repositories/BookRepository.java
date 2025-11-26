@@ -2,15 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package fr.centrale.nantes.infosi.prwebspring.repositories;
-import fr.centrale.nantes.infosi.prwebspring.items.Borrow;
+package fr.centrale.nantes.pappl.repositories;
+import fr.centrale.nantes.pappl.items.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-/**
- *
- * @author agach
- */
+
 @Repository
-public interface BorrowRepository extends JpaRepository<Borrow,Integer>,BorrowRepositoryCustom{
+public interface BookRepository extends JpaRepository<Book,Integer>,BookRepositoryCustom{
     
 }
