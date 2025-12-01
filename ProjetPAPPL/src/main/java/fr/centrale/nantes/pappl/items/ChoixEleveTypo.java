@@ -39,7 +39,7 @@ public class ChoixEleveTypo implements Serializable {
     private Eleve eleve;
     @JoinColumn(name = "code_typo", referencedColumnName = "code", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Typologiemission typologiemission;
+    private TypologieMission typologiemission;
 
     public ChoixEleveTypo() {
     }
@@ -76,11 +76,11 @@ public class ChoixEleveTypo implements Serializable {
         this.eleve = eleve;
     }
 
-    public Typologiemission getTypologiemission() {
+    public TypologieMission getTypologiemission() {
         return typologiemission;
     }
 
-    public void setTypologiemission(Typologiemission typologiemission) {
+    public void setTypologiemission(TypologieMission typologiemission) {
         this.typologiemission = typologiemission;
     }
 

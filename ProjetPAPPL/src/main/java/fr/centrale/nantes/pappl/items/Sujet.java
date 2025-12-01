@@ -53,7 +53,7 @@ public class Sujet implements Serializable {
     @ManyToMany(mappedBy = "sujetCollection")
     private Collection<Domaine> domaineCollection;
     @ManyToMany(mappedBy = "sujetCollection")
-    private Collection<Typologiemission> typologiemissionCollection;
+    private Collection<TypologieMission> typologiemissionCollection;
     @ManyToMany(mappedBy = "sujetCollection")
     private Collection<Tuteur> tuteurCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "sujet")
@@ -108,11 +108,11 @@ public class Sujet implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Typologiemission> getTypologiemissionCollection() {
+    public Collection<TypologieMission> getTypologiemissionCollection() {
         return typologiemissionCollection;
     }
 
-    public void setTypologiemissionCollection(Collection<Typologiemission> typologiemissionCollection) {
+    public void setTypologiemissionCollection(Collection<TypologieMission> typologiemissionCollection) {
         this.typologiemissionCollection = typologiemissionCollection;
     }
 

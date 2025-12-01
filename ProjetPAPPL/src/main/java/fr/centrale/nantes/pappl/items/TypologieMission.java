@@ -35,7 +35,7 @@ import java.util.Collection;
     @NamedQuery(name = "Typologiemission.findAll", query = "SELECT t FROM Typologiemission t"),
     @NamedQuery(name = "Typologiemission.findByCode", query = "SELECT t FROM Typologiemission t WHERE t.code = :code"),
     @NamedQuery(name = "Typologiemission.findByNom", query = "SELECT t FROM Typologiemission t WHERE t.nom = :nom")})
-public class Typologiemission implements Serializable {
+public class TypologieMission implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -54,10 +54,10 @@ public class Typologiemission implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "typologiemission")
     private Collection<ChoixEleveTypo> choixEleveTypoCollection;
 
-    public Typologiemission() {
+    public TypologieMission() {
     }
 
-    public Typologiemission(Integer code) {
+    public TypologieMission(Integer code) {
         this.code = code;
     }
 
@@ -105,10 +105,10 @@ public class Typologiemission implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Typologiemission)) {
+        if (!(object instanceof TypologieMission)) {
             return false;
         }
-        Typologiemission other = (Typologiemission) object;
+        TypologieMission other = (TypologieMission) object;
         if ((this.code == null && other.code != null) || (this.code != null && !this.code.equals(other.code))) {
             return false;
         }

@@ -10,10 +10,10 @@
     <class>fr.centrale.nantes.pappl.items.ChoixEleveDomaine</class>
     <class>fr.centrale.nantes.pappl.items.Sujet</class>
     <class>fr.centrale.nantes.pappl.items.Entreprise</class>
-    <class>fr.centrale.nantes.pappl.items.Typologiemission</class>
     <class>fr.centrale.nantes.pappl.items.Tuteur</class>
     <class>fr.centrale.nantes.pappl.items.Domaine</class>
     <class>fr.centrale.nantes.pappl.items.Eleve</class>
+    <class>fr.centrale.nantes.pappl.items.TypologieMission</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://appli-pfe.ec-nantes.fr:5432/p2t"/>
