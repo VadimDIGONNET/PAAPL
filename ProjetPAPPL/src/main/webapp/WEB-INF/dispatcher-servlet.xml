@@ -7,7 +7,7 @@
 <!--  We use annotations  -->
 <mvc:annotation-driven/>
 <!--  just in case, controllers location  -->
-<context:component-scan base-package="fr.centrale.nantes.infosi.prwebspring.controllers"/>
+<context:component-scan base-package="fr.centrale.nantes.pappl.controllers"/>
 <!--  next bean is not use any more  -->
 <!-- 
   <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
