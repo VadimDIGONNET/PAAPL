@@ -4,9 +4,12 @@
  */
 package fr.centrale.nantes.pappl.items;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
@@ -17,47 +20,37 @@ import java.io.Serializable;
 
 /**
  *
- * @author agach
+ * @author vadimdigonnet
  */
 @Entity
 @Table(name = "choix_eleve_domaine")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ChoixEleveDomaine.findAll", query = "SELECT c FROM ChoixEleveDomaine c"),
-    @NamedQuery(name = "ChoixEleveDomaine.findByIdEleve", query = "SELECT c FROM ChoixEleveDomaine c WHERE c.choixEleveDomainePK.idEleve = :idEleve"),
-    @NamedQuery(name = "ChoixEleveDomaine.findByCodeDomaine", query = "SELECT c FROM ChoixEleveDomaine c WHERE c.choixEleveDomainePK.codeDomaine = :codeDomaine"),
-    @NamedQuery(name = "ChoixEleveDomaine.findByClassement", query = "SELECT c FROM ChoixEleveDomaine c WHERE c.classement = :classement")})
+    @NamedQuery(name = "ChoixEleveDomaine.findByClassement", query = "SELECT c FROM ChoixEleveDomaine c WHERE c.classement = :classement"),
+    @NamedQuery(name = "ChoixEleveDomaine.findById", query = "SELECT c FROM ChoixEleveDomaine c WHERE c.id = :id")})
 public class ChoixEleveDomaine implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected ChoixEleveDomainePK choixEleveDomainePK;
     @Column(name = "classement")
     private Integer classement;
-    @JoinColumn(name = "code_domaine", referencedColumnName = "code", insertable = false, updatable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @JoinColumn(name = "code_domaine", referencedColumnName = "code")
     @ManyToOne(optional = false)
-    private Domaine domaine;
-    @JoinColumn(name = "id_eleve", referencedColumnName = "id", insertable = false, updatable = false)
+    private Domaine codeDomaine;
+    @JoinColumn(name = "id_eleve", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Eleve eleve;
+    private Eleve idEleve;
 
     public ChoixEleveDomaine() {
     }
 
-    public ChoixEleveDomaine(ChoixEleveDomainePK choixEleveDomainePK) {
-        this.choixEleveDomainePK = choixEleveDomainePK;
-    }
-
-    public ChoixEleveDomaine(int idEleve, int codeDomaine) {
-        this.choixEleveDomainePK = new ChoixEleveDomainePK(idEleve, codeDomaine);
-    }
-
-    public ChoixEleveDomainePK getChoixEleveDomainePK() {
-        return choixEleveDomainePK;
-    }
-
-    public void setChoixEleveDomainePK(ChoixEleveDomainePK choixEleveDomainePK) {
-        this.choixEleveDomainePK = choixEleveDomainePK;
+    public ChoixEleveDomaine(Integer id) {
+        this.id = id;
     }
 
     public Integer getClassement() {
@@ -68,26 +61,34 @@ public class ChoixEleveDomaine implements Serializable {
         this.classement = classement;
     }
 
-    public Domaine getDomaine() {
-        return domaine;
+    public Integer getId() {
+        return id;
     }
 
-    public void setDomaine(Domaine domaine) {
-        this.domaine = domaine;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Eleve getEleve() {
-        return eleve;
+    public Domaine getCodeDomaine() {
+        return codeDomaine;
     }
 
-    public void setEleve(Eleve eleve) {
-        this.eleve = eleve;
+    public void setCodeDomaine(Domaine codeDomaine) {
+        this.codeDomaine = codeDomaine;
+    }
+
+    public Eleve getIdEleve() {
+        return idEleve;
+    }
+
+    public void setIdEleve(Eleve idEleve) {
+        this.idEleve = idEleve;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (choixEleveDomainePK != null ? choixEleveDomainePK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -98,7 +99,7 @@ public class ChoixEleveDomaine implements Serializable {
             return false;
         }
         ChoixEleveDomaine other = (ChoixEleveDomaine) object;
-        if ((this.choixEleveDomainePK == null && other.choixEleveDomainePK != null) || (this.choixEleveDomainePK != null && !this.choixEleveDomainePK.equals(other.choixEleveDomainePK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -106,7 +107,7 @@ public class ChoixEleveDomaine implements Serializable {
 
     @Override
     public String toString() {
-        return "fr.centrale.nantes.pappl.items.ChoixEleveDomaine[ choixEleveDomainePK=" + choixEleveDomainePK + " ]";
+        return "fr.centrale.nantes.pappl.items.ChoixEleveDomaine[ id=" + id + " ]";
     }
     
 }

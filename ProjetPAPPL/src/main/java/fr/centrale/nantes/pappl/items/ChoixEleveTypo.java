@@ -4,9 +4,12 @@
  */
 package fr.centrale.nantes.pappl.items;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
@@ -17,47 +20,37 @@ import java.io.Serializable;
 
 /**
  *
- * @author agach
+ * @author vadimdigonnet
  */
 @Entity
 @Table(name = "choix_eleve_typo")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ChoixEleveTypo.findAll", query = "SELECT c FROM ChoixEleveTypo c"),
-    @NamedQuery(name = "ChoixEleveTypo.findByIdEleve", query = "SELECT c FROM ChoixEleveTypo c WHERE c.choixEleveTypoPK.idEleve = :idEleve"),
-    @NamedQuery(name = "ChoixEleveTypo.findByCodeTypo", query = "SELECT c FROM ChoixEleveTypo c WHERE c.choixEleveTypoPK.codeTypo = :codeTypo"),
-    @NamedQuery(name = "ChoixEleveTypo.findByClassement", query = "SELECT c FROM ChoixEleveTypo c WHERE c.classement = :classement")})
+    @NamedQuery(name = "ChoixEleveTypo.findByClassement", query = "SELECT c FROM ChoixEleveTypo c WHERE c.classement = :classement"),
+    @NamedQuery(name = "ChoixEleveTypo.findById", query = "SELECT c FROM ChoixEleveTypo c WHERE c.id = :id")})
 public class ChoixEleveTypo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected ChoixEleveTypoPK choixEleveTypoPK;
     @Column(name = "classement")
     private Integer classement;
-    @JoinColumn(name = "id_eleve", referencedColumnName = "id", insertable = false, updatable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @JoinColumn(name = "id_eleve", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Eleve eleve;
-    @JoinColumn(name = "code_typo", referencedColumnName = "code", insertable = false, updatable = false)
+    private Eleve idEleve;
+    @JoinColumn(name = "code_typo", referencedColumnName = "code")
     @ManyToOne(optional = false)
-    private TypologieMission typologiemission;
+    private TypologieMission codeTypo;
 
     public ChoixEleveTypo() {
     }
 
-    public ChoixEleveTypo(ChoixEleveTypoPK choixEleveTypoPK) {
-        this.choixEleveTypoPK = choixEleveTypoPK;
-    }
-
-    public ChoixEleveTypo(int idEleve, int codeTypo) {
-        this.choixEleveTypoPK = new ChoixEleveTypoPK(idEleve, codeTypo);
-    }
-
-    public ChoixEleveTypoPK getChoixEleveTypoPK() {
-        return choixEleveTypoPK;
-    }
-
-    public void setChoixEleveTypoPK(ChoixEleveTypoPK choixEleveTypoPK) {
-        this.choixEleveTypoPK = choixEleveTypoPK;
+    public ChoixEleveTypo(Integer id) {
+        this.id = id;
     }
 
     public Integer getClassement() {
@@ -68,26 +61,34 @@ public class ChoixEleveTypo implements Serializable {
         this.classement = classement;
     }
 
-    public Eleve getEleve() {
-        return eleve;
+    public Integer getId() {
+        return id;
     }
 
-    public void setEleve(Eleve eleve) {
-        this.eleve = eleve;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public TypologieMission getTypologiemission() {
-        return typologiemission;
+    public Eleve getIdEleve() {
+        return idEleve;
     }
 
-    public void setTypologiemission(TypologieMission typologiemission) {
-        this.typologiemission = typologiemission;
+    public void setIdEleve(Eleve idEleve) {
+        this.idEleve = idEleve;
+    }
+
+    public TypologieMission getCodeTypo() {
+        return codeTypo;
+    }
+
+    public void setCodeTypo(TypologieMission codeTypo) {
+        this.codeTypo = codeTypo;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (choixEleveTypoPK != null ? choixEleveTypoPK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -98,7 +99,7 @@ public class ChoixEleveTypo implements Serializable {
             return false;
         }
         ChoixEleveTypo other = (ChoixEleveTypo) object;
-        if ((this.choixEleveTypoPK == null && other.choixEleveTypoPK != null) || (this.choixEleveTypoPK != null && !this.choixEleveTypoPK.equals(other.choixEleveTypoPK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -106,7 +107,7 @@ public class ChoixEleveTypo implements Serializable {
 
     @Override
     public String toString() {
-        return "fr.centrale.nantes.pappl.items.ChoixEleveTypo[ choixEleveTypoPK=" + choixEleveTypoPK + " ]";
+        return "fr.centrale.nantes.pappl.items.ChoixEleveTypo[ id=" + id + " ]";
     }
     
 }

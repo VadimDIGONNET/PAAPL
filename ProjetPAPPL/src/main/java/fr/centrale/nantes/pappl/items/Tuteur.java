@@ -24,7 +24,7 @@ import java.util.Collection;
 
 /**
  *
- * @author agach
+ * @author vadimdigonnet
  */
 @Entity
 @Table(name = "tuteur")

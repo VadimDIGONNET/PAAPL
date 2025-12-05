@@ -27,7 +27,7 @@ import java.util.Collection;
 
 /**
  *
- * @author agach
+ * @author vadimdigonnet
  */
 @Entity
 @Table(name = "sujet")
@@ -51,11 +51,11 @@ public class Sujet implements Serializable {
     @Column(name = "note")
     private Integer note;
     @ManyToMany(mappedBy = "sujetCollection")
-    private Collection<Domaine> domaineCollection;
-    @ManyToMany(mappedBy = "sujetCollection")
-    private Collection<TypologieMission> typologiemissionCollection;
-    @ManyToMany(mappedBy = "sujetCollection")
     private Collection<Tuteur> tuteurCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "numero")
+    private Collection<Appartient> appartientCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "numero")
+    private Collection<Contient> contientCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "sujet")
     private DescriptionSujet descriptionSujet;
     @OneToMany(mappedBy = "numeroSujet")
@@ -99,30 +99,30 @@ public class Sujet implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Domaine> getDomaineCollection() {
-        return domaineCollection;
-    }
-
-    public void setDomaineCollection(Collection<Domaine> domaineCollection) {
-        this.domaineCollection = domaineCollection;
-    }
-
-    @XmlTransient
-    public Collection<TypologieMission> getTypologiemissionCollection() {
-        return typologiemissionCollection;
-    }
-
-    public void setTypologiemissionCollection(Collection<TypologieMission> typologiemissionCollection) {
-        this.typologiemissionCollection = typologiemissionCollection;
-    }
-
-    @XmlTransient
     public Collection<Tuteur> getTuteurCollection() {
         return tuteurCollection;
     }
 
     public void setTuteurCollection(Collection<Tuteur> tuteurCollection) {
         this.tuteurCollection = tuteurCollection;
+    }
+
+    @XmlTransient
+    public Collection<Appartient> getAppartientCollection() {
+        return appartientCollection;
+    }
+
+    public void setAppartientCollection(Collection<Appartient> appartientCollection) {
+        this.appartientCollection = appartientCollection;
+    }
+
+    @XmlTransient
+    public Collection<Contient> getContientCollection() {
+        return contientCollection;
+    }
+
+    public void setContientCollection(Collection<Contient> contientCollection) {
+        this.contientCollection = contientCollection;
     }
 
     public DescriptionSujet getDescriptionSujet() {

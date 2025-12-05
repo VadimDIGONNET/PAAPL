@@ -11,9 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
@@ -26,15 +23,15 @@ import java.util.Collection;
 
 /**
  *
- * @author agach
+ * @author vadimdigonnet
  */
 @Entity
-@Table(name = "typologiemission")
+@Table(name = "typologie_Mission")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Typologiemission.findAll", query = "SELECT t FROM Typologiemission t"),
-    @NamedQuery(name = "Typologiemission.findByCode", query = "SELECT t FROM Typologiemission t WHERE t.code = :code"),
-    @NamedQuery(name = "Typologiemission.findByNom", query = "SELECT t FROM Typologiemission t WHERE t.nom = :nom")})
+    @NamedQuery(name = "TypologieMission.findAll", query = "SELECT t FROM TypologieMission t"),
+    @NamedQuery(name = "TypologieMission.findByCode", query = "SELECT t FROM TypologieMission t WHERE t.code = :code"),
+    @NamedQuery(name = "TypologieMission.findByNom", query = "SELECT t FROM TypologieMission t WHERE t.nom = :nom")})
 public class TypologieMission implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,12 +43,9 @@ public class TypologieMission implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "nom")
     private String nom;
-    @JoinTable(name = "contient", joinColumns = {
-        @JoinColumn(name = "code", referencedColumnName = "code")}, inverseJoinColumns = {
-        @JoinColumn(name = "numero", referencedColumnName = "numero")})
-    @ManyToMany
-    private Collection<Sujet> sujetCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typologiemission")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "code")
+    private Collection<Contient> contientCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codeTypo")
     private Collection<ChoixEleveTypo> choixEleveTypoCollection;
 
     public TypologieMission() {
@@ -78,12 +72,12 @@ public class TypologieMission implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Sujet> getSujetCollection() {
-        return sujetCollection;
+    public Collection<Contient> getContientCollection() {
+        return contientCollection;
     }
 
-    public void setSujetCollection(Collection<Sujet> sujetCollection) {
-        this.sujetCollection = sujetCollection;
+    public void setContientCollection(Collection<Contient> contientCollection) {
+        this.contientCollection = contientCollection;
     }
 
     @XmlTransient
@@ -117,7 +111,7 @@ public class TypologieMission implements Serializable {
 
     @Override
     public String toString() {
-        return "fr.centrale.nantes.pappl.items.Typologiemission[ code=" + code + " ]";
+        return "fr.centrale.nantes.pappl.items.TypologieMission[ code=" + code + " ]";
     }
     
 }

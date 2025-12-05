@@ -11,9 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
@@ -26,7 +23,7 @@ import java.util.Collection;
 
 /**
  *
- * @author agach
+ * @author vadimdigonnet
  */
 @Entity
 @Table(name = "domaine")
@@ -46,12 +43,9 @@ public class Domaine implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "nom")
     private String nom;
-    @JoinTable(name = "appartient", joinColumns = {
-        @JoinColumn(name = "code", referencedColumnName = "code")}, inverseJoinColumns = {
-        @JoinColumn(name = "numero", referencedColumnName = "numero")})
-    @ManyToMany
-    private Collection<Sujet> sujetCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "domaine")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "code")
+    private Collection<Appartient> appartientCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codeDomaine")
     private Collection<ChoixEleveDomaine> choixEleveDomaineCollection;
 
     public Domaine() {
@@ -78,12 +72,12 @@ public class Domaine implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Sujet> getSujetCollection() {
-        return sujetCollection;
+    public Collection<Appartient> getAppartientCollection() {
+        return appartientCollection;
     }
 
-    public void setSujetCollection(Collection<Sujet> sujetCollection) {
-        this.sujetCollection = sujetCollection;
+    public void setAppartientCollection(Collection<Appartient> appartientCollection) {
+        this.appartientCollection = appartientCollection;
     }
 
     @XmlTransient

@@ -21,7 +21,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author agach
+ * @author vadimdigonnet
  */
 @Entity
 @Table(name = "description_sujet")

@@ -25,7 +25,7 @@ import java.util.Collection;
 
 /**
  *
- * @author agach
+ * @author vadimdigonnet
  */
 @Entity
 @Table(name = "eleve")
@@ -62,16 +62,16 @@ public class Eleve implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "td")
     private String td;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eleve")
-    private Collection<ChoixEleveDomaine> choixEleveDomaineCollection;
     @JoinColumn(name = "annee", referencedColumnName = "annee")
     @ManyToOne
     private Annee annee;
     @JoinColumn(name = "numero_sujet", referencedColumnName = "numero")
     @ManyToOne
     private Sujet numeroSujet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eleve")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEleve")
     private Collection<ChoixEleveTypo> choixEleveTypoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEleve")
+    private Collection<ChoixEleveDomaine> choixEleveDomaineCollection;
 
     public Eleve() {
     }
@@ -128,15 +128,6 @@ public class Eleve implements Serializable {
         this.td = td;
     }
 
-    @XmlTransient
-    public Collection<ChoixEleveDomaine> getChoixEleveDomaineCollection() {
-        return choixEleveDomaineCollection;
-    }
-
-    public void setChoixEleveDomaineCollection(Collection<ChoixEleveDomaine> choixEleveDomaineCollection) {
-        this.choixEleveDomaineCollection = choixEleveDomaineCollection;
-    }
-
     public Annee getAnnee() {
         return annee;
     }
@@ -160,6 +151,15 @@ public class Eleve implements Serializable {
 
     public void setChoixEleveTypoCollection(Collection<ChoixEleveTypo> choixEleveTypoCollection) {
         this.choixEleveTypoCollection = choixEleveTypoCollection;
+    }
+
+    @XmlTransient
+    public Collection<ChoixEleveDomaine> getChoixEleveDomaineCollection() {
+        return choixEleveDomaineCollection;
+    }
+
+    public void setChoixEleveDomaineCollection(Collection<ChoixEleveDomaine> choixEleveDomaineCollection) {
+        this.choixEleveDomaineCollection = choixEleveDomaineCollection;
     }
 
     @Override
