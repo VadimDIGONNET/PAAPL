@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package fr.centrale.nantes.pappl.repositories;
-import fr.centrale.nantes.pappl.items.TypologieMission;
+
+import fr.centrale.nantes.pappl.items.Appartient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author agach
  */
 @Repository
-public interface TypologieMissionRepository extends JpaRepository<TypologieMission,Integer>,TypologieMissionRepositoryCustom {
+public interface AppartientRepository extends JpaRepository<Appartient,Integer>,AppartientRepositoryCustom {
     
 }
