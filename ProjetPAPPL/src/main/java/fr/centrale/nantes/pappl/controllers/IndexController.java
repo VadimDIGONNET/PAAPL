@@ -26,6 +26,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 
+    @RequestMapping(value="index.do")
+    public ModelAndView handleIndexGet(){
+        return new ModelAndView("index");
+    }
+    
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
     public ModelAndView handleLoginPost(HttpServletRequest request){
         ModelAndView returned;
