@@ -13,5 +13,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SujetRepository extends JpaRepository<Sujet,Integer>,SujetRepositoryCustom {
+
+    public void update(int idStr, String Titre, String Entreprise, String Resume);
     
 }
