@@ -9,8 +9,11 @@
   <title>Styleguide</title>
   <meta name="author" content="Pingendo">
   <!-- CSS dependencies -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="wireframe.css" type="text/css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <script type="text/javascript" src="js/jquery-3.7.1.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <link href="css/main.sass" type="text/css" rel="stylesheet" />
 </head>
 
 <body >
@@ -18,7 +21,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h2>Entreprise&nbsp;</h2>
+          <h2>Partenaires&nbsp;</h2>
           <hr>
           <div class="row text-center">
             <div class="col-md-4 bg-primary m-2" style="">
@@ -58,7 +61,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h2>Élève</h2>
+          <h2>Eleve</h2>
           <hr>
           <div class="row text-center">
             <div class="col-md-4 bg-primary m-2" style="">

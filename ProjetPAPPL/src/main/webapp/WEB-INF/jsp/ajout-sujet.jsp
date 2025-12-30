@@ -32,12 +32,12 @@
           <div class="form-group"><label></label></div>
           <form class="needs-validation" novalidate="">
             <div class="row">
-              <div class="col-md-6 mb-3"> <label for="firstName">Contexte</label>
-                <input type="text" class="form-control h-50" id="firstName" placeholder="" value="" required="">
+              <div class="col-md-6 mb-3"> <label for="contexte">Contexte</label>
+                <input type="text" class="form-control h-50" id="contexte" placeholder="" value="" required="">
                 <div class="invalid-feedback"> Valid first name is required. </div>
               </div>
-              <div class="col-md-6 mb-3"> <label for="lastName">Travail à réaliser</label>
-                <input type="text" class="form-control h-50" id="lastName" placeholder="" value="" required="">
+              <div class="col-md-6 mb-3"> <label for="travail">Travail à réaliser</label>
+                <input type="text" class="form-control h-50" id="travail" placeholder="" value="" required="">
                 <div class="invalid-feedback"> Valid last name is required. </div>
               </div>
             </div>
@@ -53,12 +53,12 @@
           <div class="form-group"><label></label></div>
           <form class="needs-validation" novalidate="">
             <div class="row">
-              <div class="col-md-6 mb-3"> <label for="firstName">Livrable</label>
-                <input type="text" class="form-control h-50" id="firstName" placeholder="" value="" required="">
+              <div class="col-md-6 mb-3"> <label for="livrable">Livrable</label>
+                <input type="text" class="form-control h-50" id="livrable" placeholder="" value="" required="">
                 <div class="invalid-feedback"> Valid first name is required. </div>
               </div>
-              <div class="col-md-6 mb-3"> <label for="lastName">Nom Entreprise</label>
-                <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+              <div class="col-md-6 mb-3"> <label for="entreprise">Nom Entreprise</label>
+                <input type="text" class="form-control" id="entreprise" placeholder="" value="" required="">
                 <div class="invalid-feedback"> Valid last name is required. </div>
               </div>
             </div>

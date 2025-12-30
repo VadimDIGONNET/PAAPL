@@ -4,7 +4,10 @@
  */
 package fr.centrale.nantes.pappl.controllers;
 
+import fr.centrale.nantes.pappl.items.DescriptionSujet;
+import fr.centrale.nantes.pappl.repositories.DescriptionSujetRepositoryCustomlmpl;
 import fr.centrale.nantes.pappl.items.Sujet;
+import fr.centrale.nantes.pappl.repositories.DescriptionSujetRepository;
 import fr.centrale.nantes.pappl.repositories.SujetRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -26,14 +29,9 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class MainController {
-    
-    @RequestMapping(value="sujet.do",method=RequestMethod.POST)
-    public ModelAndView sujet(){
-        return new ModelAndView("sujet");
-    }
-    
-    @Autowired
     private SujetRepository sujetRepository;
+    private DescriptionSujetRepository DescriptionSujetRepository;
+    
     @RequestMapping(value="sujet.do",method=RequestMethod.POST)
     public ModelAndView handlePostUsers(HttpServletRequest request){
         List<Sujet> myList =new ArrayList<Sujet>( sujetRepository.findAll());
@@ -52,25 +50,35 @@ public class MainController {
         return intValue;
     }
     
-    @RequestMapping(value="ajoutsujet.do",method=RequestMethod.POST)
-    public ModelAndView nvsujet(HttpServletRequest request){
+    @RequestMapping(value="savesujet.do",method=RequestMethod.POST)
+    public ModelAndView handlePostSaveUser(HttpServletRequest request){
         ModelAndView returned;
-        try{
-            request.setCharacterEncoding("UTF-8");
-        }catch(UnsupportedEncodingException ex){
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE,null,ex);
-        }
         String idStr=request.getParameter("id");
-        String Titre = request.getParameter("Titre");
-        String Entreprise= request.getParameter("Entreprise");
-        String Resume =request.getParameter("Résumé");
-        int id =getIntFromString(idStr);
-        Sujet sujetId=sujetRepository.getReferenceById(id);
-        sujetRepository.update(id,Titre,Entreprise,Resume);
+        String contexte=request.getParameter("contexte");
+        String travail = request.getParameter("travail");
+        String livrable= request.getParameter("livrable");
+        String entreprise =request.getParameter("entreprise");
+        int id =Tools.getIntFromString(idStr);
+        if(id==-1){
+            DescriptionSujet item=DescriptionSujetRepository.create(contexte,travail,livrable,entreprise);
+            id=item.getNumero();
+        }
+        DescriptionSujet DSujet =DescriptionSujetRepository.getReferenceById(id);
+        DescriptionSujetRepository.update(DSujet,contexte,travail,livrable,entreprise);
         
-        returned =new ModelAndView("sujut");
-        Collection<Sujet> myList= sujetRepository.findAll();
-        returned.addObject("sujetList",myList);
+        
+        returned =new ModelAndView("main");
+        Collection<DescriptionSujet> myList= DescriptionSujetRepository.findAll();
+        returned.addObject("main",myList);
+        return returned;
+    }
+    
+    @RequestMapping(value="createsujet.do",method=RequestMethod.POST)
+    public ModelAndView HandlePostcreateuser(){
+        ModelAndView returned;
+        DescriptionSujet nouveau=new DescriptionSujet();
+        returned=new ModelAndView("main");
+        returned.addObject("main",nouveau);
         return returned;
     }
 }
