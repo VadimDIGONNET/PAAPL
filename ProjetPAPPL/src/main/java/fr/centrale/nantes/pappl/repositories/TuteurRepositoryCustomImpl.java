@@ -6,10 +6,10 @@ package fr.centrale.nantes.pappl.repositories;
 
 /**
  *
- * @author agach
+ * @author vadimdigonnet
  */
 import org.springframework.stereotype.Repository;
 @Repository
-public class ChoixEleveDomaineRepositoryCustomlmpl implements ChoixEleveDomaineRepositoryCustom {
+public class TuteurRepositoryCustomImpl implements TuteurRepositoryCustom{
     
 }

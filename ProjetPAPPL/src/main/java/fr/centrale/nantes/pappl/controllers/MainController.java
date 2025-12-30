@@ -5,7 +5,7 @@
 package fr.centrale.nantes.pappl.controllers;
 
 import fr.centrale.nantes.pappl.items.DescriptionSujet;
-import fr.centrale.nantes.pappl.repositories.DescriptionSujetRepositoryCustomlmpl;
+import fr.centrale.nantes.pappl.repositories.DescriptionSujetRepositoryCustomImpl;
 import fr.centrale.nantes.pappl.items.Sujet;
 import fr.centrale.nantes.pappl.repositories.DescriptionSujetRepository;
 import fr.centrale.nantes.pappl.repositories.SujetRepository;

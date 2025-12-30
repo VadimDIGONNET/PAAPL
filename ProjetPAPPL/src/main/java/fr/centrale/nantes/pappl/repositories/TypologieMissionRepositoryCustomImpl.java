@@ -6,11 +6,11 @@ package fr.centrale.nantes.pappl.repositories;
 
 /**
  *
- * @author agach
+ * @author vadimdigonnet
  */
 import org.springframework.stereotype.Repository;
-
 @Repository
-public class CorrespondantRepositoryCustomlmpl implements CorrespondantRepositoryCustom{
+public class TypologieMissionRepositoryCustomImpl implements TypologieMissionRepositoryCustom{
     
 }
+

@@ -10,6 +10,6 @@ package fr.centrale.nantes.pappl.repositories;
  */
 import org.springframework.stereotype.Repository;
 @Repository
-public class AnneeRepositoryCustomlmpl implements AnneeRepositoryCustom{
+public class ChoixEleveDomaineRepositoryCustomImpl implements ChoixEleveDomaineRepositoryCustom {
     
 }

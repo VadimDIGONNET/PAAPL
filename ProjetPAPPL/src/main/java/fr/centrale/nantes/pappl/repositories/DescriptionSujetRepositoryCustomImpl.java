@@ -9,13 +9,12 @@ package fr.centrale.nantes.pappl.repositories;
  * @author agach
  */
 import fr.centrale.nantes.pappl.items.DescriptionSujet;
-import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class DescriptionSujetRepositoryCustomlmpl implements DescriptionSujetRepositoryCustom {
+public class DescriptionSujetRepositoryCustomImpl implements DescriptionSujetRepositoryCustom {
     @Autowired
     @Lazy
     private DescriptionSujetRepository DescriptionSujetRepository;

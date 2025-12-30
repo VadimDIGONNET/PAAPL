@@ -11,6 +11,6 @@ package fr.centrale.nantes.pappl.repositories;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class EleveRepositoryCustomlmpl implements EleveRepositoryCustom{
+public class CorrespondantRepositoryCustomImpl implements CorrespondantRepositoryCustom{
     
 }

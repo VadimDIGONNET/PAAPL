@@ -4,13 +4,13 @@
  */
 package fr.centrale.nantes.pappl.repositories;
 
+import org.springframework.stereotype.Repository;
+
 /**
  *
- * @author vadimdigonnet
+ * @author agach
  */
-import org.springframework.stereotype.Repository;
 @Repository
-public class TypologieMissionRepositoryCustomlmpl implements TypologieMissionRepositoryCustom{
+public class AppartientRepositoryCustomImpl implements AppartientRepositoryCustom{
     
 }
-

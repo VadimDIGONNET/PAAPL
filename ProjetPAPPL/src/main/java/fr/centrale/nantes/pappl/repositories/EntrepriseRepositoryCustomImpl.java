@@ -10,7 +10,7 @@ package fr.centrale.nantes.pappl.repositories;
  */
 import org.springframework.stereotype.Repository;
 @Repository
-public class EntrepriseRepositoryCustomlmpl implements EntrepriseRepositoryCustom{
+public class EntrepriseRepositoryCustomImpl implements EntrepriseRepositoryCustom{
     
 }
 

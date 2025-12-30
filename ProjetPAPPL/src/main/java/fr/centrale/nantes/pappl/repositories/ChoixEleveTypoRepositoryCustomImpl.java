@@ -4,13 +4,12 @@
  */
 package fr.centrale.nantes.pappl.repositories;
 
-import org.springframework.stereotype.Repository;
-
 /**
  *
  * @author agach
  */
+import org.springframework.stereotype.Repository;
 @Repository
-public class AppartientRepositoryCustomlmpl implements AppartientRepositoryCustom{
+public class ChoixEleveTypoRepositoryCustomImpl implements ChoixEleveTypoRepositoryCustom {
     
 }
