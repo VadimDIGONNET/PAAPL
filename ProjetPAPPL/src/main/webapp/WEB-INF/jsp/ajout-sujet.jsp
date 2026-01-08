@@ -80,7 +80,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 my-4">
-          <p class="mb-1">© 2025-2026&nbsp; Centrale Nantes</p>
+          <p class="mb-1">Centrale Nantes</p>
           <ul class="list-inline">
             <li class="list-inline-item">
               <a href="#">Privacy</a>

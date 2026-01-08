@@ -5,8 +5,6 @@
     <title>Library Login</title>
     <meta charset="UTF-8"/> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <script type="text/javascript" src="js/jquery-3.7.1.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <link href="css/main.css" type="text/css" rel="stylesheet" />
