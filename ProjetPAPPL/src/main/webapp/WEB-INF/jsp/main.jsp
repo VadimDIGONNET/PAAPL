@@ -57,7 +57,7 @@
               <div class="col-md-12">
                   <form action="sujet.do" method="POST" class="m-2">
                     <button type="submit" name="sujet" class="btn btn-primary btn-lg">
-                    Ajouter
+                    Liste
                     </button>
                     </form>
               </div>
