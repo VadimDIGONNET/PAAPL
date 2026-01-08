@@ -54,7 +54,13 @@
             </div>
           </div>
             <div class="col-md-4 bg-secondary m-2" style="">
-              <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#">Liste</a></div>
+              <div class="col-md-12">
+                  <form action="sujet.do" method="POST" class="m-2">
+                    <button type="submit" name="sujet" class="btn btn-primary btn-lg">
+                    Ajouter
+                    </button>
+                    </form>
+              </div>
             </div>
             <div class="col-md-8 bg-dark m-2" style="">
             </div>

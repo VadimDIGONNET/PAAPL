@@ -29,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class MainController {
+    @Autowired
     private SujetRepository sujetRepository;
     private DescriptionSujetRepository DescriptionSujetRepository;
     
@@ -40,7 +41,7 @@ public class MainController {
         return returned;
     }
     
-        private int getIntFromString(String value){
+    private int getIntFromString(String value){
         int intValue=-1;
         try{
             intValue = Integer.parseInt(value);

@@ -70,7 +70,9 @@
   <div class="py-5">
     <div class="container">
       <div class="row">
-        <div class="col-md-12"><button class="btn btn-primary btn-lg btn-block" type="submit">Valider</button></div>
+          <form action="savesujet.do" method="POST" class="m-2">
+            <div class="col-md-12"><button class="btn btn-primary btn-lg btn-block" type="submit">Valider</button></div>
+          </form>
       </div>
     </div>
   </div>
