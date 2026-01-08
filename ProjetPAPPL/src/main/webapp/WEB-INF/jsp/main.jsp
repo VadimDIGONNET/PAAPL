@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
   <script type="text/javascript" src="js/jquery-3.7.1.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
-  <link href="css/main.sass" type="text/css" rel="stylesheet" />
+  <link href="../../css/main.css" type="text/css" rel="stylesheet" />
 </head>
 
 <body >
@@ -44,9 +44,15 @@
           <h2>Sujet</h2>
           <hr>
           <div class="row text-center">
-            <div class="col-md-4 bg-primary m-2" style="">
-              <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#" contenteditable="true">Ajouter</a></div>
+            <div class="col-md-4 bg-primary m-2">
+            <div class="col-md-12">
+              <form action="createsujet.do" method="POST" class="m-2">
+                <button type="submit" name="create_sujet" class="btn btn-primary btn-lg">
+                  Ajouter
+                </button>
+              </form>
             </div>
+          </div>
             <div class="col-md-4 bg-secondary m-2" style="">
               <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#">Liste</a></div>
             </div>

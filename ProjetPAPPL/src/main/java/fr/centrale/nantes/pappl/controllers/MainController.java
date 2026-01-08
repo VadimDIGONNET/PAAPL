@@ -77,8 +77,8 @@ public class MainController {
     public ModelAndView HandlePostcreateuser(){
         ModelAndView returned;
         DescriptionSujet nouveau=new DescriptionSujet();
-        returned=new ModelAndView("main");
-        returned.addObject("main",nouveau);
+        returned=new ModelAndView("ajout-sujet");
+        returned.addObject("ajout-sujet",nouveau);
         return returned;
     }
 }
