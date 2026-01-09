@@ -85,3 +85,6 @@ form button.btn-primary:hover {
 footer, .py-5 {
     background-color: #ffffff;
 }
+.icon {
+  width: 1.5rem; /* S'adapte à la taille de police globale */
+}

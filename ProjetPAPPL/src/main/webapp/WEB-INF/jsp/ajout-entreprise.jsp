@@ -16,6 +16,9 @@
         }
         button:hover { background-color: #0056b3; }
         .container { max-width: 500px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
+        .icon {
+            width: 1.5rem; /* S'adapte à la taille de police globale */
+          }
     </style>
 </head>
 <body>

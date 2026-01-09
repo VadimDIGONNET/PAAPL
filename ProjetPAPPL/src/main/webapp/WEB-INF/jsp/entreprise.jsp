@@ -19,6 +19,9 @@
         th {
             background-color: #f2f2f2;
         }
+        .icon {
+            width: 1.5rem; /* S'adapte à la taille de police globale */
+          }
     </style>
 </head>
 <body>
