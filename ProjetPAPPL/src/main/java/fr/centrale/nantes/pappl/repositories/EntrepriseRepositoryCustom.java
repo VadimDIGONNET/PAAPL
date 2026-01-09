@@ -13,4 +13,5 @@ import fr.centrale.nantes.pappl.items.Entreprise;
 public interface EntrepriseRepositoryCustom {
     public Entreprise create(String nom, String adresse, Integer codePostal, Integer tel, String siteWeb, String description);
     public void remove(Entreprise nom);
+    public Entreprise update(Entreprise entreprise, String adresse, Integer codePostal, Integer tel, String siteWeb, String description);
 }

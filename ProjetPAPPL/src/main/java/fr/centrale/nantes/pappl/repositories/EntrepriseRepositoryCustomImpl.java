@@ -45,5 +45,27 @@ public class EntrepriseRepositoryCustomImpl implements EntrepriseRepositoryCusto
             entrepriseRepository.delete(nom);
         }
     }
+    
+    @Override
+    public Entreprise update(Entreprise entreprise, String adresse, Integer codePostal, Integer tel, String siteWeb, String description) {
+        if (entreprise != null) {
+            // Ensure valididy from database
+            entreprise = entrepriseRepository.getReferenceById(entreprise.getNom());
+        }
+        if ((entreprise != null)) {
+            // Update data
+            entreprise.setAdresse(adresse);
+            entreprise.setCodePostal(codePostal);
+            entreprise.setTel(tel);
+            entreprise.setSiteWeb(siteWeb);
+            entreprise.setDescription(description);
+            // Save to database
+            entrepriseRepository.saveAndFlush(entreprise);
+            // Ensure we have the last version
+            entreprise = entrepriseRepository.getReferenceById(entreprise.getNom());
+        }
+        return entreprise;
+    }
+
 }
 
