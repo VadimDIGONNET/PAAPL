@@ -38,13 +38,16 @@ public class EntrepriseController {
         String description = request.getParameter("description");
         int codePostal = Tools.getIntFromString(codePostalStr);
         int tel = Tools.getIntFromString(telStr);
-        
-        List<Entreprise> listEntreprise = new ArrayList<Entreprise>(entrepriseRepository.findAll());
-        Entreprise a = entrepriseRepository.getReferenceById(nom);
-        if(listEntreprise.contains(a)){
-            entrepriseRepository.update(a, adresse, codePostal, tel, siteWeb, description);
+        Entreprise a =null;
+        try{
+            List<Entreprise> listEntreprise = new ArrayList<Entreprise>(entrepriseRepository.findAll());
+            a = entrepriseRepository.getReferenceById(nom);
+        }catch(Exception ex){
         }
-        else{
+       
+        if(a!=null){
+            entrepriseRepository.update(a, adresse, codePostal, tel, siteWeb, description);
+        }else{
             entrepriseRepository.create(nom, adresse, codePostal, tel, siteWeb, description);
         }
         ModelAndView returned = new ModelAndView("main");
