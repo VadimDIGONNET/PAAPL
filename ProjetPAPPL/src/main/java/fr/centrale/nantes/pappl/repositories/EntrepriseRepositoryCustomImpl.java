@@ -20,14 +20,24 @@ public class EntrepriseRepositoryCustomImpl implements EntrepriseRepositoryCusto
     
     @Override
     public Entreprise create(String nom, String adresse, Integer codePostal, Integer tel, String siteWeb, String description){
-        if((nom!=null)&&(!nom.isEmpty())&&(adresse!=null)&&(!adresse.isEmpty())){
+        if((nom!=null)&&(!nom.isEmpty())){
             Entreprise item=new Entreprise();
             item.setNom(nom);
-            item.setAdresse(adresse);
-            item.setCodePostal(codePostal);
+            if (adresse != null){
+                item.setAdresse(adresse);
+            }
+            if (codePostal != null){
+                item.setCodePostal(codePostal);
+            }
+            if (tel != null){
             item.setTel(tel);
+            }
+            if (siteWeb != null){
             item.setSiteWeb(siteWeb);
+            }
+            if (description != null){
             item.setDescription(description);
+            }       
             entrepriseRepository.saveAndFlush(item);
             return item;
         }
@@ -54,11 +64,21 @@ public class EntrepriseRepositoryCustomImpl implements EntrepriseRepositoryCusto
         }
         if ((entreprise != null)) {
             // Update data
-            entreprise.setAdresse(adresse);
-            entreprise.setCodePostal(codePostal);
+            if (adresse != null){
+                entreprise.setAdresse(adresse);
+            }
+            if (codePostal != null){
+                entreprise.setCodePostal(codePostal);
+            }
+            if (tel != null){
             entreprise.setTel(tel);
+            }
+            if (siteWeb != null){
             entreprise.setSiteWeb(siteWeb);
+            }
+            if (description != null){
             entreprise.setDescription(description);
+            }       
             // Save to database
             entrepriseRepository.saveAndFlush(entreprise);
             // Ensure we have the last version
