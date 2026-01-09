@@ -11,5 +11,5 @@ import fr.centrale.nantes.pappl.items.Entreprise;
  * @author vadimdigonnet
  */
 public interface EntrepriseRepositoryCustom {
-    public Entreprise create(String nom, String adresse, int codePostal, int tel, String siteWeb, String description);
+    public Entreprise create(String nom, String adresse, Integer codePostal, Integer tel, String siteWeb, String description);
 }

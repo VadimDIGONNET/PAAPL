@@ -53,9 +53,9 @@ public class EntrepriseController {
     
     @RequestMapping(value="entreprise.do",method=RequestMethod.POST)
     public ModelAndView handlePostUsers(HttpServletRequest request){
-        List<Entreprise> myList =new ArrayList<Entreprise>( entrepriseRepository.findAll());
+        List<Entreprise> listEntreprise =new ArrayList<Entreprise>( entrepriseRepository.findAll());
         ModelAndView returned =new ModelAndView("entreprise");
-        returned.addObject("entrepriseList",myList);
+        returned.addObject("entrepriseList",listEntreprise);
         return returned;
     }
 }

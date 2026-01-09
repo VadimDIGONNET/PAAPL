@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c"   uri="jakarta.tags.core" %>
+<%@taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -29,19 +32,22 @@
             <th>Adresse</th>
             <th>Code postal</th>
             <th>Téléphone</th>
-            <th>Email</th>
+            <th>site web</th>
             <th>Description</th>
         </tr>
     </thead>
     <tbody>
-        <tr th:each="myList : ${entreprises}">
-            <td th:text="${myList.nom}"></td>
-            <td th:text="${myList.adresse}"></td>
-            <td th:text="${myList.codePostal}"></td>
-            <td th:text="${myList.numeroTelephone}"></td>
-            <td th:text="${myList.email}"></td>
-            <td th:text="${myLst.description}"></td>
-        </tr>
+        <c:forEach var="item" items="${entrepriseList}">
+                                        <tr>
+                                            <td scope="col">${item.nom}</td>
+                                            <td>${item.adresse}</td>
+                                            <td>${item.codePostal}</td>
+                                            <td>${item.tel}</td>
+                                            <td>${item.siteWeb}</td>
+                                            <td>${item.description}</td>
+                                            <td class="text-center"></td>
+                                        </tr>
+                                        </c:forEach>
     </tbody>
 </table>
 

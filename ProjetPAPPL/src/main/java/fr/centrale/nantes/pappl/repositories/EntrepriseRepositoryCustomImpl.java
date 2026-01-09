@@ -19,15 +19,19 @@ public class EntrepriseRepositoryCustomImpl implements EntrepriseRepositoryCusto
     private EntrepriseRepository entrepriseRepository;
     
     @Override
-    public Entreprise create(String nom, String adresse, int codePostal, int tel, String siteWeb, String description){
+    public Entreprise create(String nom, String adresse, Integer codePostal, Integer tel, String siteWeb, String description){
         if((nom!=null)&&(!nom.isEmpty())&&(adresse!=null)&&(!adresse.isEmpty())){
             Entreprise item=new Entreprise();
             item.setNom(nom);
             item.setAdresse(adresse);
             item.setCodePostal(codePostal);
+            item.setTel(tel);
+            item.setSiteWeb(siteWeb);
+            item.setDescription(description);
             entrepriseRepository.saveAndFlush(item);
             return item;
         }
+
         return null;
     }
 }
