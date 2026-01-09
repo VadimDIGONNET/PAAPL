@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
  * @author vadimdigonnet
  */
 @Repository
-public interface EntrepriseRepository extends JpaRepository<Entreprise,Integer>,EntrepriseRepositoryCustom {
+public interface EntrepriseRepository extends JpaRepository<Entreprise,String>,EntrepriseRepositoryCustom {
     
 }

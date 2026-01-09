@@ -34,5 +34,16 @@ public class EntrepriseRepositoryCustomImpl implements EntrepriseRepositoryCusto
 
         return null;
     }
+    
+    @Override
+    public void remove(Entreprise nom) {
+        /**if (nom != null) {
+            // Ensure valididy from database
+            nom = entrepriseRepository.getReferenceByID(nom.getNom());
+        }**/
+        if (nom != null) {
+            entrepriseRepository.delete(nom);
+        }
+    }
 }
 

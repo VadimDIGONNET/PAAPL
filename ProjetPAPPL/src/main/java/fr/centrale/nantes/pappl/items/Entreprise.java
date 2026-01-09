@@ -18,6 +18,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Comparator;
 
 /**
  *
@@ -159,4 +160,31 @@ public class Entreprise implements Serializable {
         return "fr.centrale.nantes.pappl.items.Entreprise[ nom=" + nom + " ]";
     }
     
+    public int compareTo(Object object) {
+        if (object == null) {
+            return 1;
+        } else if (! (object instanceof Entreprise)){
+            return 1;
+        }
+        
+        Entreprise itemId = (Entreprise) object;
+        if (this.getNom().toUpperCase().equals(itemId.getNom().toUpperCase())) {
+            return this.getAdresse().toUpperCase().compareTo(itemId.getAdresse().toUpperCase());
+        } else {
+            return this.getNom().toUpperCase().compareTo(itemId.getNom().toUpperCase());
+        }
+    }
+
+    public static Comparator<Entreprise> getComparator() {
+        return new Comparator<Entreprise>() {
+            @Override
+            public int compare(Entreprise object1, Entreprise object2) {
+                if (object1 == null) {
+                    return -1;
+                } else {
+                    return object1.compareTo(object2);
+                }
+            }
+        };
+    }
 }

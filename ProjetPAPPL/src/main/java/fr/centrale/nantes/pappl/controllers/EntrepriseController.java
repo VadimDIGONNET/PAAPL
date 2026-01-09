@@ -78,4 +78,23 @@ public class EntrepriseController {
         }
         return returned;
     }
+    
+    @RequestMapping(value = "deleteentreprise.do", method = RequestMethod.POST)
+    public ModelAndView handlePostDeleteUser(HttpServletRequest request) {
+        ModelAndView returned;
+
+        String name = request.getParameter("nom");
+        if (name != null) {
+            Entreprise nom = entrepriseRepository.getReferenceById(name);
+            entrepriseRepository.remove(nom);
+        }
+        
+        // return to list
+        List<Entreprise> listEntreprise = new ArrayList<Entreprise>(entrepriseRepository.findAll());
+        Collections.sort(listEntreprise, Entreprise.getComparator());
+        returned = new ModelAndView("entreprise");
+        returned.addObject("entrepriseList", listEntreprise);
+
+        return returned;
+    }
 }
