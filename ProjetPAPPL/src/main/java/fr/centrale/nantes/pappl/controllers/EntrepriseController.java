@@ -76,12 +76,12 @@ public class EntrepriseController {
         String nom = request.getParameter("nom");
 
         if (nom!=null) {
-            Optional<Entreprise> entreprise = entrepriseRepository.findById(nom);
-            returned = new ModelAndView("entreprise");
-            returned.addObject("entreprise", entreprise.get());
+            Entreprise entreprise = entrepriseRepository.getReferenceById(nom);
+            returned = new ModelAndView("ajout-entreprise");
+            returned.addObject("entreprise", entreprise);
         } else {
             List<Entreprise> listEntreprise = new ArrayList<Entreprise>(entrepriseRepository.findAll());
-            returned = new ModelAndView("entreprise");
+            returned = new ModelAndView("ajout-entreprise");
             returned.addObject("entrepriseList", listEntreprise);
         }
         return returned;
