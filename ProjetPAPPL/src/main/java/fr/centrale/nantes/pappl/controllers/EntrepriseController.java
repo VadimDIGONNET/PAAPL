@@ -10,7 +10,9 @@ import fr.centrale.nantes.pappl.items.Sujet;
 import fr.centrale.nantes.pappl.repositories.EntrepriseRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +58,24 @@ public class EntrepriseController {
         List<Entreprise> listEntreprise =new ArrayList<Entreprise>( entrepriseRepository.findAll());
         ModelAndView returned =new ModelAndView("entreprise");
         returned.addObject("entrepriseList",listEntreprise);
+        return returned;
+    }
+    
+    @RequestMapping(value = "editentreprise.do", method = RequestMethod.POST)
+    public ModelAndView handleEditPost(HttpServletRequest request) {
+        ModelAndView returned;
+
+        String nom = request.getParameter("nom");
+
+        if (nom!=null) {
+            Optional<Entreprise> entreprise = entrepriseRepository.findById(nom);
+            returned = new ModelAndView("entreprise");
+            returned.addObject("entreprise", entreprise.get());
+        } else {
+            List<Entreprise> listEntreprise = new ArrayList<Entreprise>(entrepriseRepository.findAll());
+            returned = new ModelAndView("entreprise");
+            returned.addObject("entrepriseList", listEntreprise);
+        }
         return returned;
     }
 }
