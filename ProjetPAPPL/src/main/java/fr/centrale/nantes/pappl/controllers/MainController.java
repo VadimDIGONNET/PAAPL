@@ -51,26 +51,25 @@ public class MainController {
         return intValue;
     }
     
-    @RequestMapping(value="savesujet.do",method=RequestMethod.POST)
-    public ModelAndView handlePostSaveUser(HttpServletRequest request){
-        ModelAndView returned;
-        String idStr=request.getParameter("id");
-        String contexte=request.getParameter("contexte");
+    @RequestMapping(value="savesujet.do", method=RequestMethod.POST)
+    public ModelAndView handlePostSaveSujet(HttpServletRequest request) {
+        String idStr = request.getParameter("id");
+        String contexte = request.getParameter("contexte");
         String travail = request.getParameter("travail");
-        String livrable= request.getParameter("livrable");
-        String entreprise =request.getParameter("entreprise");
-        int id =Tools.getIntFromString(idStr);
-        if(id==-1){
-            DescriptionSujet item=DescriptionSujetRepository.create(contexte,travail,livrable,entreprise);
-            id=item.getNumero();
+        String livrable = request.getParameter("livrable");
+    
+        String entrepriseNom = request.getParameter("entrepriseNom"); 
+        int id = Tools.getIntFromString(idStr);
+
+        if (id == -1) {
+            DescriptionSujet item = DescriptionSujetRepository.create(contexte, travail, livrable, entrepriseNom);
+            id = item.getNumero();
+        } else {
+            DescriptionSujet dSujet = DescriptionSujetRepository.getReferenceById(id);
+            DescriptionSujetRepository.update(dSujet, contexte, travail, livrable, entrepriseNom);
         }
-        DescriptionSujet DSujet =DescriptionSujetRepository.getReferenceById(id);
-        DescriptionSujetRepository.update(DSujet,contexte,travail,livrable,entreprise);
-        
-        
-        returned =new ModelAndView("main");
-        Collection<DescriptionSujet> myList= DescriptionSujetRepository.findAll();
-        returned.addObject("main",myList);
+        ModelAndView returned = new ModelAndView("main");
+        returned.addObject("main", DescriptionSujetRepository.findAll());
         return returned;
     }
     
@@ -82,5 +81,6 @@ public class MainController {
         returned.addObject("ajout-sujet",nouveau);
         return returned;
     }
+    
 }
 
