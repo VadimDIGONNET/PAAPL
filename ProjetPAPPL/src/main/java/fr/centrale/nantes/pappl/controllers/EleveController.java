@@ -73,7 +73,7 @@ public class EleveController {
         return returned;
     }
     
-    @RequestMapping(value = "editentreprise.do", method = RequestMethod.POST)
+    @RequestMapping(value = "editeleve.do", method = RequestMethod.POST)
     public ModelAndView handleEditPost(HttpServletRequest request) {
         ModelAndView returned;
 
