@@ -1,2 +1,2 @@
-# PAAPL
-Base de donnée pour P2T
+# PGROUP
+Base de donnée et application web pour la prospection de P2T
