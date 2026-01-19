@@ -95,7 +95,7 @@ public ModelAndView handlePostSaveTuteur(HttpServletRequest request) {
         // return to list
         List<Tuteur> listTuteur = new ArrayList<Tuteur>(tuteurRepository.findAll());
         Collections.sort(listTuteur, Tuteur.getComparator());
-        returned = new ModelAndView("tuteur");
+        returned = new ModelAndView("liste_tuteurs");
         returned.addObject("tuteurlist", listTuteur);
 
         return returned;

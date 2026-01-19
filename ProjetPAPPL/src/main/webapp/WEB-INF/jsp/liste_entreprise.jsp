@@ -45,6 +45,14 @@
         </c:forEach>
     </tbody>
 </table>
-
+<div class="col-md-4 bg-primary m-2" style="">
+        <div class="col-md-12">
+            <form action="main.do" method="POST" class="m-2">
+                <button type="submit" name="retour au menu" class="btn btn-primary btn-lg">
+                    Retourner au menu
+                </button>
+            </form>   
+        </div>
+    </div>
 </body>
 </html>
