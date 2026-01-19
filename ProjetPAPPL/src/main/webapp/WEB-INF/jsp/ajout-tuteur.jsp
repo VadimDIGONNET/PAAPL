@@ -30,6 +30,7 @@
     <h2>Nouveaux tuteurs</h2>
     
     <form action="savetuteur.do" method="POST">
+        <input type="hidden" name="id" value="${tuteur.id != null ? tuteur.id : -1}">
 
         <div class="form-group">
             <label for="nom">Nom du tuteur :</label>
@@ -37,13 +38,13 @@
         </div>
 
         <div class="form-group">
-            <label for="adresse">Prenom du tuteur :</label>
-            <input type="text" id="adresse" name="adresse" value="${tuteur.prenom}">
+            <label for="prenom">Prenom du tuteur :</label>
+            <input type="text" id="prenom" name="prenom" value="${tuteur.prenom}">
         </div>
 
         <div class="form-group">
-            <label for="codePostal">Nombre de sujet souhaité par le tuteur :</label>
-            <input type="number" id="codePostal" name="codePostal" value="${tuteur.nbsujet}">
+            <label for="nbsujet">Nombre de sujet souhaité :</label>
+            <input type="number" id="nbsujet" name="nbsujet" value="${tuteur.nbSujetSouhaite}">
         </div>
 
         <button type="submit">Enregistrer le tuteur</button>

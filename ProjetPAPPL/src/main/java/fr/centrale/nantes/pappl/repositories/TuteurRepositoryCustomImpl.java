@@ -26,7 +26,7 @@ public class TuteurRepositoryCustomImpl implements TuteurRepositoryCustom{
             if (prenom != null){
                 item.setPrenom(prenom);
             }
-            if (nbsujet != null){
+            if ((nbsujet != null)&&(nbsujet!=-1)){
                 item.setNbSujetSouhaite(nbsujet);
             }
             tuteurRepository.saveAndFlush(item);
@@ -48,25 +48,22 @@ public class TuteurRepositoryCustomImpl implements TuteurRepositoryCustom{
     }
     
     @Override
-    public Tuteur update(Integer id, String nom, String prenom, Integer nbsujet) {
-        if (id != null) {
-            Tuteur tuteur=new Tuteur();
-            tuteur = tuteurRepository.getReferenceById(id);
-            if (nom != null){
-                tuteur.setNom(nom);
+    public Tuteur update(Tuteur tu, String nom, String prenom, Integer nbsujet) {
+        if (tu != null && tu.getId() != null) {
+        // On travaille sur l'objet déjà rattaché à la session
+            if (nom != null) {
+                tu.setNom(nom);
             }
-            if (prenom != null){
-                tuteur.setPrenom(prenom);
-            }
-            if (nbsujet != null){
-            tuteur.setNbSujetSouhaite(nbsujet);
-            }
-            tuteurRepository.saveAndFlush(tuteur);
-            tuteur = tuteurRepository.getReferenceById(tuteur.getId());
+        if (prenom != null) {
+            tu.setPrenom(prenom);
         }
-        Tuteur tuteur=new Tuteur();
-        tuteur = tuteurRepository.getReferenceById(id);
-        return tuteur;
+        if (nbsujet != null) {
+            tu.setNbSujetSouhaite(nbsujet);
+        }
+        tuteurRepository.saveAndFlush(tu);
+        return tu;
+        }
+        return null;
     }
 
 }
