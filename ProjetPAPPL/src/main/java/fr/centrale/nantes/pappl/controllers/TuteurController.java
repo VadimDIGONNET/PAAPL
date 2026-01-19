@@ -92,6 +92,7 @@ public class TuteurController {
         
         // return to list
         List<Tuteur> listTuteur = new ArrayList<Tuteur>(tuteurRepository.findAll());
+        Collections.sort(listTuteur, Tuteur.getComparator());
         returned = new ModelAndView("tuteur");
         returned.addObject("tuteurlist", listTuteur);
 
