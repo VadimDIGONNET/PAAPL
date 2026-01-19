@@ -40,7 +40,7 @@ public class IndexController {
 
         if ((login != null) && (password != null) 
                 && (login.equals("admin")) && (password.equals("admin"))){
-            returned = new ModelAndView("main");
+            returned = new ModelAndView("redirect:main.do");
   
         }else{
             returned = new ModelAndView("index");

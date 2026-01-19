@@ -82,5 +82,10 @@ public class MainController {
         return returned;
     }
     
+    @RequestMapping(value="main.do")
+    public ModelAndView handlePostMain() {
+    ModelAndView returned = new ModelAndView("main");
+    return returned;
+}
 }
 
