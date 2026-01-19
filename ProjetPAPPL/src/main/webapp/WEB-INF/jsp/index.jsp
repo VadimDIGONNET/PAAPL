@@ -7,14 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="js/jquery-3.7.1.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <link href="css/main.css" type="text/css" rel="stylesheet" />
+  <link href="css/index.css" type="text/css" rel="stylesheet" />
+
   </head>
   <body>
     <div class="py-5">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h2 class="">Library Login</h2>
+            <h2 class="">P2T Login</h2>
           </div>
         </div>
         <div class="row">

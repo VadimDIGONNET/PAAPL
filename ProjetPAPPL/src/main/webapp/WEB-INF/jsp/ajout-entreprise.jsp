@@ -32,7 +32,7 @@
     <form action="saveentreprise.do" method="POST">
 
         <div class="form-group">
-            <label for="nom">Nom de l'entreprise (ClÃ© unique) :</label>
+            <label for="nom">Nom de l'entreprise :</label>
             <input type="text" id="nom" name="nom" value="${entreprise.nom}" required>
         </div>
 
@@ -47,7 +47,7 @@
         </div>
 
         <div class="form-group">
-            <label for="tel">TÃ©lÃ©phone :</label>
+            <label for="tel">Téléphone :</label>
             <input type="number" id="tel" name="tel" value="${entreprise.tel}">
         </div>
 
@@ -58,7 +58,7 @@
 
         <div class="form-group">
             <label for="description">Description :</label>
-            <textarea id="description" name="description" value="${entreprise.description}" rows="4"></textarea>
+            <input id="description" type="text" name="description" value="${entreprise.description}">
         </div>
 
         <button type="submit">Enregistrer l'entreprise</button>
