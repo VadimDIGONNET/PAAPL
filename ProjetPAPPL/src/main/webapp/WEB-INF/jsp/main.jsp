@@ -14,6 +14,10 @@
   <script type="text/javascript" src="js/jquery-3.7.1.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
   <link href="css/main.css" type="text/css" rel="stylesheet" />
+  <div style="text-align: center; margin: 20px 0;">
+  <img src="img/LogoECN.png" alt="Logo Centrale Nantes" style="height: 60px; width: auto;">
+</div>
+
 </head>
 
 <body >
