@@ -5,7 +5,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Ajouter une Entreprise</title>
+    <title>Ajouter un eleve</title>
     <style>
         body { font-family: sans-serif; margin: 40px; line-height: 1.6; }
         .form-group { margin-bottom: 15px; }
@@ -58,8 +58,8 @@
 
         <div class="form-group">
             <label for="description">Numero Sujet</label>
-            <input id="number" type="text" name="sujet" value="${eleve.numero_sujet}">
-        </div>
+<input id="sujet" type="number" name="numero_sujet" 
+       value="${eleve.numeroSujet != null ? eleve.numeroSujet.id : ''}" />        </div>
 
         <button type="submit">Enregistrer l'eleve</button>
         <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
