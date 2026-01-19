@@ -21,6 +21,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Comparator;
 
 /**
  *
@@ -130,4 +131,31 @@ public class Tuteur implements Serializable {
         return "fr.centrale.nantes.pappl.items.Tuteur[ id=" + id + " ]";
     }
     
+    public int compareTo(Object object) {
+        if (object == null) {
+            return 1;
+        } else if (! (object instanceof Tuteur)){
+            return 1;
+        }
+        
+        Tuteur itemId = (Tuteur) object;
+        if (this.getNom().toUpperCase().equals(itemId.getNom().toUpperCase())) {
+            return this.getPrenom().toUpperCase().compareTo(itemId.getPrenom().toUpperCase());
+        } else {
+            return this.getNom().toUpperCase().compareTo(itemId.getNom().toUpperCase());
+        }
+    }
+
+    public static Comparator<Tuteur> getComparator() {
+        return new Comparator<Tuteur>() {
+            @Override
+            public int compare(Tuteur object1, Tuteur object2) {
+                if (object1 == null) {
+                    return -1;
+                } else {
+                    return object1.compareTo(object2);
+                }
+            }
+        };
+    }
 }

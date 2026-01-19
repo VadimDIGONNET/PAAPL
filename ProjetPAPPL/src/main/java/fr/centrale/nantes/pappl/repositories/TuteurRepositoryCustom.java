@@ -4,10 +4,15 @@
  */
 package fr.centrale.nantes.pappl.repositories;
 
+import fr.centrale.nantes.pappl.items.Tuteur;
+
+
 /**
  *
  * @author vadimdigonnet
  */
 public interface TuteurRepositoryCustom {
-    
+    public Tuteur create(String nom, String prenom, Integer nbsujet);
+    public void remove(Tuteur id);
+    public Tuteur update(Integer id, String nom, String prenom, Integer nbsujet);
 }
