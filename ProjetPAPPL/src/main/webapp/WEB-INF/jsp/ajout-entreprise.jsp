@@ -6,7 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Ajouter une Entreprise</title>
-    <link href="css/liste.css" type="text/css" rel="stylesheet" />
+    <link href="css/ajout.css" type="text/css" rel="stylesheet" />
+    <div class="logo-container"> <a href="#"> 
+        <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
+    </div>
 </head>
 <body>
 
@@ -16,7 +19,7 @@
     <form action="saveentreprise.do" method="POST">
 
         <div class="form-group">
-            <label for="nom">Nom de l'entreprise  :</label>
+            <label for="nom">Nom de l'entreprise :</label>
             <input type="text" id="nom" name="nom" value="${entreprise.nom}" required>
         </div>
 

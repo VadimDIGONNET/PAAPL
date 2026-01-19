@@ -47,5 +47,10 @@ public class IndexController {
         }
         return returned;
     }
+    
+    @RequestMapping(value="main.do",method=RequestMethod.POST)
+    public ModelAndView handlereturntomenu(HttpServletRequest request){
+        return new ModelAndView("main");
+    }
             
 }

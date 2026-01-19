@@ -6,23 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des tuteurs</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #000;
-            padding: 8px;
-            vertical-align: top;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .icon {
-            width: 1.5rem; /* S'adapte à la taille de police globale */
-          }
-    </style>
+    <link href="css/liste.css" type="text/css" rel="stylesheet" />
+    <div class="logo-container"> <a href="#"> 
+          <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
+    </div>
 </head>
 <body>
 
@@ -55,6 +42,14 @@
         </c:forEach>
     </tbody>
 </table>
-
+            <div class="col-md-4 bg-primary m-2" style="">
+              <div class="col-md-12">
+                  <form action="main.do" method="POST" class="m-2">
+                    <button type="submit" name="retour au menu" class="btn btn-primary btn-lg">
+                        Retourner au menu
+                    </button>
+                </form>   
+              </div>
+            </div>
 </body>
 </html>

@@ -6,28 +6,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Ajouter une Entreprise</title>
-    <style>
-        body { font-family: sans-serif; margin: 40px; line-height: 1.6; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; }
-        input[type="text"], input[type="number"], textarea {
-            width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;
-        }
-        button { 
-            background-color: #007bff; color: white; padding: 10px 15px; 
-            border: none; border-radius: 4px; cursor: pointer; 
-        }
-        button:hover { background-color: #0056b3; }
-        .container { max-width: 500px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
-        .icon {
-            width: 1.5rem; /* S'adapte à la taille de police globale */
-          }
-    </style>
+    <link href="css/ajout.css" type="text/css" rel="stylesheet" />
+    <div class="logo-container"> <a href="#"> 
+        <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
+    </div>
 </head>
 <body>
 
 <div class="container">
-    <h2>Nouvel élève</h2>
+    <h2>Nouvel Ã©lÃ¨ve</h2>
     
     <form action="saveeleve.do" method="POST">
 
@@ -58,8 +45,8 @@
 
         <div class="form-group">
             <label for="description">Numero Sujet</label>
-            <input id="number" type="text" name="sujet" value="${eleve.numero_sujet}">
-        </div>
+<input id="sujet" type="number" name="numero_sujet" 
+       value="${eleve.numeroSujet != null ? eleve.numeroSujet.id : ''}" />        </div>
 
         <button type="submit">Enregistrer l'eleve</button>
         <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>

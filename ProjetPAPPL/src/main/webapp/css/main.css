@@ -12,6 +12,7 @@ h2 {
     margin-bottom: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-align: left;
 }
 
 hr {
@@ -26,6 +27,7 @@ hr {
     padding-bottom: 2rem !important;
     border-bottom: 1px solid #e9ecef;
 }
+
 
 /* Style des "Cartes" */
 .col-md-4 {
@@ -69,30 +71,42 @@ hr {
 }
 
 /* Boutons dans le formulaire */
-a.btn-primary.btn-lg {
+form .btn-primary.btn-lg {
     background-color: transparent;
     color: white;
     border: 2px solid white;
 }
 
-a.btn-primary.btn-lg:hover {
+form .btn-primary.btn-lg:hover {
     background-color: #FFD700;
     color: #0066CC;
 }
 
-a.btn-secondary.btn-lg {
+form .btn-secondary.btn-lg {
     background-color: #FFD700;
     color: #0066CC;
     border: 2px solid #0066CC;
 }
 
-a.btn-secondary.btn-lg:hover {
+form .btn-secondary.btn-lg:hover {
     background-color: #0066CC;
     color: #FFD700;
     border: 2px solid #FFD700;
 }
 
+/* Conteneur du logo */
+.logo-container {
+    position: fixed;       
+    top: 15px;             
+    left: 15px;        
+    z-index: 1000;     
+}
 
+/* Logo */
+.fixed-logo {
+    height: 45px;    
+    width: auto;        
+}
 
 /* Section contact / Info */
 .bg-info {
