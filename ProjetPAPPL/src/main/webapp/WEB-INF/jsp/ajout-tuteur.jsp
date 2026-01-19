@@ -47,7 +47,7 @@
         </div>
 
         <button type="submit">Enregistrer le tuteur</button>
-        <button href="index.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</button>
+        <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
     </form>
 </div>
 
