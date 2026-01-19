@@ -149,10 +149,18 @@
           <hr>
           <div class="row justify-content-center">
             <div class="col-md-4 bg-primary m-2" style="">
-              <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#" contenteditable="true">Ajouter</a></div>
+              <div class="col-md-12">
+                  <form action="ajoutcorrespondant.do" method="post" style="display:inline;">
+                  <button type="submit" class="btn btn-primary m-2 btn-lg">Ajouter</button>
+                </form>
             </div>
+            </div>   
             <div class="col-md-4 bg-secondary m-2" style="">
-              <div class="col-md-12"><a class="btn btn-secondary m-2 btn-lg" href="#">Liste</a></div>
+              <div class="col-md-12">
+                  <form action="correspondant.do" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary m-2 btn-lg">Liste</button>
+                  </form>
+            </div>
             </div>
             <div class="col-md-8 bg-dark m-2" style="">
             </div>

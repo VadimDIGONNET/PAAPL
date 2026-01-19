@@ -14,5 +14,5 @@ import fr.centrale.nantes.pappl.items.Tuteur;
 public interface TuteurRepositoryCustom {
     public Tuteur create(String nom, String prenom, Integer nbsujet);
     public void remove(Tuteur id);
-    public Tuteur update(Integer id, String nom, String prenom, Integer nbsujet);
+    public Tuteur update(Tuteur tu, String nom, String prenom, Integer nbsujet);
 }

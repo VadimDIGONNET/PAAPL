@@ -19,7 +19,7 @@
     <form action="saveentreprise.do" method="POST">
 
         <div class="form-group">
-            <label for="nom">Nom de l'entreprise :</label>
+            <label for="nom">Nom de l'entreprise  :</label>
             <input type="text" id="nom" name="nom" value="${entreprise.nom}" required>
         </div>
 
@@ -45,7 +45,7 @@
 
         <div class="form-group">
             <label for="description">Description :</label>
-            <input id="description" type="text" name="description" value="${entreprise.description}">
+            <textarea type="text" id="description" name="description" value="${entreprise.description}" rows="4"></textarea>
         </div>
 
         <button type="submit">Enregistrer l'entreprise</button>
