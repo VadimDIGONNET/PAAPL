@@ -28,7 +28,7 @@ public class EleveController {
     private EleveRepository eleveRepository;
     private SujetRepository sujetRepository;
     @RequestMapping(value="saveeleve.do", method=RequestMethod.POST)
-    public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
+    public ModelAndView handlePostSaveEleve(HttpServletRequest request) {
         // Récupération des paramètres
         String eleveId = request.getParameter("id");
         String nom = request.getParameter("nom");

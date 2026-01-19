@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Liste des sujets</title>
     <link href="css/liste.css" type="text/css" rel="stylesheet" />
+    <div class="logo-container"> <a href="#"> 
+            <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
+    </div>
 </head>
 <body>
 

@@ -15,19 +15,20 @@
   <script src="bootstrap/js/bootstrap.min.js"></script>
   <link href="css/main.css" type="text/css" rel="stylesheet" />
   <div style="text-align: center; margin: 20px 0;">
-  <img src="img/LogoECN.png" alt="Logo Centrale Nantes" style="height: 60px; width: auto;">
-</div>
+  <div class="logo-container"> <a href="#"> 
+          <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
+  </div>
 
 </head>
 
 <body >
   <div class="py-4">
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-12">
           <h2>Partenaires&nbsp;</h2>
           <hr>
-          <div class="row text-center">
+          <div class="row justify-content-center">
             <div class="col-md-4 bg-primary m-2" style="">
               <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#" contenteditable="true">Ajouter</a></div>
             </div>
@@ -41,13 +42,14 @@
       </div>
     </div>
   </div>
+  
   <div class="py-4">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <h2>Sujet</h2>
           <hr>
-          <div class="row text-center">
+          <div class="row justify-content-center">
             <div class="col-md-4 bg-primary m-2">
             <div class="col-md-12">
               <form action="createsujet.do" method="POST" class="m-2">
@@ -60,7 +62,7 @@
             <div class="col-md-4 bg-secondary m-2" style="">
               <div class="col-md-12">
                   <form action="sujet.do" method="POST" class="m-2">
-                    <button type="submit" name="sujet" class="btn btn-primary btn-lg">
+                    <button type="submit" name="sujet" class="btn btn-secondary btn-lg">
                     Liste
                     </button>
                     </form>
@@ -79,7 +81,7 @@
         <div class="col-12">
           <h2>Eleve</h2>
           <hr>
-          <div class="row text-center">
+          <div class="row justify-content-center">
             <div class="col-md-4 bg-primary m-2" style="">
               <div class="col-md-12">
                   <form action="ajouteleve.do" method="POST" class="m-2">
@@ -92,7 +94,7 @@
             <div class="col-md-4 bg-secondary m-2" style="">
               <div class="col-md-12">
                   <form action="eleve.do" method="POST" class="m-2">
-                    <button type="submit" name="affiche entreprise" class="btn btn-primary btn-lg">
+                    <button type="submit" name="affiche entreprise" class="btn btn-secondary btn-lg">
                         Liste
                     </button>
                 </form>
@@ -111,7 +113,7 @@
         <div class="col-12">
           <h2>Tuteur</h2>
           <hr>
-          <div class="row text-center">
+          <div class="row justify-content-center">
             <div class="col-md-4 bg-primary m-2" style="">
               <div class="col-md-12">
                   <form action="ajouttuteur.do" method="POST" class="m-2">
@@ -141,11 +143,11 @@
   </div>
   <div class="py-4">
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-12">
           <h2>Correspondant</h2>
           <hr>
-          <div class="row text-center">
+          <div class="row justify-content-center">
             <div class="col-md-4 bg-primary m-2" style="">
               <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#" contenteditable="true">Ajouter</a></div>
             </div>
@@ -161,11 +163,11 @@
   </div>
   <div class="py-4">
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-12">
           <h2>Entreprise&nbsp;</h2>
-          <hr>
-          <div class="row text-center">
+          <hr> 
+          <div class="row justify-content-center">
             <div class="col-md-4 bg-primary m-2" style="">
               <div class="col-md-12">
                   <form action="ajoutentreprise.do" method="POST" class="m-2">
@@ -178,7 +180,7 @@
             <div class="col-md-4 bg-secondary m-2" style="">
               <div class="col-md-12">
                   <form action="entreprise.do" method="POST" class="m-2">
-                    <button type="submit" name="affiche entreprise" class="btn btn-primary btn-lg">
+                    <button type="submit" name="affiche entreprise" class="btn btn-secondary btn-lg">
                         Liste
                     </button>
                 </form>
