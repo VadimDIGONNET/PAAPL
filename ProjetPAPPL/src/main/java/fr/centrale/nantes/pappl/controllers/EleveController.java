@@ -28,32 +28,21 @@ public class EleveController {
     private EleveRepository eleveRepository;
     private SujetRepository sujetRepository;
     @RequestMapping(value="saveeleve.do", method=RequestMethod.POST)
-    public ModelAndView handlePostSaveEleve(HttpServletRequest request) {
-        // Récupération des paramètres
-        String eleveId = request.getParameter("id");
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String nationalite = request.getParameter("nationalite");
-        String email = request.getParameter("email");
-        String td = request.getParameter("td");
-        String numero_sujet = request.getParameter("numero_sujet");
-        int sujetId = Tools.getIntFromString(numero_sujet);        
-        int id = Tools.getIntFromString(eleveId);
-        Eleve eleve = eleveRepository.getReferenceById(id);
-        Sujet sujet = sujetRepository.getReferenceById(sujetId);
-        if (id > 0) {
-            eleveRepository.update(eleve, nom, prenom, nationalite, email, td, sujet);
-        } else {
-            eleveRepository.create(nom, prenom, nationalite, email, td, sujet);
-        }
-
-        // return to list
-        List<Eleve> myList = new ArrayList<Eleve>(eleveRepository.findAll());
-        Collections.sort(myList, Eleve.getComparator());
-        ModelAndView returned = new ModelAndView("ajout_eleve");
-        returned.addObject("eleveList", myList);
-
-        return returned;
+public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
+    // Récupération des paramètres
+    String eleveId = request.getParameter("id");
+    String nom = request.getParameter("nom");
+    String prenom = request.getParameter("prenom");
+    String nationalite = request.getParameter("nationalite");
+    String email = request.getParameter("email");
+    String td = request.getParameter("td");
+    
+    // Gestion du Sujet
+    String numero_sujet = request.getParameter("numero_sujet");
+    int sujetId = Tools.getIntFromString(numero_sujet);        
+    Sujet sujet = null;
+    if (sujetId > 0 && sujetRepository != null) {
+        sujet = sujetRepository.getReferenceById(sujetId);
     }
 
     // Gestion de l'Eleve
