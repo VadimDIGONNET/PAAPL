@@ -43,12 +43,12 @@
 
         <div class="form-group">
             <label for="codePostal">Nationalite</label>
-            <input type="number" id="nationalite" name="nationalite" value="${eleve.nationalite}">
+            <input type="text" id="nationalite" name="nationalite" value="${eleve.nationalite}">
         </div>
 
         <div class="form-group">
             <label for="tel">email :</label>
-            <input type="number" id="email" name="email" value="${eleve.email}">
+            <input type="text" id="email" name="email" value="${eleve.email}">
         </div>
 
         <div class="form-group">
@@ -58,7 +58,7 @@
 
         <div class="form-group">
             <label for="description">Numero Sujet</label>
-            <input id="sujet" type="text" name="sujet" value="${eleve.numero_sujet}">
+            <input id="number" type="text" name="sujet" value="${eleve.numero_sujet}">
         </div>
 
         <button type="submit">Enregistrer l'eleve</button>
