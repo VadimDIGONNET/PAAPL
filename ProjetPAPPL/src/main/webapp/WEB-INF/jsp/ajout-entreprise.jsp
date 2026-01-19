@@ -6,23 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Ajouter une Entreprise</title>
-    <style>
-        body { font-family: sans-serif; margin: 40px; line-height: 1.6; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; }
-        input[type="text"], input[type="number"], textarea {
-            width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;
-        }
-        button { 
-            background-color: #007bff; color: white; padding: 10px 15px; 
-            border: none; border-radius: 4px; cursor: pointer; 
-        }
-        button:hover { background-color: #0056b3; }
-        .container { max-width: 500px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
-        .icon {
-            width: 1.5rem; /* S'adapte à la taille de police globale */
-          }
-    </style>
+    <link href="css/liste.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 
@@ -32,7 +16,7 @@
     <form action="saveentreprise.do" method="POST">
 
         <div class="form-group">
-            <label for="nom">Nom de l'entreprise :</label>
+            <label for="nom">Nom de l'entreprise  :</label>
             <input type="text" id="nom" name="nom" value="${entreprise.nom}" required>
         </div>
 
@@ -58,7 +42,7 @@
 
         <div class="form-group">
             <label for="description">Description :</label>
-            <input id="description" type="text" name="description" value="${entreprise.description}">
+            <textarea type="text" id="description" name="description" value="${entreprise.description}" rows="4"></textarea>
         </div>
 
         <button type="submit">Enregistrer l'entreprise</button>

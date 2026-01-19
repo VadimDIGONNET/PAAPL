@@ -9,6 +9,7 @@ import fr.centrale.nantes.pappl.items.Tuteur;
 import fr.centrale.nantes.pappl.repositories.TuteurRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,34 +28,35 @@ public class TuteurController {
     private TuteurRepository tuteurRepository;
     
     @RequestMapping(value="tuteurs.do",method=RequestMethod.POST)
-    public ModelAndView handlePostUsers(HttpServletRequest request){
+    public ModelAndView handlePostUserstuteur(HttpServletRequest request){
         List<Tuteur> listTuteur =new ArrayList<Tuteur>(tuteurRepository.findAll());
         ModelAndView returned =new ModelAndView("liste_tuteurs");
-        returned.addObject("liste_tuteurs",listTuteur);
+        returned.addObject("tuteurList",listTuteur);
         return returned;
     }
     
     @RequestMapping(value="savetuteur.do", method=RequestMethod.POST)
-    public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
-        // Récupération des paramètres
-        String idStr=request.getParameter("id");
-        String nom = request.getParameter("Nom");
-        String prenom = request.getParameter("Prenom");
-        String nbsujet = request.getParameter("Nombre de sujet souhaité");
-        int nbsuj = Tools.getIntFromString(nbsujet);
-        int id =Tools.getIntFromString(idStr);
-        if(id!=-1){
-            tuteurRepository.update(id,nom,prenom,nbsuj);
-        }else{
-            tuteurRepository.create(nom, prenom, nbsuj);
-        }
-        ModelAndView returned = new ModelAndView("main");
-        returned.addObject("liste_tuteurs", tuteurRepository.findAll());
-        return returned;
+public ModelAndView handlePostSaveTuteur(HttpServletRequest request) {
+    String idStr = request.getParameter("id");
+    String nom = request.getParameter("nom"); 
+    String prenom = request.getParameter("prenom"); 
+    String nbsujetStr = request.getParameter("nbsujet"); 
+    
+    int nbsuj = Tools.getIntFromString(nbsujetStr);
+    int id = Tools.getIntFromString(idStr);
+    if (id == -1) {
+        tuteurRepository.create(nom, prenom, nbsuj);
+    } else {
+        Tuteur tuteurExistants = tuteurRepository.getReferenceById(id);
+        tuteurRepository.update(tuteurExistants, nom, prenom, nbsuj);
     }
+    ModelAndView returned = new ModelAndView("liste_tuteurs");
+    returned.addObject("tuteurList", tuteurRepository.findAll());
+    return returned;
+}
     
     @RequestMapping(value="ajouttuteur.do",method=RequestMethod.POST)
-    public ModelAndView HandlePostcreateentreprise(){
+    public ModelAndView HandlePostcreateTuteur(){
         ModelAndView returned;
         Tuteur nouveau=new Tuteur();
         returned=new ModelAndView("ajout-tuteur");
@@ -63,7 +65,7 @@ public class TuteurController {
     }
     
     @RequestMapping(value = "edittuteur.do", method = RequestMethod.POST)
-    public ModelAndView handleEditPost(HttpServletRequest request) {
+    public ModelAndView handleEditPosttuteur(HttpServletRequest request) {
         ModelAndView returned;
 
         String idstr = request.getParameter("id");
@@ -80,7 +82,7 @@ public class TuteurController {
         return returned;
     }
     @RequestMapping(value = "deletetuteur.do", method = RequestMethod.POST)
-    public ModelAndView handlePostDeleteUser(HttpServletRequest request) {
+    public ModelAndView handlePostDeletetuteur(HttpServletRequest request) {
         ModelAndView returned;
 
         String idst = request.getParameter("id");
