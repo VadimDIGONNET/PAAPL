@@ -46,7 +46,7 @@
         </div>
 
         <button type="submit">Enregistrer l'entreprise</button>
-        <a href="index.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
+        <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
     </form>
 </div>
 

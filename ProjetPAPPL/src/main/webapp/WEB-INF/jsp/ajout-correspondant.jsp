@@ -85,7 +85,7 @@
         <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
     </form>
         <br>
-        <form action="login.do" method="post">
+        <form action="main.do" method="post">
             <button type="submit" style="background-color: #6c757d;">Retour au menu principal</button>
         </form>
 </div>
