@@ -28,13 +28,13 @@ public class TuteurController {
     
     @RequestMapping(value="tuteurs.do",method=RequestMethod.POST)
     public ModelAndView handlePostUsers(HttpServletRequest request){
-        List<Tuteur> listTuteur =new ArrayList<Tuteur>( tuteurRepository.findAll());
+        List<Tuteur> listTuteur =new ArrayList<Tuteur>(tuteurRepository.findAll());
         ModelAndView returned =new ModelAndView("liste_tuteurs");
         returned.addObject("liste_tuteurs",listTuteur);
         return returned;
     }
     
-    @RequestMapping(value="savettuteur.do", method=RequestMethod.POST)
+    @RequestMapping(value="savetuteur.do", method=RequestMethod.POST)
     public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
         // Récupération des paramètres
         String idStr=request.getParameter("id");

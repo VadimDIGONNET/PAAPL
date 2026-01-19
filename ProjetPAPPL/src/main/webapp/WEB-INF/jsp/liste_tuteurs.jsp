@@ -2,14 +2,38 @@
 <%@taglib prefix="c"   uri="jakarta.tags.core" %>
 <%@taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
-<h2>Liste des entreprises</h2>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des tuteurs</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .icon {
+            width: 1.5rem; /* S'adapte à la taille de police globale */
+          }
+    </style>
+</head>
+<body>
+
+<h2>Liste des tuteurs</h2>
 
 <table>
     <thead>
         <tr>
             <th>Nom</th>
             <th>Prenom</th>
-            <th>Nombre sujet souhaite</th>
+            <th>Nombre de sujet souhaite</th>
         </tr>
     </thead>
     <tbody>
@@ -22,13 +46,13 @@
                                             <td class="text-center">
                                                 <form action="editTuteur" method="POST">
                                                     <input type="hidden" name="nom" value="${item.nom}" />
-                                                    <button name="edit" class="btn" formaction="editTuteur.do"><img src="img/edit.png" alt="edit" class="icon" /></button>
+                                                    <button name="edit" class="btn" formaction="edittuteur.do"><img src="img/edit.png" alt="edit" class="icon" /></button>
                                                     <button name="delete" class="btn" formaction="deletetuteur.do"><img src="img/delete.png" alt="delete" class="icon" /></button>
                                                 </form>
                                             </td>
                                           
                                         </tr>
-                                        </c:forEach>
+        </c:forEach>
     </tbody>
 </table>
 
