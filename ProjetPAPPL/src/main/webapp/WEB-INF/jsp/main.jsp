@@ -101,13 +101,27 @@
           <hr>
           <div class="row text-center">
             <div class="col-md-4 bg-primary m-2" style="">
-              <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#" contenteditable="true">Ajouter</a></div>
+              <div class="col-md-12">
+                  <form action="ajouttuteur.do" method="POST" class="m-2">
+                    <button type="submit" name="create tuteur" class="btn btn-primary btn-lg">
+                        Ajouter
+                    </button>
+                </form>   
+              </div>
             </div>
             <div class="col-md-4 bg-secondary m-2" style="">
-              <div class="col-md-12"><a class="btn btn-secondary m-2 btn-lg" href="#">Liste</a></div>
+              <div class="col-md-12">
+                  <form action="tuteurs.do" method="POST" class="m-2">
+                    <button type="submit" name="affiche tuteurs" class="btn btn-secondary btn-lg">
+                        Liste
+                    </button>
+                </form>
+              </div>
+
             </div>
             <div class="col-md-8 bg-dark m-2" style="">
             </div>
+          </div>
           </div>
         </div>
       </div>
