@@ -1,6 +1,6 @@
 /* Suppression des marges par défaut et police moderne */
 body {
-    background-color: #f8f9fa;
+    background-color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
 }
@@ -15,7 +15,7 @@ h2 {
 }
 
 hr {
-    border-top: 3px solid #0066CC;
+    border-top: 3px solid #FFD700;
     width: 50px;
     margin: 0 0 25px 0;
 }
@@ -47,8 +47,8 @@ hr {
 
 /* Ajustement des couleurs Bootstrap pour un meilleur rendu */
 .bg-primary { background-color: #0066CC !important; color: white; }
-.bg-secondary { background-color: #6c757d !important; color: white; }
-.bg-dark { background-color: #343a40 !important; opacity: 0.9; color: white; } /* Placeholder vide plus discret */
+.bg-secondary { background-color: #FFD700 !important; color: white; }
+.bg-dark { background-color: #343a40 !important; opacity: 0.9; color: white; } 
 
 /* Boutons à l'intérieur des cartes */
 .btn-lg {
@@ -64,21 +64,35 @@ hr {
 }
 
 .btn-lg:hover {
-    background-color: white;
+    background-color: #FFD700;
     color: #0066CC;
 }
 
-/* Correction spécifique pour le bouton dans le formulaire (Sujet) */
-form button.btn-primary {
+/* Boutons dans le formulaire */
+a.btn-primary.btn-lg {
     background-color: transparent;
     color: white;
     border: 2px solid white;
 }
 
-form button.btn-primary:hover {
-    background-color: white;
+a.btn-primary.btn-lg:hover {
+    background-color: #FFD700;
     color: #0066CC;
 }
+
+a.btn-secondary.btn-lg {
+    background-color: #FFD700;
+    color: #0066CC;
+    border: 2px solid #0066CC;
+}
+
+a.btn-secondary.btn-lg:hover {
+    background-color: #0066CC;
+    color: #FFD700;
+    border: 2px solid #FFD700;
+}
+
+
 
 /* Section contact / Info */
 .bg-info {
@@ -89,7 +103,7 @@ form button.btn-primary:hover {
 }
 
 .bg-info .text-primary {
-    color: white !important; /* On change le texte bleu en blanc sur fond info */
+    color: #FFD700 !important; /* On change le texte bleu en blanc sur fond info */
 }
 
 /* Footer */

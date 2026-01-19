@@ -14,6 +14,10 @@
   <script type="text/javascript" src="js/jquery-3.7.1.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
   <link href="css/main.css" type="text/css" rel="stylesheet" />
+  <div style="text-align: center; margin: 20px 0;">
+  <img src="img/LogoECN.png" alt="Logo Centrale Nantes" style="height: 60px; width: auto;">
+</div>
+
 </head>
 
 <body >
@@ -28,7 +32,7 @@
               <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#" contenteditable="true">Ajouter</a></div>
             </div>
             <div class="col-md-4 bg-secondary m-2" style="">
-              <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#">Liste</a></div>
+              <div class="col-md-12"><a class="btn btn-secondary m-2 btn-lg" href="#">Liste</a></div>
             </div>
             <div class="col-md-8 bg-dark m-2" style="">
             </div>
