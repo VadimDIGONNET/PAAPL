@@ -19,7 +19,7 @@
     <form action="saveentreprise.do" method="POST">
 
         <div class="form-group">
-            <label for="nom">Nom de l'entreprise  :</label>
+            <label for="nom">Nom de l'entreprise :</label>
             <input type="text" id="nom" name="nom" value="${entreprise.nom}" required>
         </div>
 

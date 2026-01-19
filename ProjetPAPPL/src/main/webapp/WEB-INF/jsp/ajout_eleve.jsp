@@ -45,8 +45,8 @@
 
         <div class="form-group">
             <label for="description">Numero Sujet</label>
-            <input id="number" type="text" name="sujet" value="${eleve.numero_sujet}">
-        </div>
+<input id="sujet" type="number" name="numero_sujet" 
+       value="${eleve.numeroSujet != null ? eleve.numeroSujet.id : ''}" />        </div>
 
         <button type="submit">Enregistrer l'eleve</button>
         <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
