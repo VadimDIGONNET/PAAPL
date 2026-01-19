@@ -1,0 +1,87 @@
+/* Reset et base - Cohérence avec la page principale */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    color: #0066CC; /* Bleu Centrale Nantes */
+    margin-bottom: 20px;
+    border-bottom: 2px solid #0066CC;
+    padding-bottom: 10px;
+}
+
+/* Tableau - Style Centrale Nantes */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #0066CC; /* Bleu Centrale Nantes */
+    color: white;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e3f2fd; /* Bleu très clair */
+}
+
+/* Boutons d'action - Style Centrale Nantes */
+.btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 3px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    background-color: #e0e0e0;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: invert(0.3);
+}
+
+.btn[formaction*="delete"] .icon {
+    filter: invert(0.6) sepia(1) saturate(5) hue-rotate(340deg);
+}
+
+/* Formulaire */
+form {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}

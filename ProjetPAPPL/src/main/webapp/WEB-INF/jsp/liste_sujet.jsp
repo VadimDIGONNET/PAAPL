@@ -3,19 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des sujets</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #000;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <link href="css/liste.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 
