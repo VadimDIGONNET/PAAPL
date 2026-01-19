@@ -14,10 +14,6 @@
   <script type="text/javascript" src="js/jquery-3.7.1.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
   <link href="css/main.css" type="text/css" rel="stylesheet" />
-  <div style="text-align: center; margin: 20px 0;">
-  <img src="img/LogoECN.png" alt="Logo Centrale Nantes" style="height: 60px; width: auto;">
-</div>
-
 </head>
 
 <body >
@@ -84,7 +80,7 @@
               <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#" contenteditable="true">Ajouter</a></div>
             </div>
             <div class="col-md-4 bg-secondary m-2" style="">
-              <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#">Liste</a></div>
+              <div class="col-md-12"><a class="btn btn-secondary m-2 btn-lg" href="#">Liste</a></div>
             </div>
             <div class="col-md-8 bg-dark m-2" style="">
             </div>
@@ -104,7 +100,7 @@
               <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#" contenteditable="true">Ajouter</a></div>
             </div>
             <div class="col-md-4 bg-secondary m-2" style="">
-              <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#">Liste</a></div>
+              <div class="col-md-12"><a class="btn btn-secondary m-2 btn-lg" href="#">Liste</a></div>
             </div>
             <div class="col-md-8 bg-dark m-2" style="">
             </div>
@@ -124,7 +120,7 @@
               <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#" contenteditable="true">Ajouter</a></div>
             </div>
             <div class="col-md-4 bg-secondary m-2" style="">
-              <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#">Liste</a></div>
+              <div class="col-md-12"><a class="btn btn-secondary m-2 btn-lg" href="#">Liste</a></div>
             </div>
             <div class="col-md-8 bg-dark m-2" style="">
             </div>
@@ -194,7 +190,7 @@
   <div class="py-5">
     <div class="container">
       <div class="row pt-5 border-top">
-        <div class="col-12 col-md"> <i class="fa fa-lg fa-bullseye d-block mb-2"></i> <small class="d-block mb-3 text-muted">Â© 2017-2018</small> </div>
+        <div class="col-12 col-md"> <i class="fa fa-lg fa-bullseye d-block mb-2"></i> <small class="d-block mb-3 text-muted">© 2017-2018</small> </div>
         <div class="col-6 col-md">
           <h5><b>Features</b></h5>
           <ul class="list-unstyled">
@@ -262,9 +258,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous" style=""></script>
  
-
-
-  
 </body>
 
 </html>
+
+
