@@ -1,0 +1,115 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package fr.centrale.nantes.pappl.controllers;
+
+import fr.centrale.nantes.pappl.items.Eleve;
+import fr.centrale.nantes.pappl.items.Sujet;
+import fr.centrale.nantes.pappl.repositories.EleveRepository;
+import fr.centrale.nantes.pappl.repositories.SujetRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+/**
+ *
+ * @author vadimdigonnet
+ */
+@Controller
+public class EleveController {
+    @Autowired
+    private EleveRepository eleveRepository;
+    private SujetRepository sujetRepository;
+    @RequestMapping(value="saveeleve.do", method=RequestMethod.POST)
+    public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
+        // Récupération des paramètres
+        String eleveId = request.getParameter("id");
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String nationalite = request.getParameter("nationalite");
+        String email = request.getParameter("email");
+        String td = request.getParameter("td");
+        String numero_sujet = request.getParameter("numero_sujet");
+        int sujetId = Tools.getIntFromString(numero_sujet);        
+        int id = Tools.getIntFromString(eleveId);
+        Eleve eleve = eleveRepository.getReferenceById(id);
+        Sujet sujet = sujetRepository.getReferenceById(sujetId);
+        if (id > 0) {
+            eleveRepository.update(eleve, nom, prenom, nationalite, email, td, sujet);
+        } else {
+            eleveRepository.create(nom, prenom, nationalite, email, td, sujet);
+        }
+
+        // return to list
+        List<Eleve> myList = new ArrayList<Eleve>(eleveRepository.findAll());
+        Collections.sort(myList, Eleve.getComparator());
+        ModelAndView returned = new ModelAndView("ajout_eleve");
+        returned.addObject("eleveList", myList);
+
+        return returned;
+    }
+    
+    @RequestMapping(value="ajouteleve.do",method=RequestMethod.POST)
+    public ModelAndView HandlePostcreateentreprise(){
+        ModelAndView returned;
+        Eleve nouveau=new Eleve();
+        returned=new ModelAndView("ajout_eleve");
+        returned.addObject("eleveList",nouveau);
+        return returned;
+    }
+    
+    @RequestMapping(value="eleve.do",method=RequestMethod.POST)
+    public ModelAndView handlePostUsers(HttpServletRequest request){
+        List<Eleve> listEntreprise =new ArrayList<Eleve>( eleveRepository.findAll());
+        ModelAndView returned =new ModelAndView("eleve");
+        returned.addObject("eleveList",listEntreprise);
+        return returned;
+    }
+    
+    @RequestMapping(value = "editentreprise.do", method = RequestMethod.POST)
+    public ModelAndView handleEditPost(HttpServletRequest request) {
+        ModelAndView returned;
+
+        String idStr = request.getParameter("id");
+        int id = Tools.getIntFromString(idStr);
+
+        if (id > 0) {
+            Eleve eleve = eleveRepository.getReferenceById(id);
+            returned = new ModelAndView("ajout_eleve");
+            returned.addObject("eleve", eleve);
+        } else {
+            List<Eleve> myList = new ArrayList<Eleve>(eleveRepository.findAll());
+            Collections.sort(myList, Eleve.getComparator());
+            returned = new ModelAndView("ajout_eleve");
+            returned.addObject("eleve", myList);
+        }
+        return returned;
+    }
+    
+    @RequestMapping(value = "deleteeleve.do", method = RequestMethod.POST)
+    public ModelAndView handlePostDeleteUser(HttpServletRequest request) {
+        ModelAndView returned;
+
+        String idStr = request.getParameter("id");
+        int id = Tools.getIntFromString(idStr);
+        if (id > 0) {
+            Eleve eleveId = eleveRepository.getReferenceById(id);
+            eleveRepository.remove(eleveId);
+        }
+        
+        // return to list
+        List<Eleve> listEleve = new ArrayList<Eleve>(eleveRepository.findAll());
+        Collections.sort(listEleve, Eleve.getComparator());
+        returned = new ModelAndView("liste_Eleve");
+        returned.addObject("eleveList", listEleve);
+
+        return returned;
+    }
+}

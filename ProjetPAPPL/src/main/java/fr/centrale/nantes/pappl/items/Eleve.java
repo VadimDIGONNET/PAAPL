@@ -22,6 +22,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Comparator;
 
 /**
  *
@@ -181,10 +182,35 @@ public class Eleve implements Serializable {
         }
         return true;
     }
+    public int compareTo(Object object) {
+        if (object == null) {
+            return 1;
+        } else if (! (object instanceof Eleve)){
+            return 1;
+        }
+        
+        Eleve itemId = (Eleve) object;
+        if (this.getNom().toUpperCase().equals(itemId.getNom().toUpperCase())) {
+            return this.getPrenom().toUpperCase().compareTo(itemId.getPrenom().toUpperCase());
+        } else {
+            return this.getNom().toUpperCase().compareTo(itemId.getNom().toUpperCase());
+        }
+    }
 
     @Override
     public String toString() {
         return "fr.centrale.nantes.pappl.items.Eleve[ id=" + id + " ]";
     }
-    
+    public static Comparator<Eleve> getComparator() {
+        return new Comparator<Eleve>() {
+            @Override
+            public int compare(Eleve object1, Eleve object2) {
+                if (object1 == null) {
+                    return -1;
+                } else {
+                    return object1.compareTo(object2);
+                }
+            }
+        };
+    }
 }

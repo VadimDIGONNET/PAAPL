@@ -67,7 +67,7 @@ public class EntrepriseController {
     @RequestMapping(value="entreprise.do",method=RequestMethod.POST)
     public ModelAndView handlePostUsers(HttpServletRequest request){
         List<Entreprise> listEntreprise =new ArrayList<Entreprise>( entrepriseRepository.findAll());
-        ModelAndView returned =new ModelAndView("entreprise");
+        ModelAndView returned =new ModelAndView("liste_entreprise");
         returned.addObject("entrepriseList",listEntreprise);
         return returned;
     }
@@ -103,7 +103,7 @@ public class EntrepriseController {
         // return to list
         List<Entreprise> listEntreprise = new ArrayList<Entreprise>(entrepriseRepository.findAll());
         Collections.sort(listEntreprise, Entreprise.getComparator());
-        returned = new ModelAndView("entreprise");
+        returned = new ModelAndView("liste_entreprise");
         returned.addObject("entrepriseList", listEntreprise);
 
         return returned;

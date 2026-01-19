@@ -17,9 +17,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 /* 1. Mise en page globale */
 body {
     background-color: var(--cn-light-gray);
-    background-image: radial-gradient(circle at top right, #ffffff, #e0e0e0);
     min-height: 100vh;
-    display: flex;
+    display: flex;  
     align-items: center;
     justify-content: center;
     margin: 0;
