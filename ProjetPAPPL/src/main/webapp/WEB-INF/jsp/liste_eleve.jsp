@@ -52,8 +52,8 @@
                                             <td class="text-center">
                                                 <form action="editEntreprise" method="POST">
                                                     <input type="hidden" name="nom" value="${item.nom}" />
-                                                    <button name="edit" class="btn" formaction="editentreprise.do"><img src="img/edit.png" alt="edit" class="icon" /></button>
-                                                    <button name="delete" class="btn" formaction="deleteentreprise.do"><img src="img/delete.png" alt="delete" class="icon" /></button>
+                                                    <button name="edit" class="btn" formaction="editeleve.do"><img src="img/edit.png" alt="edit" class="icon" /></button>
+                                                    <button name="delete" class="btn" formaction="deleteeleve.do"><img src="img/delete.png" alt="delete" class="icon" /></button>
                                                 </form>
                                             </td>
                                           

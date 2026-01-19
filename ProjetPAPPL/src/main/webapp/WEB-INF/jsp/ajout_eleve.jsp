@@ -29,7 +29,7 @@
 <div class="container">
     <h2>Nouvel élève</h2>
     
-    <form action="saveentreprise.do" method="POST">
+    <form action="saveeleve.do" method="POST">
 
         <div class="form-group">
             <label for="nom">Nom </label>
