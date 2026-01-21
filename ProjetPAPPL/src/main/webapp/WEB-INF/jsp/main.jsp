@@ -14,18 +14,49 @@
   <script type="text/javascript" src="js/jquery-3.7.1.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
   <link href="css/main.css" type="text/css" rel="stylesheet" />
-  <div style="text-align: center; margin: 20px 0;">
-  <div class="logo-container"> <a href="#"> 
-          <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
-  </div>
-
+  <div style="text-align: center; margin: 20px 0;">  
 </head>
 
 <body >
+    <div class="logo-container"> <a href="#"> 
+          <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
+    </div>
+    <!-- Barre de navigation fixe (menu hamburger) -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container-fluid">
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> 
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#partenaires">Partenaires</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#sujet">Sujet</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#eleve">Élève</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#tuteur">Tuteur</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#correspondant">Correspondant</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#entreprise">Entreprise</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
   <div class="py-4">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-12" id="partenaires">
           <h2>Partenaires&nbsp;</h2>
           <hr>
           <div class="row justify-content-center">
@@ -46,7 +77,7 @@
   <div class="py-4">
     <div class="container">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12" id="sujet">
           <h2>Sujet</h2>
           <hr>
           <div class="row justify-content-center">
@@ -78,7 +109,7 @@
   <div class="py-4">
     <div class="container">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12" id="eleve">
           <h2>Eleve</h2>
           <hr>
           <div class="row justify-content-center">
@@ -110,7 +141,7 @@
   <div class="py-4">
     <div class="container">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12" id="tuteur">
           <h2>Tuteur</h2>
           <hr>
           <div class="row justify-content-center">
@@ -143,22 +174,22 @@
   </div>
   <div class="py-4">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12">
+      <div class="row">
+        <div class="col-12" id="correspondant">
           <h2>Correspondant</h2>
           <hr>
           <div class="row justify-content-center">
             <div class="col-md-4 bg-primary m-2" style="">
               <div class="col-md-12">
-                  <form action="ajoutcorrespondant.do" method="post" style="display:inline;">
-                  <button type="submit" class="btn btn-primary m-2 btn-lg">Ajouter</button>
+                  <form action="ajoutcorrespondant.do" method="post" class="m-2">
+                  <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
                 </form>
             </div>
             </div>   
             <div class="col-md-4 bg-secondary m-2" style="">
               <div class="col-md-12">
-                  <form action="correspondant.do" method="post" style="display:inline;">
-                    <button type="submit" class="btn btn-primary m-2 btn-lg">Liste</button>
+                  <form action="correspondant.do" method="post" class="m-2">
+                    <button type="submit" class="btn btn-secondary btn-lg"">Liste</button>
                   </form>
             </div>
             </div>
@@ -169,13 +200,15 @@
       </div>
     </div>
   </div>
+
   <div class="py-4">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12">
+      <div class="row">
+        <div class="col-12" id="entreprise">
           <h2>Entreprise&nbsp;</h2>
           <hr> 
           <div class="row justify-content-center">
+              
             <div class="col-md-4 bg-primary m-2" style="">
               <div class="col-md-12">
                   <form action="ajoutentreprise.do" method="POST" class="m-2">
@@ -185,6 +218,7 @@
                 </form>   
               </div>
             </div>
+              
             <div class="col-md-4 bg-secondary m-2" style="">
               <div class="col-md-12">
                   <form action="entreprise.do" method="POST" class="m-2">
@@ -194,8 +228,20 @@
                 </form>
               </div>
             </div>
+              
             <div class="col-md-8 bg-dark m-2" style="">
             </div>
+            
+            <div class="col-md-4 bg-info m-2 text-center">
+                <div class="col-md-12">
+                    <form action="importentreprise.do" method="POST" class="m-2">
+                      <button type="submit" class="btn btn-info btn-lg">
+                        Importer CSV
+                      </button>
+                    </form>
+                </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -290,7 +336,8 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>    
+
   <script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
