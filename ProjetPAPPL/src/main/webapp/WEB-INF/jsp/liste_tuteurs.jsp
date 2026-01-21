@@ -32,7 +32,7 @@
                                             <td class="text-center"></td>
                                             <td class="text-center">
                                                 <form action="editTuteur" method="POST">
-                                                    <input type="hidden" name="nom" value="${item.nom}" />
+                                                    <input type="hidden" name="id" value="${item.id}" />
                                                     <button name="edit" class="btn" formaction="edittuteur.do"><img src="img/edit.png" alt="edit" class="icon" /></button>
                                                     <button name="delete" class="btn" formaction="deletetuteur.do"><img src="img/delete.png" alt="delete" class="icon" /></button>
                                                 </form>

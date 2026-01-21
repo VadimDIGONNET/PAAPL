@@ -37,16 +37,14 @@ public class TuteurRepositoryCustomImpl implements TuteurRepositoryCustom{
     }
     
     @Override
-    public void remove(Tuteur nom) {
-        /**if (nom != null) {
-            // Ensure valididy from database
-            nom = entrepriseRepository.getReferenceByID(nom.getNom());
-        }**/
-        if (nom != null) {
-            tuteurRepository.delete(nom);
+    public void remove(Tuteur tuteurid){
+        if(tuteurid !=null){
+            tuteurid=tuteurRepository.getReferenceById(tuteurid.getId());
+        }
+        if(tuteurid!=null){
+            tuteurRepository.delete(tuteurid);
         }
     }
-    
     @Override
     public Tuteur update(Tuteur tu, String nom, String prenom, Integer nbsujet) {
         if (tu != null && tu.getId() != null) {
