@@ -5,7 +5,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Ajouter une Entreprise</title>
+    <title>Ajouter un partenaire</title>
     <link href="css/ajout.css" type="text/css" rel="stylesheet" />
     <div class="logo-container"> <a href="#"> 
         <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
@@ -14,12 +14,12 @@
 <body>
 
 <div class="container">
-    <h2>Nouvelle Entreprise</h2>
+    <h2>Nouveau partenaire</h2>
     
     <form action="saveentreprise.do" method="POST">
 
         <div class="form-group">
-            <label for="nom">Nom de l'entreprise :</label>
+            <label for="nom">Nom du partenaire :</label>
             <input type="text" id="nom" name="nom" value="${entreprise.nom}" required>
         </div>
 
@@ -48,7 +48,7 @@
             <textarea type="text" id="description" name="description" value="${entreprise.description}" rows="4"></textarea>
         </div>
 
-        <button type="submit">Enregistrer l'entreprise</button>
+        <button type="submit">Enregistrer le partenaire</button>
         <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
     </form>
 </div>
