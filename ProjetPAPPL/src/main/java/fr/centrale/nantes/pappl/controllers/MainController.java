@@ -5,6 +5,7 @@
 package fr.centrale.nantes.pappl.controllers;
 
 import fr.centrale.nantes.pappl.items.DescriptionSujet;
+import fr.centrale.nantes.pappl.items.Entreprise;
 import fr.centrale.nantes.pappl.repositories.*;
 import fr.centrale.nantes.pappl.repositories.EntrepriseRepository;
 import fr.centrale.nantes.pappl.items.Sujet;
@@ -32,7 +33,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainController {
     @Autowired
     private SujetRepository sujetRepository;
+    
+    @Autowired
     private DescriptionSujetRepository DescriptionSujetRepository;
+    
+    @Autowired
     private EntrepriseRepository entrepriseRepository;
     
     @RequestMapping(value="sujet.do",method=RequestMethod.POST)
@@ -59,30 +64,45 @@ public class MainController {
         String contexte = request.getParameter("contexte");
         String travail = request.getParameter("travail");
         String livrable = request.getParameter("livrable");
+        String intitule = request.getParameter("intitule");
     
-        String entrepriseNom = request.getParameter("entrepriseNom"); 
+        String entrepriseNom = request.getParameter("entreprise"); 
         int id = Tools.getIntFromString(idStr);
+        
+        Entreprise entreprise = null;
+        if (entrepriseNom != null && !entrepriseNom.isEmpty()) {
+            try {
+                entreprise = entrepriseRepository.getReferenceById(entrepriseNom);
+            } catch(Exception ex) {
+                // L'entreprise n'existe pas
+            }
+        }
 
         if (id == -1) {
-            DescriptionSujet item = DescriptionSujetRepository.create(contexte, travail, livrable, entrepriseNom);
-            id = item.getNumero();
+            Sujet sujet = new Sujet();
+            sujet = sujetRepository.create(intitule);
+            id = sujet.getNumero();
+            
+            DescriptionSujet item = DescriptionSujetRepository.create(id ,contexte, travail, livrable, entreprise);
+            //id = item.getNumero();
         } else {
             DescriptionSujet dSujet = DescriptionSujetRepository.getReferenceById(id);
-            DescriptionSujetRepository.update(dSujet, contexte, travail, livrable, entrepriseNom);
+            DescriptionSujetRepository.update(dSujet, contexte, travail, livrable, entreprise);
         }
         ModelAndView returned = new ModelAndView("main");
         returned.addObject("main", DescriptionSujetRepository.findAll());
-        returned.addObject("entrepriseList", entrepriseRepository.findAll());
 
         return returned;
     }
     
     @RequestMapping(value="createsujet.do",method=RequestMethod.POST)
-    public ModelAndView HandlePostcreateuser(){
+    public ModelAndView HandlePostcreatesujet(){
         ModelAndView returned;
         DescriptionSujet nouveau=new DescriptionSujet();
         returned=new ModelAndView("ajout-sujet");
         returned.addObject("ajout-sujet",nouveau);
+        // Ajouter la liste des entreprises pour le dropdown
+        returned.addObject("entrepriseList", entrepriseRepository.findAll());
         return returned;
     }
     
