@@ -16,39 +16,46 @@
 <div class="container">
     <h2>Nouveau sujet</h2>
     
-    <form action="saveentreprise.do" method="POST">
-
+    <form action="savesujet.do" method="POST">
+        
         <div class="form-group">
-            <label for="nom">Nom de l'entreprise :</label>
-            <input type="text" id="nom" name="nom" value="${entreprise.nom}" required>
+            <label for="nom">Intitulé du sujet :</label>
+            <input type="text" id="nom" name="nom" value="${sujet.intitule}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="entreprise">Entreprise :</label>
+            <select id="entreprise" name="entreprise" required>
+                <option value="">-- Sélectionner une entreprise --</option>
+                <c:forEach var="entreprise" items="${entrepriseList}">
+                    <option value="${entreprise.nom}"
+            <c:if test="${DescriptionSujet.entreprise != null && DescriptionSujet.entreprise == entreprise.nom}">
+                selected
+            </c:if>
+        >
+            ${entreprise.nom}
+        </option>
+                </c:forEach>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="adresse"> Description du sujet :</label>
+            <input type="text" id="adresse" name="adresse" value="${DescriptionSujet.contexte}">
         </div>
 
         <div class="form-group">
-            <label for="adresse">Adresse :</label>
-            <input type="text" id="adresse" name="adresse" value="${entreprise.adresse}">
+            <label for="adresse">Travail à réaliser :</label>
+            <input type="text" id="adresse" name="adresse" value="${DescriptionSujet.travailRealiser}">
         </div>
-
+        
         <div class="form-group">
-            <label for="codePostal">Code Postal :</label>
-            <input type="number" id="codePostal" name="codePostal" value="${entreprise.codePostal}">
+            <label for="adresse"> Livrables attendus :</label>
+            <input type="text" id="adresse" name="adresse" value="${DescriptionSujet.livrable}">
         </div>
 
-        <div class="form-group">
-            <label for="tel">Téléphone :</label>
-            <input type="number" id="tel" name="tel" value="${entreprise.tel}">
-        </div>
 
-        <div class="form-group">
-            <label for="siteWeb">Site Web :</label>
-            <input type="text" id="siteWeb" name="siteWeb" value="${entreprise.siteWeb}"placeholder="https://...">
-        </div>
-
-        <div class="form-group">
-            <label for="description">Description :</label>
-            <input id="description" type="text" name="description" value="${entreprise.description}">
-        </div>
-
-        <button type="submit">Enregistrer l'entreprise</button>
+        <button type="submit">Enregistrer le sujet</button>
         <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
     </form>
 </div>
