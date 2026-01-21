@@ -1,3 +1,4 @@
+/* Suppression des marges par défaut et police moderne */
 body {
     background-color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -6,7 +7,7 @@ body {
     padding-right: 0;
 }
 
-/* TITRE ET CONTENEURS DE SECTION */
+/* TITRE */
 h2 {
     color: #0066CC;
     font-weight: 700;
@@ -34,25 +35,27 @@ hr {
     right: 0;
     width: auto;
     z-index: 1001;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0);
 }
 .navbar-toggler {
     display: block; 
     margin-left: auto; 
 }
 
-/* LOGO */
+
+
+
+
+
+
+/* Conteneur du logo */
 .logo-container {
     position: fixed;
     top: 15px;
     left: 15px;
-    z-index: 1000;     
+    z-index: 1000; /* Doit être inférieur au z-index de la navbar */
 }
-.fixed-logo {
-    height: 45px;    
-    width: auto; 
-
-/* CARTES" */
+/* Style des "Cartes" */
 .col-md-4 {
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -64,15 +67,19 @@ hr {
     background-color: white; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
 .col-md-4:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
+
+/* Ajustement des couleurs Bootstrap pour un meilleur rendu */
 .bg-primary { background-color: #0066CC !important; color: white; }
 .bg-secondary { background-color: #FFD700 !important; color: white; }
 .bg-dark { background-color: #343a40 !important; opacity: 0.9; color: white; } 
 
-/* BOUTONS */
+
+/* Boutons à l'intérieur des cartes */
 .btn-lg {
     padding: 12px 30px;
     font-weight: 600;
@@ -84,24 +91,30 @@ hr {
     color: white;
     transition: all 0.3s ease;
 }
+
 .btn-lg:hover {
     background-color: #FFD700;
     color: #0066CC;
 }
+
+/* Boutons dans le formulaire */
 form .btn-primary.btn-lg {
     background-color: transparent;
     color: white;
     border: 2px solid white;
 }
+
 form .btn-primary.btn-lg:hover {
     background-color: #FFD700;
     color: #0066CC;
 }
+
 form .btn-secondary.btn-lg {
     background-color: #FFD700;
     color: #0066CC;
     border: 2px solid #0066CC;
 }
+
 form .btn-secondary.btn-lg:hover {
     background-color: #0066CC;
     color: #FFD700;
@@ -109,19 +122,33 @@ form .btn-secondary.btn-lg:hover {
 }
 
 
+/* Conteneur du logo */
+.logo-container {
+    position: fixed;       
+    top: 15px;             
+    left: 15px;        
+    z-index: 1000;     
+}
 
-/* SECTION INFO */
+/* Logo */
+.fixed-logo {
+    height: 45px;    
+    width: auto;        
+}
+
+/* Section contact / Info */
 .bg-info {
     background-color: #0066CC !important;
     color: white;
     border-radius: 15px;
     margin: 20px;
 }
+
 .bg-info .text-primary {
-    color: #FFD700 !important; 
+    color: #FFD700 !important; /* On change le texte bleu en blanc sur fond info */
 }
 
-/* FOOTER */
+/* Footer */
 footer, .py-5 {
     background-color: #f8f9fa;
     border-top: 1px solid #e9ecef;
@@ -130,6 +157,4 @@ footer, .py-5 {
     width: 1.5rem;
     height: 1.5rem;
     filter: invert(0.3);
-}
-
 }
