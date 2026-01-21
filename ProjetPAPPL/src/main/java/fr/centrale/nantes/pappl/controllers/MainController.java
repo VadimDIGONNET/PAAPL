@@ -40,13 +40,6 @@ public class MainController {
     @Autowired
     private EntrepriseRepository entrepriseRepository;
     
-    @RequestMapping(value="sujet.do",method=RequestMethod.POST)
-    public ModelAndView handlePostUsers(HttpServletRequest request){
-        List<Sujet> myList =new ArrayList<Sujet>( sujetRepository.findAll());
-        ModelAndView returned =new ModelAndView("sujet");
-        returned.addObject("sujetList",myList);
-        return returned;
-    }
     
     private int getIntFromString(String value){
         int intValue=-1;
@@ -111,5 +104,13 @@ public class MainController {
     ModelAndView returned = new ModelAndView("main");
     return returned;
 }
+    
+        @RequestMapping(value="sujet.do", method=RequestMethod.POST)
+    public ModelAndView handlePostSujets(HttpServletRequest request) {
+        List<DescriptionSujet> listSujet = new ArrayList<DescriptionSujet>(DescriptionSujetRepository.findAll());
+        ModelAndView returned = new ModelAndView("liste_sujet");
+        returned.addObject("sujetList", listSujet);
+        return returned;
+    }
 }
 
