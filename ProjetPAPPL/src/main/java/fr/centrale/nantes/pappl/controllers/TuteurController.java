@@ -27,11 +27,12 @@ public class TuteurController {
     @Autowired
     private TuteurRepository tuteurRepository;
     
-    @RequestMapping(value="tuteurs.do",method=RequestMethod.POST)
-    public ModelAndView handlePostUserstuteur(HttpServletRequest request){
-        List<Tuteur> listTuteur =new ArrayList<Tuteur>(tuteurRepository.findAll());
-        ModelAndView returned =new ModelAndView("liste_tuteurs");
-        returned.addObject("tuteurList",listTuteur);
+    @RequestMapping(value="tuteurs.do", method=RequestMethod.POST)
+    public ModelAndView handlePostUserstuteur(HttpServletRequest request) {
+        List<Tuteur> listTuteur = new ArrayList<>(tuteurRepository.findAll());
+        Collections.sort(listTuteur, Tuteur.getComparator()); 
+        ModelAndView returned = new ModelAndView("liste_tuteurs");
+        returned.addObject("tuteurList", listTuteur);
         return returned;
     }
     
@@ -51,7 +52,9 @@ public ModelAndView handlePostSaveTuteur(HttpServletRequest request) {
         tuteurRepository.update(tuteurExistants, nom, prenom, nbsuj);
     }
     ModelAndView returned = new ModelAndView("liste_tuteurs");
-    returned.addObject("tuteurList", tuteurRepository.findAll());
+    List<Tuteur> listTuteur = new ArrayList<>(tuteurRepository.findAll());
+    Collections.sort(listTuteur, Tuteur.getComparator());
+    returned.addObject("tuteurList", listTuteur);
     return returned;
 }
     
@@ -79,25 +82,25 @@ public ModelAndView handlePostSaveTuteur(HttpServletRequest request) {
             returned = new ModelAndView("ajout-tuteur");
             returned.addObject("tuteurlist", listTuteur);
         }
+        List<Tuteur> listTuteur = new ArrayList<>(tuteurRepository.findAll());
+        Collections.sort(listTuteur, Tuteur.getComparator());
+        returned.addObject("tuteurList", listTuteur);
         return returned;
     }
     @RequestMapping(value = "deletetuteur.do", method = RequestMethod.POST)
     public ModelAndView handlePostDeletetuteur(HttpServletRequest request) {
-        ModelAndView returned;
-
         String idst = request.getParameter("id");
-        int id=Tools.getIntFromString(idst);
+        int id = Tools.getIntFromString(idst);
+    
         if (id != -1) {
             Tuteur tuteur = tuteurRepository.getReferenceById(id);
             tuteurRepository.remove(tuteur);
         }
-        
-        // return to list
-        List<Tuteur> listTuteur = new ArrayList<Tuteur>(tuteurRepository.findAll());
+    
+        List<Tuteur> listTuteur = new ArrayList<>(tuteurRepository.findAll());
+        ModelAndView returned = new ModelAndView("liste_tuteurs");
         Collections.sort(listTuteur, Tuteur.getComparator());
-        returned = new ModelAndView("liste_tuteurs");
-        returned.addObject("tuteurlist", listTuteur);
-
+        returned.addObject("tuteurList", listTuteur); 
         return returned;
     }
 }

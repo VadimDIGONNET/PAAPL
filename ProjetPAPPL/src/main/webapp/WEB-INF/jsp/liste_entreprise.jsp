@@ -5,7 +5,7 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des entreprises</title>
+    <title>Liste des partenaires</title>
     <link href="css/liste.css" type="text/css" rel="stylesheet" />
     <div class="logo-container"> <a href="#"> 
             <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<h2>Liste des entreprises</h2>
+<h2>Liste des partenaires</h2>
 
 <table>
     <thead>

@@ -205,7 +205,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12" id="entreprise">
-          <h2>Entreprise&nbsp;</h2>
+          <h2>Partenaires&nbsp;</h2>
           <hr> 
           <div class="row justify-content-center">
               
