@@ -1,14 +1,3 @@
-<%-- 
-    Document   : correspondant
-    Created on : 19 janv. 2026, 14:45:17
-    Author     : dodi
---%>
-
-<%-- 
-    Document   : correspondant
-    Created on : 19 janv. 2026, 11:35:46
-    Author     : dodi
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c"   uri="jakarta.tags.core" %>
@@ -17,27 +6,14 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Correspondants (Partenaires)</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #000;
-            padding: 8px;
-            vertical-align: top;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .icon {
-            width: 1.5rem; /* S'adapte à la taille de police globale */
-        }
-    </style>
+    <title>Liste des correspondants</title>
+    <link href="css/liste.css" type="text/css" rel="stylesheet" />
+    <div class="logo-container"> <a href="#"> 
+        <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
+    </div>
 </head>
 <body>
-<h2>Liste des Correspondants (Partenaires)</h2>
+<h2>Liste des Correspondants </h2>
 
 <form action="ajoutcorrespondant.do" method="post" style="margin-bottom: 15px;">
     <button type="submit">Ajouter un correspondant</button>
