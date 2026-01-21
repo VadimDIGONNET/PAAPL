@@ -29,15 +29,14 @@
     <tbody>
         <c:forEach var="item" items="${eleveList}">
                                         <tr>
-                                            <td scope="col">${item.nom}</td>
+                                            <td>${item.nom}</td>
                                             <td>${item.prenom}</td>
                                             <td>${item.nationalite}</td>
                                             <td>${item.email}</td>
                                             <td>${item.td}</td>
                                             <td>${item.numeroSujet}</td>
-                                            <td class="text-center"></td>
                                             <td class="text-center">
-    <form method="POST">
+    <form action="editEleve"method="POST">
         <input type="hidden" name="id" value="${item.id}" />
         
         <button name="edit" class="btn" formaction="editeleve.do">
@@ -54,6 +53,14 @@
                                         </c:forEach>
     </tbody>
 </table>
-
+ <div class="col-md-4 bg-primary m-2" style="">
+              <div class="col-md-12">
+                  <form action="main.do" method="POST" class="m-2">
+                    <button type="submit" name="retour au menu" class="btn btn-primary btn-lg">
+                        Retourner au menu
+                    </button>
+                </form>   
+              </div>
+            </div>
 </body>
 </html>
