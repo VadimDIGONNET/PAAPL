@@ -60,7 +60,7 @@ public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
     // Retour à la liste
     List<Eleve> myList = new ArrayList<Eleve>(eleveRepository.findAll());
     Collections.sort(myList, Eleve.getComparator());
-    ModelAndView returned = new ModelAndView("main");
+    ModelAndView returned = new ModelAndView("liste_eleve");
     returned.addObject("eleveList", myList);
 
     return returned;
@@ -72,12 +72,16 @@ public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
         Eleve nouveau=new Eleve();
         returned=new ModelAndView("ajout_eleve");
         returned.addObject("eleveList",nouveau);
+        List<Eleve> listEntreprise =new ArrayList<Eleve>( eleveRepository.findAll());
+        Collections.sort(listEntreprise, Eleve.getComparator());
+        returned.addObject("eleveList",listEntreprise);
         return returned;
     }
     
     @RequestMapping(value="eleve.do",method=RequestMethod.POST)
     public ModelAndView handlePostUsers(HttpServletRequest request){
         List<Eleve> listEntreprise =new ArrayList<Eleve>( eleveRepository.findAll());
+        Collections.sort(listEntreprise, Eleve.getComparator());
         ModelAndView returned =new ModelAndView("liste_eleve");
         returned.addObject("eleveList",listEntreprise);
         return returned;
@@ -100,6 +104,9 @@ public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
             returned = new ModelAndView("ajout_eleve");
             returned.addObject("eleve", myList);
         }
+        List<Eleve> listEntreprise =new ArrayList<Eleve>( eleveRepository.findAll());
+        Collections.sort(listEntreprise, Eleve.getComparator());
+        returned.addObject("eleveList",listEntreprise);
         return returned;
     }
     
@@ -119,7 +126,9 @@ public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
         Collections.sort(listEleve, Eleve.getComparator());
         returned = new ModelAndView("liste_eleve");
         returned.addObject("eleveList", listEleve);
-
+        List<Eleve> listEntreprise =new ArrayList<Eleve>( eleveRepository.findAll());
+        Collections.sort(listEntreprise, Eleve.getComparator());
+        returned.addObject("eleveList",listEntreprise);
         return returned;
     }
 }
