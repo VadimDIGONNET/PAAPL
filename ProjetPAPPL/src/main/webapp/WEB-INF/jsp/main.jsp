@@ -30,55 +30,30 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
+              <a class="nav-link" href="#sujets">Sujets</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#eleves">Élèves</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#tuteurs">Tuteurs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#correspondants">Correspondants</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#partenaires">Partenaires</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#sujet">Sujet</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#eleve">Élève</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#tuteur">Tuteur</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#correspondant">Correspondant</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#entreprise">Entreprise</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
-
-  <div class="py-4">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12" id="partenaires">
-          <h2>Partenaires&nbsp;</h2>
-          <hr>
-          <div class="row justify-content-center">
-            <div class="col-md-4 bg-primary m-2" style="">
-              <div class="col-md-12"><a class="btn btn-primary m-2 btn-lg" href="#" contenteditable="true">Ajouter</a></div>
-            </div>
-            <div class="col-md-4 bg-secondary m-2" style="">
-              <div class="col-md-12"><a class="btn btn-secondary m-2 btn-lg" href="#">Liste</a></div>
-            </div>
-            <div class="col-md-8 bg-dark m-2" style="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   
-  <div class="py-4">
+  <div class="py-4" id="sujets">
     <div class="container">
       <div class="row">
         <div class="col-12" id="sujet">
-          <h2>Sujet</h2>
+          <h2>Sujets</h2>
           <hr>
           <div class="row justify-content-center">
             <div class="col-md-4 bg-primary m-2">
@@ -106,11 +81,11 @@
       </div>
     </div>
   </div>
-  <div class="py-4">
+  <div class="py-4" id="eleves">
     <div class="container">
       <div class="row">
-        <div class="col-12" id="eleve">
-          <h2>Eleve</h2>
+        <div class="col-12" >
+          <h2>Élèves</h2>
           <hr>
           <div class="row justify-content-center">
             <div class="col-md-4 bg-primary m-2" style="">
@@ -138,11 +113,11 @@
       </div>
     </div>
   </div>
-  <div class="py-4">
+  <div class="py-4" id="tuteurs">
     <div class="container">
       <div class="row">
-        <div class="col-12" id="tuteur">
-          <h2>Tuteur</h2>
+        <div class="col-12" >
+          <h2>Tuteurs</h2>
           <hr>
           <div class="row justify-content-center">
             <div class="col-md-4 bg-primary m-2" style="">
@@ -172,11 +147,11 @@
       </div>
     </div>
   </div>
-  <div class="py-4">
+  <div class="py-4" id="correspondants">
     <div class="container">
       <div class="row">
-        <div class="col-12" id="correspondant">
-          <h2>Correspondant</h2>
+        <div class="col-12" >
+          <h2>Correspondants</h2>
           <hr>
           <div class="row justify-content-center">
             <div class="col-md-4 bg-primary m-2" style="">
@@ -201,10 +176,10 @@
     </div>
   </div>
 
-  <div class="py-4">
+  <div class="py-4" id="partenaires">
     <div class="container">
       <div class="row">
-        <div class="col-12" id="entreprise">
+        <div class="col-12" >
           <h2>Partenaires&nbsp;</h2>
           <hr> 
           <div class="row justify-content-center">
@@ -247,96 +222,60 @@
       </div>
     </div>
   </div>
-  <div class="bg-info p-4">
-    <div class="container">
-      <div class="row">
-        <div class="p-0 col-lg-4 col-md-6">
-          <img class="img-fluid" src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyDW8nO9JhT_pEjebobq9pgUF2cEp0EUb1I&amp;markers=folsom+Ave+san+francisco&amp;center=folsom+Ave+san+francisco&amp;zoom=16&amp;size=640x450&amp;sensor=false&amp;scale=2"> </div>
-        <div class="col-md-5 align-self-center p-4 offset-md-1">
-          <h4>Heading</h4>
-          <p class="mb-4 text-primary">795 Folsom Ave, Suite 600 <br>San Francisco, CA 94107 <br> <abbr title="Phone">P:</abbr> (123) 456-7890 </p>
-          <div class="row text-center">
-            <div class="col-md-2 col-3">
-              <a href="#" target="_blank"><i class="fa fa-facebook text-primary fa-2x"></i></a>
-            </div>
-            <div class="col-md-2 col-3">
-              <a href="#" target="_blank"><i class="fa fa-twitter text-primary fa-2x"></i></a>
-            </div>
-            <div class="col-md-2 col-3">
-              <a href="#" target="_blank"><i class="fa fa-instagram text-primary fa-2x"></i></a>
-            </div>
-            <div class="col-md-2 col-3">
-              <a href="#" target="_blank"><i class="fa text-primary fa-2x fa-pinterest-p"></i></a>
-            </div>
+
+    <div class="bg-info p-4">
+      <div class="container">
+          <div class="row">
+              <div class="p-0 col-lg-4 col-md-6">
+                  <img class="img-fluid" src="img/LogoECN.png" alt="logo">
+              </div>
+              <div class="col-md-5 align-self-center p-4 offset-md-1">
+                  <h4>Centrale Nantes</h4>
+                  <p class="mb-4 text-primary"> 1 Rue de la Noë,<br> 44300 Nantes, France<br> +33 (0)2 40 37 16 00 </p>
+                  <div class="row text-center">
+                      <div class="col-md-2 col-3">
+                          <a href="#" target="_blank"><i class="fa fa-facebook text-primary fa-2x"></i></a>
+                      </div>
+                      <div class="col-md-2 col-3">
+                          <a href="#" target="_blank"><i class="fa fa-twitter text-primary fa-2x"></i></a>
+                      </div>
+                      <div class="col-md-2 col-3">
+                          <a href="#" target="_blank"><i class="fa fa-instagram text-primary fa-2x"></i></a>
+                      </div>
+                      <div class="col-md-2 col-3">
+                          <a href="#" target="_blank"><i class="fa fa-linkedin text-primary fa-2x"></i></a>
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
     </div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row pt-5 border-top">
-        <div class="col-12 col-md"> <i class="fa fa-lg fa-bullseye d-block mb-2"></i> <small class="d-block mb-3 text-muted">© 2017-2018</small> </div>
-        <div class="col-6 col-md">
-          <h5><b>Features</b></h5>
-          <ul class="list-unstyled">
-            <li>
-              <a class="text-muted" href="#">Cool stuff</a>
-            </li>
-            <li>
-              <a class="text-muted" href="#">Random feature</a>
-            </li>
-            <li>
-              <a class="text-muted" href="#">Team feature</a>
-            </li>
-            <li>
-              <a class="text-muted" href="#">Stuff for developers</a>
-            </li>
-            <li>
-              <a class="text-muted" href="#">Another one</a>
-            </li>
-            <li>
-              <a class="text-muted" href="#">Last time</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5><b>Resources</b></h5>
-          <ul class="list-unstyled">
-            <li>
-              <a class="text-muted" href="#">Resource</a>
-            </li>
-            <li>
-              <a class="text-muted" href="#">Resource name</a>
-            </li>
-            <li>
-              <a class="text-muted" href="#">Another resource</a>
-            </li>
-            <li>
-              <a class="text-muted" href="#">Final resource</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5><b>About</b></h5>
-          <ul class="list-unstyled">
-            <li>
-              <a class="text-muted" href="#">Team</a>
-            </li>
-            <li>
-              <a class="text-muted" href="#">Locations</a>
-            </li>
-            <li>
-              <a class="text-muted" href="#">Privacy</a>
-            </li>
-            <li>
-              <a class="text-muted" href="#">Terms</a>
-            </li>
-          </ul>
-        </div>
+
+    <div class="py-5 bg-light">
+      <div class="container">
+          <div class="row pt-5 border-top">
+              <div class="col-12 col-md text-center">
+                  <i class="fa fa-lg fa-graduation-cap d-block mb-2"></i>
+                  <small class="d-block mb-3 text-muted">© 2026 - Projet Centrale Nantes</small>
+              </div>
+              <div class="col-6 col-md">
+                  <h5><b>Ressources</b></h5>
+                  <ul class="list-unstyled">
+                      <li><a class="text-muted" href="#">Guide Utilisateur</a></li>
+                      <li><a class="text-muted" href="#">Contact Support</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md">
+                  <h5><b>À Propos</b></h5>
+                  <ul class="list-unstyled">
+                      <li><a class="text-muted" href="#">Équipe Projet </a></li>
+                      <li><a class="text-muted" href="#">Mentions Légales</a></li>
+                  </ul>
+              </div>
+          </div>
       </div>
     </div>
-  </div>    
+  
 
   <script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
