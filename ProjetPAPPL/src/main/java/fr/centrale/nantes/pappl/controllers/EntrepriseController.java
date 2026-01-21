@@ -9,14 +9,19 @@ import fr.centrale.nantes.pappl.items.Entreprise;
 import fr.centrale.nantes.pappl.items.Sujet;
 import fr.centrale.nantes.pappl.repositories.EntrepriseRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -50,8 +55,10 @@ public class EntrepriseController {
         }else{
             entrepriseRepository.create(nom, adresse, codePostal, tel, siteWeb, description);
         }
-        ModelAndView returned = new ModelAndView("main");
-        returned.addObject("entreprises", entrepriseRepository.findAll());
+        ModelAndView returned = new ModelAndView("liste_entreprise");
+        List<Entreprise> listEntreprise = new ArrayList<Entreprise>(entrepriseRepository.findAll());
+        Collections.sort(listEntreprise, Entreprise.getComparator());
+        returned.addObject("entrepriseList", listEntreprise);
         return returned;
     }
     
@@ -66,9 +73,10 @@ public class EntrepriseController {
     
     @RequestMapping(value="entreprise.do",method=RequestMethod.POST)
     public ModelAndView handlePostUsers(HttpServletRequest request){
-        List<Entreprise> listEntreprise =new ArrayList<Entreprise>( entrepriseRepository.findAll());
         ModelAndView returned =new ModelAndView("liste_entreprise");
-        returned.addObject("entrepriseList",listEntreprise);
+        List<Entreprise> listEntreprise = new ArrayList<Entreprise>(entrepriseRepository.findAll());
+        Collections.sort(listEntreprise, Entreprise.getComparator());
+        returned.addObject("entrepriseList", listEntreprise);
         return returned;
     }
     
@@ -85,10 +93,10 @@ public class EntrepriseController {
         } else {
             List<Entreprise> listEntreprise = new ArrayList<Entreprise>(entrepriseRepository.findAll());
             returned = new ModelAndView("ajout-entreprise");
-            returned.addObject("entrepriseList", listEntreprise);
+            Collections.sort(listEntreprise, Entreprise.getComparator());
+            returned.addObject("entrepriseList", listEntreprise);        }
+            return returned;
         }
-        return returned;
-    }
     
     @RequestMapping(value = "deleteentreprise.do", method = RequestMethod.POST)
     public ModelAndView handlePostDeleteUser(HttpServletRequest request) {
@@ -108,4 +116,5 @@ public class EntrepriseController {
 
         return returned;
     }
+
 }

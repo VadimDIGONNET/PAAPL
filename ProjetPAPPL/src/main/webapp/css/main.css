@@ -3,6 +3,8 @@ body {
     background-color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
+    padding-top: 0 !important;
+    padding-right: 0;
 }
 
 /* Titres de section */
@@ -13,6 +15,7 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 1px;
     text-align: left;
+    margin: 0 0 25px 0;
 }
 
 hr {
@@ -26,6 +29,31 @@ hr {
     padding-top: 2rem !important;
     padding-bottom: 2rem !important;
     border-bottom: 1px solid #e9ecef;
+}
+
+/* Assure que la navbar reste en mode "replié" */
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: auto; /* Largeur automatique pour ne pas interférer */
+    z-index: 1001;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Bouton hamburger visible */
+.navbar-toggler {
+    display: block; /* Assure qu'il est toujours affiché */
+    margin-left: auto; /* Aligne à droite */
+}
+
+
+/* Conteneur du logo */
+.logo-container {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000; /* Doit être inférieur au z-index de la navbar */
 }
 
 
