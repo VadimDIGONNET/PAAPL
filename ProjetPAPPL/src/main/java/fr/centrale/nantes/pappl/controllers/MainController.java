@@ -5,7 +5,8 @@
 package fr.centrale.nantes.pappl.controllers;
 
 import fr.centrale.nantes.pappl.items.DescriptionSujet;
-import fr.centrale.nantes.pappl.repositories.DescriptionSujetRepositoryCustomImpl;
+import fr.centrale.nantes.pappl.repositories.*;
+import fr.centrale.nantes.pappl.repositories.EntrepriseRepository;
 import fr.centrale.nantes.pappl.items.Sujet;
 import fr.centrale.nantes.pappl.repositories.DescriptionSujetRepository;
 import fr.centrale.nantes.pappl.repositories.SujetRepository;
@@ -32,6 +33,7 @@ public class MainController {
     @Autowired
     private SujetRepository sujetRepository;
     private DescriptionSujetRepository DescriptionSujetRepository;
+    private EntrepriseRepository entrepriseRepository;
     
     @RequestMapping(value="sujet.do",method=RequestMethod.POST)
     public ModelAndView handlePostUsers(HttpServletRequest request){
@@ -70,6 +72,8 @@ public class MainController {
         }
         ModelAndView returned = new ModelAndView("main");
         returned.addObject("main", DescriptionSujetRepository.findAll());
+        returned.addObject("entrepriseList", entrepriseRepository.findAll());
+
         return returned;
     }
     
