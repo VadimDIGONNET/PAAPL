@@ -65,10 +65,10 @@
               </form>
             </div>
           </div>
-            <div class="col-md-4 bg-secondary m-2" style="">
+            <div class="col-md-4 bg-primary m-2" style="">
               <div class="col-md-12">
                   <form action="sujet.do" method="POST" class="m-2">
-                    <button type="submit" name="sujet" class="btn btn-secondary btn-lg">
+                    <button type="submit" name="sujet" class="btn btn-primary btn-lg">
                     Liste
                     </button>
                     </form>
@@ -76,6 +76,17 @@
             </div>
             <div class="col-md-8 bg-dark m-2" style="">
             </div>
+              
+            <div class="col-md-4 bg-secondary m-2 text-center">
+                <div class="col-md-12">
+                    <form action="importentreprise.do" method="POST" class="m-2">
+                      <button type="submit" class="btn btn-secondary btn-lg">
+                        Importer CSV
+                      </button>
+                    </form>
+                </div>
+            </div>
+              
           </div>
         </div>
       </div>
@@ -97,10 +108,10 @@
                 </form>   
               </div>
             </div>
-            <div class="col-md-4 bg-secondary m-2" style="">
+            <div class="col-md-4 bg-primary m-2" style="">
               <div class="col-md-12">
                   <form action="eleve.do" method="POST" class="m-2">
-                    <button type="submit" name="affiche entreprise" class="btn btn-secondary btn-lg">
+                    <button type="submit" name="affiche entreprise" class="btn btn-primary btn-lg">
                         Liste
                     </button>
                 </form>
@@ -108,6 +119,17 @@
             </div>
             <div class="col-md-8 bg-dark m-2" style="">
             </div>
+              
+            <div class="col-md-4 bg-secondary m-2 text-center">
+                <div class="col-md-12">
+                    <form action="importentreprise.do" method="POST" class="m-2">
+                      <button type="submit" class="btn btn-secondary btn-lg">
+                        Importer CSV
+                      </button>
+                    </form>
+                </div>
+            </div>
+            
           </div>
         </div>
       </div>
@@ -129,10 +151,10 @@
                 </form>   
               </div>
             </div>
-            <div class="col-md-4 bg-secondary m-2" style="">
+            <div class="col-md-4 bg-primary m-2" style="">
               <div class="col-md-12">
                   <form action="tuteurs.do" method="POST" class="m-2">
-                    <button type="submit" name="affiche tuteurs" class="btn btn-secondary btn-lg">
+                    <button type="submit" name="affiche tuteurs" class="btn btn-primary btn-lg">
                         Liste
                     </button>
                 </form>
@@ -141,6 +163,17 @@
             </div>
             <div class="col-md-8 bg-dark m-2" style="">
             </div>
+              
+            <div class="col-md-4 bg-secondary m-2 text-center">
+                <div class="col-md-12">
+                    <form action="importentreprise.do" method="POST" class="m-2">
+                      <button type="submit" class="btn btn-secondary btn-lg">
+                        Importer CSV
+                      </button>
+                    </form>
+                </div>
+            </div>
+            
           </div>
           </div>
         </div>
@@ -161,15 +194,26 @@
                 </form>
             </div>
             </div>   
-            <div class="col-md-4 bg-secondary m-2" style="">
+            <div class="col-md-4 bg-primary m-2" style="">
               <div class="col-md-12">
                   <form action="correspondant.do" method="post" class="m-2">
-                    <button type="submit" class="btn btn-secondary btn-lg"">Liste</button>
+                    <button type="submit" class="btn btn-primary btn-lg"">Liste</button>
                   </form>
             </div>
             </div>
             <div class="col-md-8 bg-dark m-2" style="">
             </div>
+              
+            <div class="col-md-4 bg-secondary m-2 text-center">
+                <div class="col-md-12">
+                    <form action="importentreprise.do" method="POST" class="m-2">
+                      <button type="submit" class="btn btn-secondary btn-lg">
+                        Importer CSV
+                      </button>
+                    </form>
+                </div>
+            </div>
+              
           </div>
         </div>
       </div>
@@ -194,10 +238,10 @@
               </div>
             </div>
               
-            <div class="col-md-4 bg-secondary m-2" style="">
+            <div class="col-md-4 bg-primary m-2" style="">
               <div class="col-md-12">
                   <form action="entreprise.do" method="POST" class="m-2">
-                    <button type="submit" name="affiche entreprise" class="btn btn-secondary btn-lg">
+                    <button type="submit" name="affiche entreprise" class="btn btn-primary btn-lg">
                         Liste
                     </button>
                 </form>
@@ -207,10 +251,10 @@
             <div class="col-md-8 bg-dark m-2" style="">
             </div>
             
-            <div class="col-md-4 bg-info m-2 text-center">
+            <div class="col-md-4 bg-secondary m-2 text-center">
                 <div class="col-md-12">
                     <form action="importentreprise.do" method="POST" class="m-2">
-                      <button type="submit" class="btn btn-info btn-lg">
+                      <button type="submit" class="btn btn-secondary btn-lg">
                         Importer CSV
                       </button>
                     </form>
