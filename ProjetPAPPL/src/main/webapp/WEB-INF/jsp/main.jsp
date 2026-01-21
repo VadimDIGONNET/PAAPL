@@ -163,10 +163,49 @@
                 <div class="col-md-5 align-self-center p-4 offset-md-1">
                     <h4>Centrale Nantes</h4>
                     <p class="mb-4 text-primary"> 1 Rue de la Noë,<br> 44300 Nantes, France<br> +33 (0)2 40 37 16 00 </p>
+                    <div class="d-flex justify-content-start">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <p>
+                        Plateforme de gestion des projets étudiants en partenariat avec des entreprises.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Ressources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50">Guide Utilisateur</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="mb-4">À Propos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50">L'Équipe projet</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">Mentions Légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row border-top mt-4 pt-4">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">© 2026 Centrale Nantes. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
