@@ -63,8 +63,11 @@
 
 <br>
 <form action="main.do" method="post">
-    <button type="submit" style="background-color: #6c757d;">Retour au menu principal</button>
+   <button type="submit" name="retour au menu" class="btn btn-primary btn-lg">
+                    Retourner au menu
+    </button>
 </form>
+
 
 
 </body>

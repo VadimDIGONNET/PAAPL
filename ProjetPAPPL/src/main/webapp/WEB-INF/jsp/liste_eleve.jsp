@@ -34,7 +34,7 @@
                                             <td>${item.nationalite}</td>
                                             <td>${item.email}</td>
                                             <td>${item.td}</td>
-                                            <td>${item.numeroSujet}</td>
+                                            <td>${item.numeroSujet.numeroDuSujet}</td>
                                             <td class="text-center">
     <form action="editEleve"method="POST">
         <input type="hidden" name="id" value="${item.id}" />

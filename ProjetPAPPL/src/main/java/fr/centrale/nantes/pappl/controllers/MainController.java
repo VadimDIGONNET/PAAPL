@@ -5,6 +5,7 @@
 package fr.centrale.nantes.pappl.controllers;
 
 import fr.centrale.nantes.pappl.items.DescriptionSujet;
+import fr.centrale.nantes.pappl.items.Entreprise;
 import fr.centrale.nantes.pappl.repositories.*;
 import fr.centrale.nantes.pappl.repositories.EntrepriseRepository;
 import fr.centrale.nantes.pappl.items.Sujet;
@@ -32,16 +33,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainController {
     @Autowired
     private SujetRepository sujetRepository;
+    
+    @Autowired
     private DescriptionSujetRepository DescriptionSujetRepository;
+    
+    @Autowired
     private EntrepriseRepository entrepriseRepository;
     
-    @RequestMapping(value="sujet.do",method=RequestMethod.POST)
-    public ModelAndView handlePostUsers(HttpServletRequest request){
-        List<Sujet> myList =new ArrayList<Sujet>( sujetRepository.findAll());
-        ModelAndView returned =new ModelAndView("sujet");
-        returned.addObject("sujetList",myList);
-        return returned;
-    }
     
     private int getIntFromString(String value){
         int intValue=-1;
@@ -56,33 +54,50 @@ public class MainController {
     @RequestMapping(value="savesujet.do", method=RequestMethod.POST)
     public ModelAndView handlePostSaveSujet(HttpServletRequest request) {
         String idStr = request.getParameter("id");
+        String numero_sujet = request.getParameter("numeroSujet");
         String contexte = request.getParameter("contexte");
         String travail = request.getParameter("travail");
         String livrable = request.getParameter("livrable");
+        String intitule = request.getParameter("intitule");
     
-        String entrepriseNom = request.getParameter("entrepriseNom"); 
+        String entrepriseNom = request.getParameter("entreprise"); 
+        int numeroSujet = Tools.getIntFromString(numero_sujet);
         int id = Tools.getIntFromString(idStr);
+        
+        Entreprise entreprise = null;
+        if (entrepriseNom != null && !entrepriseNom.isEmpty()) {
+            try {
+                entreprise = entrepriseRepository.getReferenceById(entrepriseNom);
+            } catch(Exception ex) {
+                // L'entreprise n'existe pas
+            }
+        }
 
         if (id == -1) {
-            DescriptionSujet item = DescriptionSujetRepository.create(contexte, travail, livrable, entrepriseNom);
-            id = item.getNumero();
+            Sujet sujet = new Sujet();
+            sujet = sujetRepository.create(numeroSujet,intitule);
+            id = sujet.getNumero();
+            
+            DescriptionSujet item = DescriptionSujetRepository.create(id ,contexte, travail, livrable, entreprise);
+            //id = item.getNumero();
         } else {
             DescriptionSujet dSujet = DescriptionSujetRepository.getReferenceById(id);
-            DescriptionSujetRepository.update(dSujet, contexte, travail, livrable, entrepriseNom);
+            DescriptionSujetRepository.update(dSujet, contexte, travail, livrable, entreprise);
         }
         ModelAndView returned = new ModelAndView("main");
         returned.addObject("main", DescriptionSujetRepository.findAll());
-        returned.addObject("entrepriseList", entrepriseRepository.findAll());
 
         return returned;
     }
     
     @RequestMapping(value="createsujet.do",method=RequestMethod.POST)
-    public ModelAndView HandlePostcreateuser(){
+    public ModelAndView HandlePostcreatesujet(){
         ModelAndView returned;
         DescriptionSujet nouveau=new DescriptionSujet();
         returned=new ModelAndView("ajout-sujet");
         returned.addObject("ajout-sujet",nouveau);
+        // Ajouter la liste des entreprises pour le dropdown
+        returned.addObject("entrepriseList", entrepriseRepository.findAll());
         return returned;
     }
     
@@ -91,5 +106,13 @@ public class MainController {
     ModelAndView returned = new ModelAndView("main");
     return returned;
 }
+    
+        @RequestMapping(value="sujet.do", method=RequestMethod.POST)
+    public ModelAndView handlePostSujets(HttpServletRequest request) {
+        List<DescriptionSujet> listSujet = new ArrayList<DescriptionSujet>(DescriptionSujetRepository.findAll());
+        ModelAndView returned = new ModelAndView("liste_sujet");
+        returned.addObject("sujetList", listSujet);
+        return returned;
+    }
 }
 

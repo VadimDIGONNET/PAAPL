@@ -8,7 +8,7 @@ package fr.centrale.nantes.pappl.repositories;
  *
  * @author agach
  */
-import fr.centrale.nantes.pappl.items.DescriptionSujet;
+import fr.centrale.nantes.pappl.items.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
@@ -20,7 +20,7 @@ public class DescriptionSujetRepositoryCustomImpl implements DescriptionSujetRep
     private DescriptionSujetRepository DescriptionSujetRepository;
     
     @Override
-    public DescriptionSujet update(DescriptionSujet numero, String contexte, String travail, String livrable, String entreprise){
+    public DescriptionSujet update(DescriptionSujet numero, String contexte, String travail, String livrable, Entreprise entreprise){
         if(numero !=null){
             numero = DescriptionSujetRepository.getReferenceById(numero.getNumero());
         }
@@ -36,14 +36,17 @@ public class DescriptionSujetRepositoryCustomImpl implements DescriptionSujetRep
     
     
     @Override
-    public DescriptionSujet create(String contexte, String travail, String livrable, String entreprise){
-        if((entreprise!=null)&&(!entreprise.isEmpty())&&(contexte!=null)&&(!contexte.isEmpty())){
+    public DescriptionSujet create(Integer id, String contexte, String travail, String livrable, Entreprise entreprise){
+        if((entreprise!=null)&&(contexte!=null)&&(!contexte.isEmpty())&&(id !=null)){
             DescriptionSujet item=new DescriptionSujet();
+            item.setNumero(id);
             item.setContexte(contexte);
             item.setTravailRealiser(travail);
             item.setLivrable(livrable);
+            item.setNomEntreprise(entreprise);
             DescriptionSujetRepository.saveAndFlush(item);
-            return DescriptionSujetRepository.getReferenceById(item.getNumero());
+            //return DescriptionSujetRepository.getReferenceById(item.getNumero());
+            return item;
         }
         return null;
     }

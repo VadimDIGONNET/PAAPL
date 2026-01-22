@@ -8,8 +8,25 @@ package fr.centrale.nantes.pappl.repositories;
  *
  * @author vadimdigonnet
  */
+import fr.centrale.nantes.pappl.items.Sujet;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 @Repository
 public class SujetRepositoryCustomImpl implements SujetRepositoryCustom{
+    @Autowired
+    @Lazy
+    private SujetRepository SujetRepository;
+
+    @Override
+    public Sujet create(Integer numeroSujet , String intitule) {
+            Sujet item=new Sujet();
+            item.setNumeroDuSujet(numeroSujet);
+            item.setIntitule(intitule);
+            SujetRepository.saveAndFlush(item);
+            //return DescriptionSujetRepository.getReferenceById(item.getNumero());
+            return item;
+    }
+    
     
 }

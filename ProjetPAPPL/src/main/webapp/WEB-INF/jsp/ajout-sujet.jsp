@@ -3,63 +3,70 @@
 <%@taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Ajouter une Entreprise</title>
-    <link href="css/ajout.css" type="text/css" rel="stylesheet" />
+    <head>
+        <meta charset="UTF-8">
+        <title>Ajouter une Entreprise</title>
+        <link href="css/ajout.css" type="text/css" rel="stylesheet" />
     <div class="logo-container"> <a href="#"> 
-        <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
+            <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
     </div>
 </head>
 <body>
 
-<div class="container">
-    <h2>Nouveau sujet</h2>
-    
-    <form action="savesujet.do" method="POST">
-        
-        <div class="form-group">
-            <label for="nom">Intitulé du sujet :</label>
-            <input type="text" id="nom" name="nom" value="${sujet.intitule}" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="entreprise">Entreprise :</label>
-            <select id="entreprise" name="entreprise" required>
-                <option value="">-- Sélectionner une entreprise --</option>
-                <c:forEach var="entreprise" items="${entrepriseList}">
-                    <option value="${entreprise.nom}"
-            <c:if test="${DescriptionSujet.entreprise != null && DescriptionSujet.entreprise == entreprise.nom}">
-                selected
-            </c:if>
-        >
-            ${entreprise.nom}
-        </option>
-                </c:forEach>
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <label for="adresse"> Description du sujet :</label>
-            <input type="text" id="adresse" name="adresse" value="${DescriptionSujet.contexte}">
-        </div>
+    <div class="container">
+        <h2>Nouveau sujet</h2>
 
-        <div class="form-group">
-            <label for="adresse">Travail à réaliser :</label>
-            <input type="text" id="adresse" name="adresse" value="${DescriptionSujet.travailRealiser}">
-        </div>
-        
-        <div class="form-group">
-            <label for="adresse"> Livrables attendus :</label>
-            <input type="text" id="adresse" name="adresse" value="${DescriptionSujet.livrable}">
-        </div>
+        <form action="savesujet.do" method="POST">
+            <input type="hidden" name="id" value=-1>
 
 
-        <button type="submit">Enregistrer le sujet</button>
-        <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
-    </form>
-</div>
-<div class="col-md-4 bg-primary m-2" style="">
+            <div class="form-group">
+                <label for="nom">Intitulé du sujet :</label>
+                <input type="text" id="intitule" name="intitule" value="${sujet.intitule}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="nom">Numero de sujet :</label>
+                <input type="text" id="numeroSujet" name="numeroSujet" value="${sujet.numeroSujet}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="entreprise">Entreprise :</label>
+                <select id="entreprise" name="entreprise" required>
+                    <option value="">-- Sélectionner une entreprise --</option>
+                    <c:forEach var="entreprise" items="${entrepriseList}">
+                        <option value="${entreprise.nom}"
+                                <c:if test="${DescriptionSujet.nomEntreprise != null && DescriptionSujet.nomEntreprise == entreprise.nom}">
+                                    selected
+                                </c:if>
+                                >
+                            ${entreprise.nom}
+                        </option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="adresse"> Description du sujet :</label>
+                <input type="text" id="contexte" name="contexte" value="${DescriptionSujet.contexte}">
+            </div>
+
+            <div class="form-group">
+                <label for="adresse">Travail à réaliser :</label>
+                <input type="text" id="travail" name="travail" value="${DescriptionSujet.travailRealiser}">
+            </div>
+
+            <div class="form-group">
+                <label for="adresse"> Livrables attendus :</label>
+                <input type="text" id="livrable" name="livrable" value="${DescriptionSujet.livrable}">
+            </div>
+
+
+            <button type="submit">Enregistrer le sujet</button>
+            <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
+        </form>
+    </div>
+    <div class="col-md-4 bg-primary m-2" style="">
         <div class="col-md-12">
             <form action="main.do" method="POST" class="m-2">
                 <button type="submit" name="retour au menu" class="btn btn-primary btn-lg">

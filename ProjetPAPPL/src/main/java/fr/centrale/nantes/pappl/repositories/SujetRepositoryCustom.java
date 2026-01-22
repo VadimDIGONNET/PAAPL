@@ -4,10 +4,15 @@
  */
 package fr.centrale.nantes.pappl.repositories;
 
+import fr.centrale.nantes.pappl.items.*;
+
+
 /**
  *
  * @author vadimdigonnet
  */
 public interface SujetRepositoryCustom {
+    
+    public Sujet create( Integer numeroSujet , String intitule);
     
 }
