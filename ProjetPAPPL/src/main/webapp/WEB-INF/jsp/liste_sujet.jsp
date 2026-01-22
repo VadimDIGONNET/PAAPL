@@ -29,31 +29,35 @@
             </tr>
         </thead>
         <tbody>
-        <c:forEach var="item" items="${sujetList}">
-            <tr>
-                <td>${item.sujet.numeroDuSujet}</td>
-                <td>${item.sujet.intitule}</td>
-                <td>${item.contexte}</td>
-                <td>${item.travailRealiser}</td>
-                <td>${item.livrable}</td>
-                <td >${item.nomEntreprise.nom}</td>
-                <td>
-                    
-                    
-                </td>
-            </tr>
-        </c:forEach>
-    </tbody>
-</table>
-<div class="col-md-4 bg-primary m-2" style="">
-    <div class="col-md-12">
-        <form action="main.do" method="POST" class="m-2">
-            <button type="submit" name="retour au menu" class="btn btn-primary btn-lg">
-                Retourner au menu
-            </button>
-        </form>   
+            <c:forEach var="item" items="${sujetList}">
+                <tr>
+                    <td>${item.sujet.numeroDuSujet}</td>
+                    <td>${item.sujet.intitule}</td>
+                    <td>${item.contexte}</td>
+                    <td>${item.travailRealiser}</td>
+                    <td>${item.livrable}</td>
+                    <td >${item.nomEntreprise.nom}</td>
+                    <td>
+                        <form action="editSujet" method="POST">
+                            <input type="hidden" name="id" value="${item.sujet.numero}" />
+                            <button name="edit" class="btn" formaction="editsujet.do"><img src="img/edit.png" alt="edit" class="icon" /></button>
+                            <button name="delete" class="btn" formaction="deletesujet.do"><img src="img/delete.png" alt="delete" class="icon" /></button>
+                        </form>
+
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+    <div class="col-md-4 bg-primary m-2" style="">
+        <div class="col-md-12">
+            <form action="main.do" method="POST" class="m-2">
+                <button type="submit" name="retour au menu" class="btn btn-primary btn-lg">
+                    Retourner au menu
+                </button>
+            </form>   
+        </div>
     </div>
-</div>
 </body>
 </html>
 

@@ -114,5 +114,35 @@ public class MainController {
         returned.addObject("sujetList", listSujet);
         return returned;
     }
+    
+        @RequestMapping(value="editsujet.do", method=RequestMethod.POST)
+    public ModelAndView handleEditPost(HttpServletRequest request) {
+        ModelAndView returned;
+        
+        String idStr = request.getParameter("id");
+        int id = Tools.getIntFromString(idStr);
+        
+        if (id != -1) {
+            try {
+                DescriptionSujet descriptionSujet = DescriptionSujetRepository.getReferenceById(id);
+                returned = new ModelAndView("ajout-sujet");
+                returned.addObject("descriptionSujet", descriptionSujet);
+                returned.addObject("entrepriseList", entrepriseRepository.findAll());
+            } catch(Exception ex) {
+                // Si le sujet n'existe pas
+                // Si le correspondant n'existe pas, rediriger vers la liste
+                List<DescriptionSujet> listSujet = new ArrayList<DescriptionSujet>(DescriptionSujetRepository.findAll());
+                returned = new ModelAndView("liste_sujet");
+                returned.addObject("sujetList", listSujet);
+            }
+        } else {
+            // Aucun ID fourni, créer un nouveau correspondant
+            returned = new ModelAndView("ajout-sujet");
+            returned.addObject("descriptionSujet", new DescriptionSujet());
+            returned.addObject("entrepriseList", entrepriseRepository.findAll());
+        }
+        
+        return returned;
+    }
 }
 
