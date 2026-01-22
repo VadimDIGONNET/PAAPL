@@ -50,6 +50,8 @@ public class Sujet implements Serializable {
     private String intitule;
     @Column(name = "note")
     private Integer note;
+    @Column(name = "numero_du_sujet")
+    private Integer numeroDuSujet;
     @ManyToMany(mappedBy = "sujetCollection")
     private Collection<Tuteur> tuteurCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "numero")
@@ -96,6 +98,14 @@ public class Sujet implements Serializable {
 
     public void setNote(Integer note) {
         this.note = note;
+    }
+    
+    public Integer getNumeroDuSujet() {
+        return numeroDuSujet;
+    }
+
+    public void setNumeroDuSujet(Integer numeroDuSujet) {
+        this.numeroDuSujet = numeroDuSujet;
     }
 
     @XmlTransient
