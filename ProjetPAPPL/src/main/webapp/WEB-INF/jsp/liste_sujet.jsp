@@ -44,7 +44,7 @@
                             <input type="hidden" name="id" value="${sujet.numero}" />
                             <button name="edit" class="btn" formaction="editsujet.do"><img src="img/edit.png" alt="edit" class="icon" /></button>
                             <button name="delete" class="btn" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce sujet ?');" formaction="deletesujet.do">
-                                <img src="img/delete.png" alt="delete" class="icon" /> // faire le onclick avec bootstrap
+                                <img src="img/delete.png" alt="delete" class="icon" />
                             </button>
                         </form>
 
