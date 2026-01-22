@@ -16,6 +16,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SujetRepository extends JpaRepository<Sujet,Integer>,SujetRepositoryCustom {
 
-    @Query("SELECT s FROM Sujet s WHERE s.numero_du_sujet = :leNum")
+    @Query("SELECT s FROM Sujet s WHERE s.numeroDuSujet = :leNum")
     public Sujet findByNumeroCustom(@Param("leNum") int numero);
 }
