@@ -150,5 +150,30 @@ public class MainController {
         
         return returned;
     }
+        @RequestMapping(value="deletesujet.do", method=RequestMethod.POST)
+    public ModelAndView handlePostDeleteSujet(HttpServletRequest request) {
+        ModelAndView returned;
+        
+        String idStr = request.getParameter("id");
+        int id = Tools.getIntFromString(idStr);
+        
+        if (id != -1) {
+            try {
+                DescriptionSujet desc = DescriptionSujetRepository.getReferenceById(id);
+                DescriptionSujetRepository.remove(desc);
+                Sujet sujet = desc.getSujet();
+                sujetRepository.remove(sujet);
+                
+            } catch(Exception ex) {
+                // Correspondant introuvable
+            }
+        }
+        
+        // Retour à la liste
+        List<Object> listSujet = new ArrayList<Object>(DescriptionSujetRepository.findAllWithSujet());
+
+        returned = new ModelAndView("liste_sujet");
+        returned.addObject("sujetList", listSujet);
+        return returned;    }
 }
 

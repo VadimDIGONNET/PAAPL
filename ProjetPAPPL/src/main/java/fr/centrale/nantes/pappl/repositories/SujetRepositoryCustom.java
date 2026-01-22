@@ -16,5 +16,7 @@ public interface SujetRepositoryCustom {
     public Sujet create( Integer numeroSujet , String intitule);
     
     public Sujet update(Sujet sujet, Integer numeroSujet , String intitule);
+    public void remove(Sujet sujet);
+
     
 }

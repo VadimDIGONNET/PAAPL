@@ -50,4 +50,12 @@ public class DescriptionSujetRepositoryCustomImpl implements DescriptionSujetRep
         }
         return null;
     }
+    
+    @Override
+    public void remove(DescriptionSujet desc){
+        if (desc != null) {
+            DescriptionSujetRepository.delete(desc);
+        }
+    
+    }
 }

@@ -42,5 +42,12 @@ public class SujetRepositoryCustomImpl implements SujetRepositoryCustom{
         return null;
     }
     
+    @Override
+    public void remove(Sujet sujet){
+        if (sujet != null) {
+            SujetRepository.delete(sujet);
+        }
+    
+    }
     
 }
