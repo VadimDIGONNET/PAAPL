@@ -69,6 +69,7 @@ public class Sujet implements Serializable {
     private Correspondant idCorrespondant;
 
     public Sujet() {
+        this.annee = new Annee(java.time.Year.now().getValue());
     }
 
     public Sujet(Integer numero) {
