@@ -37,12 +37,19 @@ public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
     String email = request.getParameter("email");
     String td = request.getParameter("td");
     
-    // Gestion du Sujet
-    String numero_sujet = request.getParameter("numero_sujet");
-    int sujetId = Tools.getIntFromString(numero_sujet);        
-    Sujet sujet = null;
-    if (sujetId > 0 && sujetRepository != null) {
-        sujet = sujetRepository.getReferenceById(sujetId);
+   // 1. On récupère le NUMERO tapé dans le formulaire 
+    String numeroSujetSaisi1 = request.getParameter("numero_sujet");
+    int numeroSujetSaisi = Tools.getIntFromString(numeroSujetSaisi1);
+    
+    // 2. On cherche le vrai objet Sujet en base
+    Sujet leSujetAssocie = null;
+    if (numeroSujetSaisi1 != null && !numeroSujetSaisi1.isEmpty()) {
+        leSujetAssocie = sujetRepository.getReferenceById(numeroSujetSaisi);
+        
+        // Petit log pour déboguer si ça ne marche pas
+        if (leSujetAssocie == null) {
+            System.out.println("ERREUR : Aucun sujet trouvé avec le numéro " + numeroSujetSaisi);
+        }
     }
 
     // Gestion de l'Eleve
@@ -51,10 +58,10 @@ public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
     if (id > 0) {
         // C'est une mise à jour : on récupère l'élève existant
         Eleve eleve = eleveRepository.getReferenceById(id);
-        eleveRepository.update(eleve, nom, prenom, nationalite, email, td, sujet);
+        eleveRepository.update(eleve, nom, prenom, nationalite, email, td, leSujetAssocie);
     } else {
         // C'est une création : on n'appelle PAS getReferenceById
-        eleveRepository.create(nom, prenom, nationalite, email, td, sujet);
+        eleveRepository.create(nom, prenom, nationalite, email, td, leSujetAssocie);
     }
 
     // Retour à la liste
