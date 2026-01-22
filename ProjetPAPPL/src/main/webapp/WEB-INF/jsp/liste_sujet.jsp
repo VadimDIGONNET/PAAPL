@@ -29,8 +29,8 @@
         <tbody>
         <c:forEach var="item" items="${sujetList}">
             <tr>
-                <td> ${item.sujet.intitule}</td>
-                <td> ${item.contexte}</td>
+                <td>${item.sujet.intitule}</td>
+                <td>${item.contexte}</td>
                 <td>${item.travailRealiser}</td>
                 <td>${item.livrable}</td>
                 <td >${item.nomEntreprise.nom}</td>

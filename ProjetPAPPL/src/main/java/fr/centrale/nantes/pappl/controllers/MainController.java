@@ -54,6 +54,7 @@ public class MainController {
     @RequestMapping(value="savesujet.do", method=RequestMethod.POST)
     public ModelAndView handlePostSaveSujet(HttpServletRequest request) {
         String idStr = request.getParameter("id");
+        String numero_sujet = request.getParameter("numeroSujet");
         String contexte = request.getParameter("contexte");
         String travail = request.getParameter("travail");
         String livrable = request.getParameter("livrable");
