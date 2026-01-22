@@ -5,6 +5,8 @@
 package fr.centrale.nantes.pappl.repositories;
 
 import fr.centrale.nantes.pappl.items.DescriptionSujet;
+import fr.centrale.nantes.pappl.items.Sujet;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DescriptionSujetRepository extends JpaRepository<DescriptionSujet,Integer>,DescriptionSujetRepositoryCustom{
+    
+    List<Object[]> findAllWithSujet();
     
 }

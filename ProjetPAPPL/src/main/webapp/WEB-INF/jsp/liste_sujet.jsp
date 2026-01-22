@@ -30,16 +30,18 @@
         </thead>
         <tbody>
             <c:forEach var="item" items="${sujetList}">
+                <c:set var="sujet" value="${item[0]}" />
+                <c:set var="desc" value="${item[1]}" />
                 <tr>
-                    <td>${item.sujet.numeroDuSujet}</td>
-                    <td>${item.sujet.intitule}</td>
-                    <td>${item.contexte}</td>
-                    <td>${item.travailRealiser}</td>
-                    <td>${item.livrable}</td>
-                    <td >${item.nomEntreprise.nom}</td>
+                    <td>${sujet.numeroDuSujet}</td>
+                    <td>${sujet.intitule}</td>
+                    <td>${desc.contexte}</td>
+                    <td>${desc.travailRealiser}</td>
+                    <td>${desc.livrable}</td>
+                    <td >${desc.nomEntreprise.nom}</td>
                     <td>
                         <form action="editSujet" method="POST">
-                            <input type="hidden" name="id" value="${item.sujet.numero}" />
+                            <input type="hidden" name="id" value="${sujet.numero}" />
                             <button name="edit" class="btn" formaction="editsujet.do"><img src="img/edit.png" alt="edit" class="icon" /></button>
                             <button name="delete" class="btn" formaction="deletesujet.do"><img src="img/delete.png" alt="delete" class="icon" /></button>
                         </form>

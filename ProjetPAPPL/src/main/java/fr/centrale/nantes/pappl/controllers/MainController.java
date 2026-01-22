@@ -109,7 +109,8 @@ public class MainController {
     
         @RequestMapping(value="sujet.do", method=RequestMethod.POST)
     public ModelAndView handlePostSujets(HttpServletRequest request) {
-        List<DescriptionSujet> listSujet = new ArrayList<DescriptionSujet>(DescriptionSujetRepository.findAll());
+        List<Object> listSujet = new ArrayList<Object>(DescriptionSujetRepository.findAllWithSujet());
+
         ModelAndView returned = new ModelAndView("liste_sujet");
         returned.addObject("sujetList", listSujet);
         return returned;
@@ -125,8 +126,11 @@ public class MainController {
         if (id != -1) {
             try {
                 DescriptionSujet descriptionSujet = DescriptionSujetRepository.getReferenceById(id);
+                Sujet sujet = sujetRepository.getReferenceById(id);
                 returned = new ModelAndView("ajout-sujet");
-                returned.addObject("descriptionSujet", descriptionSujet);
+                returned.addObject("DescriptionSujet", descriptionSujet);
+                returned.addObject("sujet", sujet);
+
                 returned.addObject("entrepriseList", entrepriseRepository.findAll());
             } catch(Exception ex) {
                 // Si le sujet n'existe pas

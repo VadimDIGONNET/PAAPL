@@ -27,7 +27,7 @@
             
             <div class="form-group">
                 <label for="nom">Numero de sujet :</label>
-                <input type="number" id="numeroSujet" name="numeroSujet" value="${sujet.numeroSujet}" required>
+                <input type="number" id="numeroSujet" name="numeroSujet" value="${sujet.numeroDuSujet}" required>
             </div>
 
             <div class="form-group">
