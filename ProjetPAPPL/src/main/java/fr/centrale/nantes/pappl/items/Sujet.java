@@ -34,7 +34,6 @@ import java.util.Collection;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sujet.findAll", query = "SELECT s FROM Sujet s"),
-    @NamedQuery(name = "Sujet.findByNumero", query = "SELECT s FROM Sujet s WHERE s.numero = :numero"),
     @NamedQuery(name = "Sujet.findByIntitule", query = "SELECT s FROM Sujet s WHERE s.intitule = :intitule"),
     @NamedQuery(name = "Sujet.findByNote", query = "SELECT s FROM Sujet s WHERE s.note = :note")})
 public class Sujet implements Serializable {
