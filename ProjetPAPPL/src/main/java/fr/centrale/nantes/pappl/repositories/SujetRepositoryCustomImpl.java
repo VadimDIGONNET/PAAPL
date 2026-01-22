@@ -19,8 +19,9 @@ public class SujetRepositoryCustomImpl implements SujetRepositoryCustom{
     private SujetRepository SujetRepository;
 
     @Override
-    public Sujet create(String intitule) {
+    public Sujet create(Integer numeroSujet , String intitule) {
             Sujet item=new Sujet();
+            item.setNumeroDuSujet(numeroSujet);
             item.setIntitule(intitule);
             SujetRepository.saveAndFlush(item);
             //return DescriptionSujetRepository.getReferenceById(item.getNumero());

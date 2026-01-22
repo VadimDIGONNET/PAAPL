@@ -19,21 +19,28 @@
     <table>
         <thead>
             <tr>
+                <th>Numéro de sujet</th>
                 <th>Intitulé du sujet</th>
                 <th>Contexte</th>
                 <th>Travail à réaliser</th>
                 <th>Livrable</th>
                 <th>Nom de l'entreprise</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         <c:forEach var="item" items="${sujetList}">
             <tr>
+                <td>${item.sujet.numeroDuSujet}</td>
                 <td>${item.sujet.intitule}</td>
                 <td>${item.contexte}</td>
                 <td>${item.travailRealiser}</td>
                 <td>${item.livrable}</td>
                 <td >${item.nomEntreprise.nom}</td>
+                <td>
+                    
+                    
+                </td>
             </tr>
         </c:forEach>
     </tbody>

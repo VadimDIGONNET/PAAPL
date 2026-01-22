@@ -61,6 +61,7 @@ public class MainController {
         String intitule = request.getParameter("intitule");
     
         String entrepriseNom = request.getParameter("entreprise"); 
+        int numeroSujet = Tools.getIntFromString(numero_sujet);
         int id = Tools.getIntFromString(idStr);
         
         Entreprise entreprise = null;
@@ -74,7 +75,7 @@ public class MainController {
 
         if (id == -1) {
             Sujet sujet = new Sujet();
-            sujet = sujetRepository.create(intitule);
+            sujet = sujetRepository.create(numeroSujet,intitule);
             id = sujet.getNumero();
             
             DescriptionSujet item = DescriptionSujetRepository.create(id ,contexte, travail, livrable, entreprise);

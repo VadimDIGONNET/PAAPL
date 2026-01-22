@@ -13,6 +13,6 @@ import fr.centrale.nantes.pappl.items.*;
  */
 public interface SujetRepositoryCustom {
     
-    public Sujet create( String intitule);
+    public Sujet create( Integer numeroSujet , String intitule);
     
 }
