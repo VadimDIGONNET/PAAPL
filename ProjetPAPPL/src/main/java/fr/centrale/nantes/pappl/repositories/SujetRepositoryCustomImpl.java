@@ -28,5 +28,19 @@ public class SujetRepositoryCustomImpl implements SujetRepositoryCustom{
             return item;
     }
     
+    @Override
+    public Sujet update(Sujet sujet ,Integer numeroSujet , String intitule){
+        if (!(intitule.isEmpty()) && (numeroSujet !=null) && (intitule !=null)){
+            sujet.setIntitule(intitule);
+            sujet.setNumeroDuSujet(numeroSujet);
+            SujetRepository.saveAndFlush(sujet);
+            return sujet;
+            
+            
+        
+        }
+        return null;
+    }
+    
     
 }

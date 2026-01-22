@@ -14,10 +14,19 @@
 <body>
 
     <div class="container">
-        <h2>Nouveau sujet</h2>
+        <h2>
+        <c:choose>
+            <c:when test="${sujet.numero != null}">
+                Modifier le sujet
+            </c:when>
+            <c:otherwise>
+                Ajouter un nouveau sujet
+            </c:otherwise>
+        </c:choose>
+        </h2>
 
         <form action="savesujet.do" method="POST">
-            <input type="hidden" name="id" value=-1>
+            <input type="hidden" name="id" value=${sujet.numero}>
 
 
             <div class="form-group">

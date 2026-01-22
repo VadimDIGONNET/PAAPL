@@ -73,7 +73,7 @@ public class MainController {
             }
         }
 
-        if (id == -1) {
+        if ((idStr == null) || (id == -1)) {
             Sujet sujet = new Sujet();
             sujet = sujetRepository.create(numeroSujet,intitule);
             id = sujet.getNumero();
@@ -81,7 +81,9 @@ public class MainController {
             DescriptionSujet item = DescriptionSujetRepository.create(id ,contexte, travail, livrable, entreprise);
             //id = item.getNumero();
         } else {
+            
             DescriptionSujet dSujet = DescriptionSujetRepository.getReferenceById(id);
+            sujetRepository.update(dSujet.getSujet() , numeroSujet , intitule);
             DescriptionSujetRepository.update(dSujet, contexte, travail, livrable, entreprise);
         }
         ModelAndView returned = new ModelAndView("main");
