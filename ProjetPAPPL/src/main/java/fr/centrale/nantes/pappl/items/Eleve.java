@@ -75,6 +75,7 @@ public class Eleve implements Serializable {
     private Collection<ChoixEleveDomaine> choixEleveDomaineCollection;
 
     public Eleve() {
+        this.annee = new Annee(java.time.Year.now().getValue());
     }
 
     public Eleve(Integer id) {

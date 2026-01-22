@@ -5,6 +5,8 @@
 package fr.centrale.nantes.pappl.repositories;
 import fr.centrale.nantes.pappl.items.Sujet;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +16,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SujetRepository extends JpaRepository<Sujet,Integer>,SujetRepositoryCustom {
 
-    /*public void update(int idStr, String Titre, String Entreprise, String Resume);*/
-    
+    @Query("SELECT s FROM Sujet s WHERE s.numeroDuSujet = :leNum")
+    public Sujet findByNumeroCustom(@Param("leNum") int numero);
 }

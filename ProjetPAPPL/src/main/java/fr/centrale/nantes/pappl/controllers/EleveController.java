@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class EleveController {
     @Autowired
     private EleveRepository eleveRepository;
+    @Autowired
     private SujetRepository sujetRepository;
     @RequestMapping(value="saveeleve.do", method=RequestMethod.POST)
 public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
@@ -37,16 +38,13 @@ public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
     String email = request.getParameter("email");
     String td = request.getParameter("td");
     
-   // 1. On récupère le NUMERO tapé dans le formulaire 
     String numeroSujetSaisi1 = request.getParameter("numero_sujet");
     int numeroSujetSaisi = Tools.getIntFromString(numeroSujetSaisi1);
     
-    // 2. On cherche le vrai objet Sujet en base
     Sujet leSujetAssocie = null;
     if (numeroSujetSaisi1 != null && !numeroSujetSaisi1.isEmpty()) {
-        leSujetAssocie = sujetRepository.getReferenceById(numeroSujetSaisi);
+        leSujetAssocie = sujetRepository.findByNumeroCustom(numeroSujetSaisi);
         
-        // Petit log pour déboguer si ça ne marche pas
         if (leSujetAssocie == null) {
             System.out.println("ERREUR : Aucun sujet trouvé avec le numéro " + numeroSujetSaisi);
         }
@@ -56,11 +54,9 @@ public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
     int id = Tools.getIntFromString(eleveId);
     
     if (id > 0) {
-        // C'est une mise à jour : on récupère l'élève existant
         Eleve eleve = eleveRepository.getReferenceById(id);
         eleveRepository.update(eleve, nom, prenom, nationalite, email, td, leSujetAssocie);
     } else {
-        // C'est une création : on n'appelle PAS getReferenceById
         eleveRepository.create(nom, prenom, nationalite, email, td, leSujetAssocie);
     }
 
