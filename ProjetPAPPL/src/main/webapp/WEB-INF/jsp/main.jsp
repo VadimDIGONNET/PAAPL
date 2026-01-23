@@ -50,9 +50,13 @@
                     </form>
                 </div>
                 <div class="col-md-4 bg-secondary m-2 text-center">
-                    <form action="importentreprise.do" method="POST">
-                        <button type="submit" class="btn btn-secondary btn-lg">Importer CSV</button>
-                    </form>
+                    <form action="ImportProjetServlet" method="post" enctype="multipart/form-data">
+    
+    <label>Sélectionnez la fiche projet remplie (.docx) :</label>
+    <input type="file" name="fichierWord" accept=".docx" required>
+    
+    <button type="submit">Importer le projet</button>
+</form>
                 </div>
             </div>
         </div>
