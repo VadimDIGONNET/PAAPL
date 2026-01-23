@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
@@ -31,6 +32,8 @@ import java.util.Comparator;
 @Table(name = "tuteur")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "Tuteur.findAllWithAnnee", query = "SELECT t FROM Tuteur t where t.annee.annee = :annee"),
+
     @NamedQuery(name = "Tuteur.findAll", query = "SELECT t FROM Tuteur t"),
     @NamedQuery(name = "Tuteur.findById", query = "SELECT t FROM Tuteur t WHERE t.id = :id"),
     @NamedQuery(name = "Tuteur.findByNom", query = "SELECT t FROM Tuteur t WHERE t.nom = :nom"),
@@ -52,6 +55,9 @@ public class Tuteur implements Serializable {
     private String prenom;
     @Column(name = "nb_sujet_souhaite")
     private Integer nbSujetSouhaite;
+    @JoinColumn(name = "annee", referencedColumnName = "annee")
+    @ManyToOne
+    private Annee annee;
     @JoinTable(name = "choix_tuteur", joinColumns = {
         @JoinColumn(name = "id_tuteur", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "numero_sujet", referencedColumnName = "numero")})
@@ -79,6 +85,14 @@ public class Tuteur implements Serializable {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+    
+    public void setAnnee(Annee annee){
+        this.annee=annee;
+    }
+    
+    public Annee getAnnee(){
+        return annee;
     }
 
     public String getPrenom() {

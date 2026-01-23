@@ -29,7 +29,7 @@ import java.util.Collection;
 @Table(name = "annee")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Annee.findAll", query = "SELECT a FROM Annee a"),
+    @NamedQuery(name = "Annee.findAll", query = "SELECT a FROM Annee a "),
     @NamedQuery(name = "Annee.findByAnnee", query = "SELECT a FROM Annee a WHERE a.annee = :annee")})
 public class Annee implements Serializable {
 
@@ -50,6 +50,8 @@ public class Annee implements Serializable {
     private Collection<Sujet> sujetCollection;
 
     public Annee() {
+        Integer anneeEnCours = java.time.LocalDate.now().getYear();
+        this.annee=anneeEnCours;
     }
 
     public Annee(Integer annee) {

@@ -19,6 +19,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Comparator;
+import jakarta.persistence.CascadeType;
 
 /**
  *
@@ -57,9 +58,9 @@ public class Entreprise implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "description")
     private String description;
-    @OneToMany(mappedBy = "nomEntreprise")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "nomEntreprise")
     private Collection<DescriptionSujet> descriptionSujetCollection;
-    @OneToMany(mappedBy = "entreprise")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "entreprise")
     private Collection<Correspondant> correspondantCollection;
 
     public Entreprise() {

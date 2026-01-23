@@ -15,6 +15,11 @@
 
 <h2>Liste des partenaires</h2>
 
+<form action="ajoutentreprise.do" method="post">
+   <button type="submit" name="ajouter une entreprise" class="btn btn-primary btn-lg">
+                    Ajouter une entreprise
+    </button>
+</form>
 <table>
     <thead>
         <tr>
@@ -40,7 +45,7 @@
                     <form action="editEntreprise" method="POST">
                         <input type="hidden" name="nom" value="${item.nom}" />
                         <button name="edit" class="btn" formaction="editentreprise.do"><img src="img/edit.png" alt="edit" class="icon" /></button>
-                        <button name="delete" class="btn" formaction="deleteentreprise.do"><img src="img/delete.png" alt="delete" class="icon" /></button>
+                        <button name="delete" class="btn" formaction="deleteentreprise.do" onclick= " return confirm('ATTENTION : Supprimer cette entreprise supprimera DEFINITIVEMENT tous les sujets et correspondants liés.\n\nVoulez-vous vraiment continuer ?');"><img src="img/delete.png" alt="delete" class="icon" /></button>
                     </form>
                 </td>
 

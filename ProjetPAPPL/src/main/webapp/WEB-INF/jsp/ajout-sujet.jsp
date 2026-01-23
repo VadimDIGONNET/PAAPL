@@ -14,10 +14,19 @@
 <body>
 
     <div class="container">
-        <h2>Nouveau sujet</h2>
+        <h2>
+        <c:choose>
+            <c:when test="${sujet.numero != null}">
+                Modifier le sujet
+            </c:when>
+            <c:otherwise>
+                Ajouter un nouveau sujet
+            </c:otherwise>
+        </c:choose>
+        </h2>
 
         <form action="savesujet.do" method="POST">
-            <input type="hidden" name="id" value=-1>
+            <input type="hidden" name="id" value=${sujet.numero}>
 
 
             <div class="form-group">
@@ -27,7 +36,7 @@
             
             <div class="form-group">
                 <label for="nom">Numero de sujet :</label>
-                <input type="text" id="numeroSujet" name="numeroSujet" value="${sujet.numeroSujet}" required>
+                <input type="number" id="numeroSujet" name="numeroSujet" value="${sujet.numeroDuSujet}" required>
             </div>
 
             <div class="form-group">
@@ -60,20 +69,15 @@
                 <label for="adresse"> Livrables attendus :</label>
                 <input type="text" id="livrable" name="livrable" value="${DescriptionSujet.livrable}">
             </div>
-
+            
+            <div class="form-group">
+                <label for="annee"> Année :</label>
+                <input type="text" id="annee" name="annee" value="${Sujet.annee}">
+            </div>
 
             <button type="submit">Enregistrer le sujet</button>
             <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
         </form>
-    </div>
-    <div class="col-md-4 bg-primary m-2" style="">
-        <div class="col-md-12">
-            <form action="main.do" method="POST" class="m-2">
-                <button type="submit" name="retour au menu" class="btn btn-primary btn-lg">
-                    Retourner au menu
-                </button>
-            </form>   
-        </div>
     </div>
 </body>
 </html>

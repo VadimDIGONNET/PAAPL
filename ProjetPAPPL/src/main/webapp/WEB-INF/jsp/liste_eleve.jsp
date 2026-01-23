@@ -15,6 +15,12 @@
 
 <h2>Liste des eleves</h2>
 
+<form action="ajouteleve.do" method="post">
+   <button type="submit" name="ajouter un élève" class="btn btn-primary btn-lg">
+                    Ajouter un élève
+    </button>
+</form>
+
 <table>
     <thead>
         <tr>

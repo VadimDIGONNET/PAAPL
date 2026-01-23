@@ -14,8 +14,16 @@ import java.util.List;
  */
 public interface SujetRepositoryCustom {
     
+<<<<<<< HEAD
     public Sujet create( Integer numeroSujet , String intitule);
     public void remove(Sujet sujetId);
     List<Sujet> findBySujetId(int sujetId);
+=======
+    public Sujet create( Integer numeroSujet , String intitule,Annee annee);
+    
+    public Sujet update(Sujet sujet, Integer numeroSujet , String intitule,Annee annee);
+    public void remove(Sujet sujet);
+
+>>>>>>> origin/main
     
 }

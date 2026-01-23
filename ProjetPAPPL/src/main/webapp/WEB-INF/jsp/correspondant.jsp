@@ -15,8 +15,10 @@
 <body>
 <h2>Liste des Correspondants </h2>
 
-<form action="ajoutcorrespondant.do" method="post" style="margin-bottom: 15px;">
-    <button type="submit">Ajouter un correspondant</button>
+<form action="ajoutcorrespondant.do" method="post">
+   <button type="submit" name="ajouter un correspondant" class="btn btn-primary btn-lg">
+                    Ajouter un correspondant
+    </button>
 </form>
 
 <table>

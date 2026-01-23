@@ -27,6 +27,8 @@ import java.io.Serializable;
 @Table(name = "description_sujet")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "DescriptionSujet.findAllWithSujetWithAnnee" , query = "SELECT ds.sujet , ds FROM DescriptionSujet ds where ds.sujet.annee.annee = :annee"),
+    @NamedQuery(name = "DescriptionSujet.findAllWithSujet" , query = "SELECT ds.sujet , ds FROM DescriptionSujet ds"),
     @NamedQuery(name = "DescriptionSujet.findAll", query = "SELECT d FROM DescriptionSujet d"),
     @NamedQuery(name = "DescriptionSujet.findByNumero", query = "SELECT d FROM DescriptionSujet d WHERE d.numero = :numero"),
     @NamedQuery(name = "DescriptionSujet.findByContexte", query = "SELECT d FROM DescriptionSujet d WHERE d.contexte = :contexte"),

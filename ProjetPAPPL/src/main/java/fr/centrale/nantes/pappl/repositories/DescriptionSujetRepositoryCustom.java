@@ -14,4 +14,5 @@ import fr.centrale.nantes.pappl.items.*;
 public interface DescriptionSujetRepositoryCustom {
     public DescriptionSujet create(Integer id ,String contexte,String travail, String livrable, Entreprise entreprise);
     public DescriptionSujet update(DescriptionSujet numero, String contexte, String travail, String livrable, Entreprise entreprise);
+    public void remove(DescriptionSujet desc);
 }

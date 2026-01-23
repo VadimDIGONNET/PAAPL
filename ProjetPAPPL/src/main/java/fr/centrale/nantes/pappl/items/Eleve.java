@@ -32,6 +32,8 @@ import java.util.Comparator;
 @Table(name = "eleve")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "Eleve.findAllWithAnnee" , query = "SELECT e FROM Eleve e where e.annee.annee = :annee"),
+
     @NamedQuery(name = "Eleve.findAll", query = "SELECT e FROM Eleve e"),
     @NamedQuery(name = "Eleve.findById", query = "SELECT e FROM Eleve e WHERE e.id = :id"),
     @NamedQuery(name = "Eleve.findByNom", query = "SELECT e FROM Eleve e WHERE e.nom = :nom"),
