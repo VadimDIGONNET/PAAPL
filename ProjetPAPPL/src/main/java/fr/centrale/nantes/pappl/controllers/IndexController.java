@@ -4,13 +4,17 @@
  */
 package fr.centrale.nantes.pappl.controllers;
 
+import fr.centrale.nantes.pappl.items.Annee;
+import fr.centrale.nantes.pappl.repositories.AnneeRepository;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +29,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IndexController {
+    
+        @Autowired
+    private AnneeRepository anneeRepository;
 
     @RequestMapping(value="index.do")
     public ModelAndView handleIndexGet(){
@@ -50,7 +57,11 @@ public class IndexController {
     
     @RequestMapping(value="main.do",method=RequestMethod.POST)
     public ModelAndView handlereturntomenu(HttpServletRequest request){
-        return new ModelAndView("main");
+        List<Annee> listAnnee = new ArrayList<Annee>(anneeRepository.findAll());
+
+        ModelAndView returned = new ModelAndView("main");
+        returned.addObject("anneeList", listAnnee);
+        return returned;
     }
             
 }
