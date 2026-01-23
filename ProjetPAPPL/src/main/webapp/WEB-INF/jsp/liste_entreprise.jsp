@@ -15,6 +15,11 @@
 
 <h2>Liste des partenaires</h2>
 
+<form action="ajoutentreprise.do" method="post">
+   <button type="submit" name="ajouter une entreprise" class="btn btn-primary btn-lg">
+                    Ajouter une entreprise
+    </button>
+</form>
 <table>
     <thead>
         <tr>

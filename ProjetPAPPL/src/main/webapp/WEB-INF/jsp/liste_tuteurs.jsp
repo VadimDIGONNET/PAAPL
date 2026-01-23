@@ -15,6 +15,11 @@
 
 <h2>Liste des tuteurs</h2>
 
+<form action="ajouttuteur.do" method="post">
+   <button type="submit" name="ajouter un tuteur" class="btn btn-primary btn-lg">
+                    Ajouter un tuteur
+    </button>
+</form>
 <table>
     <thead>
         <tr>
