@@ -12,7 +12,7 @@
 <body>
 
 <div class="container table-container">
-    <h2 class="text-center mb-4">Notre Équipe</h2>
+    <h2 class="text-center">Notre Équipe</h2>
 
     <table class="table table-striped table-bordered">
         <thead class="thead-dark">
