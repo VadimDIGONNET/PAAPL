@@ -30,6 +30,7 @@
                 <th>Travail à réaliser</th>
                 <th>Livrable</th>
                 <th>Nom de l'entreprise</th>
+                <th>Année</th>
                 <th></th>
             </tr>
         </thead>
@@ -44,6 +45,8 @@
                     <td>${desc.travailRealiser}</td>
                     <td>${desc.livrable}</td>
                     <td >${desc.nomEntreprise.nom}</td>
+                    <td>${sujet.annee.annee}</td>
+
                     <td>
                         <form action="editSujet" method="POST">
                             <input type="hidden" name="id" value="${sujet.numero}" />
