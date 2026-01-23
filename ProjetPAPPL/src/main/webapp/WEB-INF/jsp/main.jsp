@@ -36,8 +36,8 @@
                 </div>
             </div>
         </nav>
-        
-                <div class="py-4" id="Année">
+
+        <div class="py-4" id="Année">
             <div class="container">
                 <h2>Filtrer sur l'année</h2>
                 <hr>
@@ -54,7 +54,6 @@
                         </select>
                         <button type="submit">Filtrer</button>
                     </form>
-
 
                 </div>
             </div>
@@ -80,6 +79,15 @@
                             <button type="submit" class="btn btn-secondary btn-lg">Importer CSV</button>
                         </form>
                     </div>
+                </div>
+                <div class="col-md-4 bg-secondary m-2 text-center">
+                    <form action="ImportProjetServlet.do" method="post" enctype="multipart/form-data">
+
+                        <label>S�lectionnez la fiche projet remplie (.docx) :</label>
+                        <input type="file" name="fichierWord" accept=".docx" required>
+
+                        <button type="submit">Importer le projet</button>
+                    </form>
                 </div>
             </div>
         </div>
