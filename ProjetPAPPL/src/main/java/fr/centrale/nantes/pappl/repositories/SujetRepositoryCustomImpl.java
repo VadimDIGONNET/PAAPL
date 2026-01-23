@@ -8,6 +8,7 @@ package fr.centrale.nantes.pappl.repositories;
  *
  * @author vadimdigonnet
  */
+import fr.centrale.nantes.pappl.items.Annee;
 import fr.centrale.nantes.pappl.items.Sujet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -19,20 +20,22 @@ public class SujetRepositoryCustomImpl implements SujetRepositoryCustom{
     private SujetRepository SujetRepository;
 
     @Override
-    public Sujet create(Integer numeroSujet , String intitule) {
+    public Sujet create(Integer numeroSujet , String intitule, Annee annee) {
             Sujet item=new Sujet();
             item.setNumeroDuSujet(numeroSujet);
             item.setIntitule(intitule);
+            item.setAnnee(annee);
             SujetRepository.saveAndFlush(item);
             //return DescriptionSujetRepository.getReferenceById(item.getNumero());
             return item;
     }
     
     @Override
-    public Sujet update(Sujet sujet ,Integer numeroSujet , String intitule){
+    public Sujet update(Sujet sujet ,Integer numeroSujet , String intitule,Annee annee){
         if (!(intitule.isEmpty()) && (numeroSujet !=null) && (intitule !=null)){
             sujet.setIntitule(intitule);
             sujet.setNumeroDuSujet(numeroSujet);
+            sujet.setAnnee(annee);
             SujetRepository.saveAndFlush(sujet);
             return sujet;
             

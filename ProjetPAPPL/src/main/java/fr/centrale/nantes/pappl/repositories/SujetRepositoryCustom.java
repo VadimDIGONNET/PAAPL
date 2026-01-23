@@ -13,9 +13,9 @@ import fr.centrale.nantes.pappl.items.*;
  */
 public interface SujetRepositoryCustom {
     
-    public Sujet create( Integer numeroSujet , String intitule);
+    public Sujet create( Integer numeroSujet , String intitule,Annee annee);
     
-    public Sujet update(Sujet sujet, Integer numeroSujet , String intitule);
+    public Sujet update(Sujet sujet, Integer numeroSujet , String intitule,Annee annee);
     public void remove(Sujet sujet);
 
     

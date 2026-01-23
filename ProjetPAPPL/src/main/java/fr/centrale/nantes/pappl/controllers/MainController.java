@@ -4,6 +4,7 @@
  */
 package fr.centrale.nantes.pappl.controllers;
 
+import fr.centrale.nantes.pappl.items.Annee;
 import fr.centrale.nantes.pappl.items.DescriptionSujet;
 import fr.centrale.nantes.pappl.items.Entreprise;
 import fr.centrale.nantes.pappl.repositories.*;
@@ -40,6 +41,9 @@ public class MainController {
     @Autowired
     private EntrepriseRepository entrepriseRepository;
     
+    @Autowired
+    private AnneeRepository anneeRepository;
+    
     
     private int getIntFromString(String value){
         int intValue=-1;
@@ -59,11 +63,12 @@ public class MainController {
         String travail = request.getParameter("travail");
         String livrable = request.getParameter("livrable");
         String intitule = request.getParameter("intitule");
+        String anneestr = request.getParameter("annee");
     
         String entrepriseNom = request.getParameter("entreprise"); 
         int numeroSujet = Tools.getIntFromString(numero_sujet);
-        int id = Tools.getIntFromString(idStr);
-        
+        int id = Tools.getIntFromString(idStr);   
+        int anneeint=Tools.getIntFromString(anneestr);
         Entreprise entreprise = null;
         if (entrepriseNom != null && !entrepriseNom.isEmpty()) {
             try {
@@ -72,10 +77,17 @@ public class MainController {
                 // L'entreprise n'existe pas
             }
         }
-
+        Annee annee = null;
+        if (anneestr != null && !anneestr.isEmpty()) {
+            try {
+                annee = anneeRepository.getReferenceById(anneeint);
+            } catch(Exception ex) {
+                // L'entreprise n'existe pas
+            }
+        }
         if ((idStr == null) || (id == -1)) {
             Sujet sujet = new Sujet();
-            sujet = sujetRepository.create(numeroSujet,intitule);
+            sujet = sujetRepository.create(numeroSujet,intitule,annee);
             id = sujet.getNumero();
             
             DescriptionSujet item = DescriptionSujetRepository.create(id ,contexte, travail, livrable, entreprise);
@@ -83,7 +95,7 @@ public class MainController {
         } else {
             
             DescriptionSujet dSujet = DescriptionSujetRepository.getReferenceById(id);
-            sujetRepository.update(dSujet.getSujet() , numeroSujet , intitule);
+            sujetRepository.update(dSujet.getSujet() , numeroSujet , intitule,annee);
             DescriptionSujetRepository.update(dSujet, contexte, travail, livrable, entreprise);
         }
         ModelAndView returned = new ModelAndView("liste_sujet");
@@ -160,8 +172,8 @@ public class MainController {
         if (id != -1) {
             try {
                 DescriptionSujet desc = DescriptionSujetRepository.getReferenceById(id);
-                DescriptionSujetRepository.remove(desc);
                 Sujet sujet = desc.getSujet();
+                DescriptionSujetRepository.remove(desc);
                 sujetRepository.remove(sujet);
                 
             } catch(Exception ex) {

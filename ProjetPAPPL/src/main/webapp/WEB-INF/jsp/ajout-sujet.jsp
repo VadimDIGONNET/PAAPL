@@ -69,7 +69,11 @@
                 <label for="adresse"> Livrables attendus :</label>
                 <input type="text" id="livrable" name="livrable" value="${DescriptionSujet.livrable}">
             </div>
-
+            
+            <div class="form-group">
+                <label for="annee"> Année :</label>
+                <input type="text" id="annee" name="annee" value="${Sujet.annee}">
+            </div>
 
             <button type="submit">Enregistrer le sujet</button>
             <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
