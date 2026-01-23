@@ -51,7 +51,7 @@
             </tr>
 
             <tr>
-                <td>IYasmine Bouhadji</td>
+                <td>Yasmine Bouhadji</td>
                 <td class="text-center">
                     <a href="https://www.linkedin.com/in/yasmine-bouhadji-a48602276/" target="_blank" class="btn btn-linkedin">
                         Voir le profil LinkedIn
