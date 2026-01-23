@@ -222,4 +222,14 @@ public class MainController {
         returned.addObject("sujetList", listSujet);
         return returned;
     }
+
+    @RequestMapping(value = "clearAnnee.do", method = RequestMethod.POST)
+    public ModelAndView clearAnnee(HttpServletRequest request) {
+
+        // Supprime le filtre en session
+        request.getSession().removeAttribute("anneeCourante");
+
+        return new ModelAndView("redirect:main.do");
+    }
+
 }

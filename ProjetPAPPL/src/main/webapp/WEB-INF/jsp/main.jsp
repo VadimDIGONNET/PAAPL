@@ -39,23 +39,38 @@
 
         <div class="py-4" id="Année">
             <div class="container">
+
                 <h2>Filtrer sur l'année</h2>
                 <hr>
-                <div class="form-group">
+                <!-- CAS 1 : filtre actif -->
+                <c:if test="${sessionScope.anneeCourante != null}">
+                    <p>
+                        <strong>Année sélectionnée :</strong>
+                        ${sessionScope.anneeCourante}
+                    </p>
+
+                    <form action="clearAnnee.do" method="POST">
+                        <button type="submit">Supprimer le filtre</button>
+                    </form>
+                </c:if>
+
+                <!-- CAS 2 : aucun filtre -->
+                <c:if test="${sessionScope.anneeCourante == null}">
                     <form action="setAnnee.do" method="POST">
                         <label for="annee">Sélectionner une année :</label>
                         <select id="annee" name="annee" required>
                             <option value="">-- Choisir une année --</option>
                             <c:forEach var="annee" items="${anneeList}">
-                                <option value="${annee.annee}" <c:if test="${sessionScope.anneeCourante != null && sessionScope.anneeCourante == a.annee}">
-                                        selected
-                                    </c:if>>${annee.annee}</option>
+                                <option value="${annee.annee}">
+                                    ${annee.annee}
+                                </option>
                             </c:forEach>
                         </select>
                         <button type="submit">Filtrer</button>
                     </form>
+                </c:if>
 
-                </div>
+
             </div>
         </div>
 
