@@ -32,31 +32,39 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class MainController {
+
     @Autowired
     private SujetRepository sujetRepository;
-    
+
     @Autowired
     private DescriptionSujetRepository DescriptionSujetRepository;
-    
+
     @Autowired
     private EntrepriseRepository entrepriseRepository;
-    
+
     @Autowired
     private AnneeRepository anneeRepository;
-    
-    
-    private int getIntFromString(String value){
-        int intValue=-1;
-        try{
+
+    private int getIntFromString(String value) {
+        int intValue = -1;
+        try {
             intValue = Integer.parseInt(value);
-        }catch(NumberFormatException ex){
-            Logger.getLogger(MainController.class.getName()).log(Level.WARNING,null,ex);
+        } catch (NumberFormatException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.WARNING, null, ex);
         }
         return intValue;
     }
-    
-    @RequestMapping(value="savesujet.do", method=RequestMethod.POST)
+
+    @RequestMapping(value = "setAnnee.do", method = RequestMethod.POST)
+    public ModelAndView setAnnee(HttpServletRequest request) {
+        int anneeChoisie = Integer.parseInt(request.getParameter("annee")); // déjà int
+        request.getSession().setAttribute("anneeCourante", anneeChoisie);
+        return new ModelAndView("redirect:main.do");
+    }
+
+    @RequestMapping(value = "savesujet.do", method = RequestMethod.POST)
     public ModelAndView handlePostSaveSujet(HttpServletRequest request) {
+
         String idStr = request.getParameter("id");
         String numero_sujet = request.getParameter("numeroSujet");
         String contexte = request.getParameter("contexte");
@@ -64,16 +72,16 @@ public class MainController {
         String livrable = request.getParameter("livrable");
         String intitule = request.getParameter("intitule");
         String anneestr = request.getParameter("annee");
-    
-        String entrepriseNom = request.getParameter("entreprise"); 
+
+        String entrepriseNom = request.getParameter("entreprise");
         int numeroSujet = Tools.getIntFromString(numero_sujet);
-        int id = Tools.getIntFromString(idStr);   
-        int anneeint=Tools.getIntFromString(anneestr);
+        int id = Tools.getIntFromString(idStr);
+        int anneeint = Tools.getIntFromString(anneestr);
         Entreprise entreprise = null;
         if (entrepriseNom != null && !entrepriseNom.isEmpty()) {
             try {
                 entreprise = entrepriseRepository.getReferenceById(entrepriseNom);
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 // L'entreprise n'existe pas
             }
         }
@@ -81,62 +89,87 @@ public class MainController {
         if (anneestr != null && !anneestr.isEmpty()) {
             try {
                 annee = anneeRepository.getReferenceById(anneeint);
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 // L'entreprise n'existe pas
             }
         }
         if ((idStr == null) || (id == -1)) {
             Sujet sujet = new Sujet();
-            sujet = sujetRepository.create(numeroSujet,intitule,annee);
+            sujet = sujetRepository.create(numeroSujet, intitule, annee);
             id = sujet.getNumero();
-            
-            DescriptionSujet item = DescriptionSujetRepository.create(id ,contexte, travail, livrable, entreprise);
+
+            DescriptionSujet item = DescriptionSujetRepository.create(id, contexte, travail, livrable, entreprise);
             //id = item.getNumero();
         } else {
-            
+
             DescriptionSujet dSujet = DescriptionSujetRepository.getReferenceById(id);
-            sujetRepository.update(dSujet.getSujet() , numeroSujet , intitule,annee);
+            sujetRepository.update(dSujet.getSujet(), numeroSujet, intitule, annee);
             DescriptionSujetRepository.update(dSujet, contexte, travail, livrable, entreprise);
         }
         ModelAndView returned = new ModelAndView("liste_sujet");
-        List<Object> listSujet = new ArrayList<Object>(DescriptionSujetRepository.findAllWithSujet());
-        returned.addObject("sujetList", listSujet);
+        Object sessionAnnee = request.getSession().getAttribute("anneeCourante");
+
+        if (sessionAnnee == null) {
+            List<Object> listSujet = new ArrayList<Object>(DescriptionSujetRepository.findAllWithSujet());
+            returned.addObject("sujetList", listSujet);
+
+        } else {
+            int var = (Integer) sessionAnnee;
+            List<Object> listSujet = new ArrayList<Object>(DescriptionSujetRepository.findAllWithSujetWithAnnee(var));
+            returned.addObject("sujetList", listSujet);
+
+        }
         return returned;
     }
-    
-    @RequestMapping(value="createsujet.do",method=RequestMethod.POST)
-    public ModelAndView HandlePostcreatesujet(){
+
+    @RequestMapping(value = "createsujet.do", method = RequestMethod.POST)
+    public ModelAndView HandlePostcreatesujet() {
         ModelAndView returned;
-        DescriptionSujet nouveau=new DescriptionSujet();
-        returned=new ModelAndView("ajout-sujet");
-        returned.addObject("ajout-sujet",nouveau);
+        DescriptionSujet nouveau = new DescriptionSujet();
+        returned = new ModelAndView("ajout-sujet");
+        returned.addObject("ajout-sujet", nouveau);
         // Ajouter la liste des entreprises pour le dropdown
         returned.addObject("entrepriseList", entrepriseRepository.findAll());
         return returned;
     }
-    
-    @RequestMapping(value="main.do")
-    public ModelAndView handlePostMain() {
-    ModelAndView returned = new ModelAndView("main");
-    return returned;
-}
-    
-        @RequestMapping(value="sujet.do", method=RequestMethod.POST)
-    public ModelAndView handlePostSujets(HttpServletRequest request) {
-        List<Object> listSujet = new ArrayList<Object>(DescriptionSujetRepository.findAllWithSujet());
 
-        ModelAndView returned = new ModelAndView("liste_sujet");
-        returned.addObject("sujetList", listSujet);
+    @RequestMapping(value = "main.do")
+    public ModelAndView handlePostMain(HttpServletRequest request) {
+
+        List<Annee> listAnnee = new ArrayList<Annee>(anneeRepository.findAll());
+
+        ModelAndView returned = new ModelAndView("main");
+        returned.addObject("anneeList", listAnnee);
         return returned;
     }
-    
-        @RequestMapping(value="editsujet.do", method=RequestMethod.POST)
+
+    @RequestMapping(value = "sujet.do", method = RequestMethod.POST)
+    public ModelAndView handlePostSujets(HttpServletRequest request) {
+
+        Object sessionAnnee = request.getSession().getAttribute("anneeCourante");
+        ModelAndView returned = new ModelAndView("liste_sujet");
+
+        if (sessionAnnee == null) {
+            List<Object> listSujet = new ArrayList<Object>(DescriptionSujetRepository.findAllWithSujet());
+            returned.addObject("sujetList", listSujet);
+
+        } else {
+            int var = (Integer) sessionAnnee;
+            List<Object> listSujet = new ArrayList<Object>(DescriptionSujetRepository.findAllWithSujetWithAnnee(var));
+            returned.addObject("sujetList", listSujet);
+
+        }
+
+        return returned;
+    }
+
+    @RequestMapping(value = "editsujet.do", method = RequestMethod.POST)
     public ModelAndView handleEditPost(HttpServletRequest request) {
         ModelAndView returned;
-        
+
         String idStr = request.getParameter("id");
         int id = Tools.getIntFromString(idStr);
-        
+
         if (id != -1) {
             try {
                 DescriptionSujet descriptionSujet = DescriptionSujetRepository.getReferenceById(id);
@@ -146,7 +179,7 @@ public class MainController {
                 returned.addObject("sujet", sujet);
 
                 returned.addObject("entrepriseList", entrepriseRepository.findAll());
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 // Si le sujet n'existe pas
                 // Si le correspondant n'existe pas, rediriger vers la liste
                 List<DescriptionSujet> listSujet = new ArrayList<DescriptionSujet>(DescriptionSujetRepository.findAll());
@@ -159,33 +192,44 @@ public class MainController {
             returned.addObject("descriptionSujet", new DescriptionSujet());
             returned.addObject("entrepriseList", entrepriseRepository.findAll());
         }
-        
+
         return returned;
     }
-        @RequestMapping(value="deletesujet.do", method=RequestMethod.POST)
+
+    @RequestMapping(value = "deletesujet.do", method = RequestMethod.POST)
     public ModelAndView handlePostDeleteSujet(HttpServletRequest request) {
         ModelAndView returned;
-        
+
         String idStr = request.getParameter("id");
         int id = Tools.getIntFromString(idStr);
-        
+
         if (id != -1) {
             try {
                 DescriptionSujet desc = DescriptionSujetRepository.getReferenceById(id);
                 Sujet sujet = desc.getSujet();
                 DescriptionSujetRepository.remove(desc);
                 sujetRepository.remove(sujet);
-                
-            } catch(Exception ex) {
+
+            } catch (Exception ex) {
                 // Correspondant introuvable
             }
         }
-        
+
         // Retour à la liste
         List<Object> listSujet = new ArrayList<Object>(DescriptionSujetRepository.findAllWithSujet());
 
         returned = new ModelAndView("liste_sujet");
         returned.addObject("sujetList", listSujet);
-        return returned;    }
-}
+        return returned;
+    }
 
+    @RequestMapping(value = "clearAnnee.do", method = RequestMethod.POST)
+    public ModelAndView clearAnnee(HttpServletRequest request) {
+
+        // Supprime le filtre en session
+        request.getSession().removeAttribute("anneeCourante");
+
+        return new ModelAndView("redirect:main.do");
+    }
+
+}

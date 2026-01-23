@@ -16,11 +16,11 @@
 
     <h2>Liste des sujets</h2>
 
-        <form action="createsujet.do" method="post">
-   <button type="submit" name="ajouter un sujet" class="btn btn-primary btn-lg">
-                    Ajouter un sujet
-    </button>
-</form>
+    <form action="createsujet.do" method="post">
+        <button type="submit" name="ajouter un sujet" class="btn btn-primary btn-lg">
+            Ajouter un sujet
+        </button>
+    </form>
     <table>
         <thead>
             <tr>
