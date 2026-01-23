@@ -4,6 +4,7 @@
  */
 package fr.centrale.nantes.pappl.repositories;
 
+import fr.centrale.nantes.pappl.items.Annee;
 import fr.centrale.nantes.pappl.items.Tuteur;
 
 
@@ -12,7 +13,7 @@ import fr.centrale.nantes.pappl.items.Tuteur;
  * @author vadimdigonnet
  */
 public interface TuteurRepositoryCustom {
-    public Tuteur create(String nom, String prenom, Integer nbsujet);
+    public Tuteur create(String nom, String prenom, Integer nbsujet,Annee annee);
     public void remove(Tuteur id);
-    public Tuteur update(Tuteur tu, String nom, String prenom, Integer nbsujet);
+    public Tuteur update(Tuteur tu, String nom, String prenom, Integer nbsujet,Annee annee);
 }

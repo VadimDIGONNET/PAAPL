@@ -8,6 +8,7 @@ package fr.centrale.nantes.pappl.repositories;
  *
  * @author vadimdigonnet
  */
+import fr.centrale.nantes.pappl.items.Annee;
 import fr.centrale.nantes.pappl.items.Tuteur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -19,7 +20,7 @@ public class TuteurRepositoryCustomImpl implements TuteurRepositoryCustom{
     private TuteurRepository tuteurRepository;
     
     @Override
-    public Tuteur create(String nom, String prenom, Integer nbsujet){
+    public Tuteur create(String nom, String prenom, Integer nbsujet,Annee annee){
         if((nom!=null)&&(!nom.isEmpty())){
             Tuteur item=new Tuteur();
             item.setNom(nom);
@@ -29,6 +30,7 @@ public class TuteurRepositoryCustomImpl implements TuteurRepositoryCustom{
             if ((nbsujet != null)&&(nbsujet!=-1)){
                 item.setNbSujetSouhaite(nbsujet);
             }
+            item.setAnnee(annee);
             tuteurRepository.saveAndFlush(item);
             return item;
         }
@@ -46,7 +48,7 @@ public class TuteurRepositoryCustomImpl implements TuteurRepositoryCustom{
         }
     }
     @Override
-    public Tuteur update(Tuteur tu, String nom, String prenom, Integer nbsujet) {
+    public Tuteur update(Tuteur tu, String nom, String prenom, Integer nbsujet,Annee annee) {
         if (tu != null && tu.getId() != null) {
         // On travaille sur l'objet déjà rattaché à la session
             if (nom != null) {
@@ -58,6 +60,7 @@ public class TuteurRepositoryCustomImpl implements TuteurRepositoryCustom{
         if (nbsujet != null) {
             tu.setNbSujetSouhaite(nbsujet);
         }
+        tu.setAnnee(annee);
         tuteurRepository.saveAndFlush(tu);
         return tu;
         }

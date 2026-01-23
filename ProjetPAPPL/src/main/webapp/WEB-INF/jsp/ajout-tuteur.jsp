@@ -33,6 +33,11 @@
             <label for="nbsujet">Nombre de sujet souhaité :</label>
             <input type="number" id="nbsujet" name="nbsujet" value="${tuteur.nbSujetSouhaite}">
         </div>
+        
+        <div class="form-group">
+            <label for="nbsujet">Annee :</label>
+            <input type="number" id="annee" name="annee" value="${tuteur.Annee}">
+        </div>
 
         <button type="submit">Enregistrer le tuteur</button>
         <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>

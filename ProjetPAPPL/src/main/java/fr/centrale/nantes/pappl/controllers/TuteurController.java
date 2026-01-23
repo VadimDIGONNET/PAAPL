@@ -4,8 +4,10 @@
  */
 package fr.centrale.nantes.pappl.controllers;
 
+import fr.centrale.nantes.pappl.items.Annee;
 import fr.centrale.nantes.pappl.items.Entreprise;
 import fr.centrale.nantes.pappl.items.Tuteur;
+import fr.centrale.nantes.pappl.repositories.AnneeRepository;
 import fr.centrale.nantes.pappl.repositories.TuteurRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ public class TuteurController {
     @Autowired
     private TuteurRepository tuteurRepository;
     
+    @Autowired 
+    private AnneeRepository anneeRepository;
     @RequestMapping(value="tuteurs.do", method=RequestMethod.POST)
     public ModelAndView handlePostUserstuteur(HttpServletRequest request) {
         List<Tuteur> listTuteur = new ArrayList<>(tuteurRepository.findAll());
@@ -42,14 +46,24 @@ public ModelAndView handlePostSaveTuteur(HttpServletRequest request) {
     String nom = request.getParameter("nom"); 
     String prenom = request.getParameter("prenom"); 
     String nbsujetStr = request.getParameter("nbsujet"); 
+    String anneestr=request.getParameter("annee");
     
     int nbsuj = Tools.getIntFromString(nbsujetStr);
     int id = Tools.getIntFromString(idStr);
+    int anneeint=Tools.getIntFromString(anneestr);
+    Annee annee = null;
+        if (anneestr != null && !anneestr.isEmpty()) {
+            try {
+                annee = anneeRepository.getReferenceById(anneeint);
+            } catch(Exception ex) {
+                // L'entreprise n'existe pas
+            }
+        }
     if (id == -1) {
-        tuteurRepository.create(nom, prenom, nbsuj);
+        tuteurRepository.create(nom, prenom, nbsuj,annee);
     } else {
         Tuteur tuteurExistants = tuteurRepository.getReferenceById(id);
-        tuteurRepository.update(tuteurExistants, nom, prenom, nbsuj);
+        tuteurRepository.update(tuteurExistants, nom, prenom, nbsuj,annee);
     }
     ModelAndView returned = new ModelAndView("liste_tuteurs");
     List<Tuteur> listTuteur = new ArrayList<>(tuteurRepository.findAll());
