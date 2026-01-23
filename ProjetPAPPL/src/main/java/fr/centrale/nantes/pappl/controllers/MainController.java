@@ -86,9 +86,9 @@ public class MainController {
             sujetRepository.update(dSujet.getSujet() , numeroSujet , intitule);
             DescriptionSujetRepository.update(dSujet, contexte, travail, livrable, entreprise);
         }
-        ModelAndView returned = new ModelAndView("main");
-        returned.addObject("main", DescriptionSujetRepository.findAll());
-
+        ModelAndView returned = new ModelAndView("liste_sujet");
+        List<Object> listSujet = new ArrayList<Object>(DescriptionSujetRepository.findAllWithSujet());
+        returned.addObject("sujetList", listSujet);
         return returned;
     }
     
