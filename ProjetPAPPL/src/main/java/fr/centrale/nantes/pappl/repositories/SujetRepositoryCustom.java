@@ -5,6 +5,7 @@
 package fr.centrale.nantes.pappl.repositories;
 
 import fr.centrale.nantes.pappl.items.*;
+import java.util.List;
 
 
 /**
@@ -14,5 +15,7 @@ import fr.centrale.nantes.pappl.items.*;
 public interface SujetRepositoryCustom {
     
     public Sujet create( Integer numeroSujet , String intitule);
+    public void remove(Sujet sujetId);
+    List<Sujet> findBySujetId(int sujetId);
     
 }

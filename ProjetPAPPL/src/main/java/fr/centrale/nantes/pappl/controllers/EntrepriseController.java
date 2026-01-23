@@ -152,13 +152,13 @@ public class EntrepriseController {
                     try {
                         entreprise.setCodePostal(Integer.parseInt(data[2].trim().replaceAll("\\s", "")));
                     } catch (NumberFormatException e) {
-                        entreprise.setCodePostal(0);
+                        entreprise.setCodePostal(-1);
                     }
 
                     try {
                         entreprise.setTel(Integer.parseInt(data[3].trim().replaceAll("\\s", "")));
                     } catch (NumberFormatException e) {
-                        entreprise.setTel(0);
+                        entreprise.setTel(-1);
                     }
 
                     entreprise.setSiteWeb(data[4].trim());

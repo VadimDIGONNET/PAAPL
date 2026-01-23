@@ -4,10 +4,13 @@
  */
 package fr.centrale.nantes.pappl.repositories;
 
+import fr.centrale.nantes.pappl.items.ChoixEleveDomaine;
+import java.util.List;
+
 /**
  *
  * @author agach
  */
 public interface ChoixEleveDomaineRepositoryCustom {
-    
+    List<ChoixEleveDomaine> findByEleveId(int eleveId);
 }

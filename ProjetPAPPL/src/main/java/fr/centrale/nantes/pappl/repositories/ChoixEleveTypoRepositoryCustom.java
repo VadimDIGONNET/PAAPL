@@ -4,10 +4,13 @@
  */
 package fr.centrale.nantes.pappl.repositories;
 
+import fr.centrale.nantes.pappl.items.ChoixEleveTypo;
+import java.util.List;
+
 /**
  *
  * @author agach
  */
 public interface ChoixEleveTypoRepositoryCustom {
-    
+    List<ChoixEleveTypo> findByEleveId(int eleveId);
 }

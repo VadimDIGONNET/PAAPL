@@ -73,11 +73,14 @@
                         <button type="submit" class="btn btn-primary btn-lg">Liste</button>
                     </form>
                 </div>
-                <div class="col-md-4 bg-secondary m-2 text-center">
-                    <form action="importentreprise.do" method="POST">
-                        <button type="submit" class="btn btn-secondary btn-lg">Importer CSV</button>
-                    </form>
-                </div>
+                <form action="importeleve.do" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
+                        <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                    </div>
+                    <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
+                </form>
+                <p th:text="${message}"></p>
             </div>
         </div>
     </div>
@@ -97,11 +100,14 @@
                         <button type="submit" class="btn btn-primary btn-lg">Liste</button>
                     </form>
                 </div>
-                <div class="col-md-4 bg-secondary m-2 text-center">
-                    <form action="importentreprise.do" method="POST">
-                        <button type="submit" class="btn btn-secondary btn-lg">Importer CSV</button>
-                    </form>
-                </div>
+                <form action="importtuteur.do" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
+                        <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                    </div>
+                    <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
+                </form>
+                <p th:text="${message}"></p>
             </div>
         </div>
     </div>
@@ -119,11 +125,6 @@
                 <div class="col-md-4 bg-primary m-2">
                     <form action="correspondant.do" method="POST">
                         <button type="submit" class="btn btn-primary btn-lg">Liste</button>
-                    </form>
-                </div>
-                <div class="col-md-4 bg-secondary m-2 text-center">
-                    <form action="importentreprise.do" method="POST">
-                        <button type="submit" class="btn btn-secondary btn-lg">Importer CSV</button>
                     </form>
                 </div>
             </div>
