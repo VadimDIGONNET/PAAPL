@@ -60,12 +60,23 @@ public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
         eleveRepository.create(nom, prenom, nationalite, email, td, leSujetAssocie);
     }
 
-    // Retour à la liste
-    List<Eleve> myList = new ArrayList<Eleve>(eleveRepository.findAll());
-    Collections.sort(myList, Eleve.getComparator());
+    Object sessionAnnee = request.getSession().getAttribute("anneeCourante");
     ModelAndView returned = new ModelAndView("liste_eleve");
-    returned.addObject("eleveList", myList);
 
+        if (sessionAnnee == null) {
+            List<Eleve> myList = new ArrayList<Eleve>(eleveRepository.findAll());
+            returned.addObject("eleveList", myList);
+            Collections.sort(myList, Eleve.getComparator());
+
+
+        } else {
+            int var = (Integer) sessionAnnee;
+             List<Eleve> myList = new ArrayList<Eleve>(eleveRepository.findAllWithAnnee(var));
+            returned.addObject("eleveList", myList);
+            Collections.sort(myList, Eleve.getComparator());
+
+        }
+    // Retour à la liste
     return returned;
 }
     
@@ -83,10 +94,23 @@ public ModelAndView handlePostSaveEntreprise(HttpServletRequest request) {
     
     @RequestMapping(value="eleve.do",method=RequestMethod.POST)
     public ModelAndView handlePostUsers(HttpServletRequest request){
-        List<Eleve> listEntreprise =new ArrayList<Eleve>( eleveRepository.findAll());
-        Collections.sort(listEntreprise, Eleve.getComparator());
-        ModelAndView returned =new ModelAndView("liste_eleve");
-        returned.addObject("eleveList",listEntreprise);
+        
+        Object sessionAnnee = request.getSession().getAttribute("anneeCourante");
+        ModelAndView returned = new ModelAndView("liste_eleve");
+
+        if (sessionAnnee == null) {
+            List<Eleve> myList = new ArrayList<Eleve>(eleveRepository.findAll());
+            returned.addObject("eleveList", myList);
+            Collections.sort(myList, Eleve.getComparator());
+
+
+        } else {
+            int var = (Integer) sessionAnnee;
+             List<Eleve> myList = new ArrayList<Eleve>(eleveRepository.findAllWithAnnee(var));
+            returned.addObject("eleveList", myList);
+            Collections.sort(myList, Eleve.getComparator());
+
+        }
         return returned;
     }
     
