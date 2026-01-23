@@ -141,8 +141,8 @@ public ModelAndView handlePostSaveTuteur(HttpServletRequest request) {
         List<Tuteur> tuteurs = new ArrayList<>();
         // Utilisation du StandardCharsets.UTF_8 pour éviter les problèmes d'accents
         try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream(), java.nio.charset.StandardCharsets.UTF_8))) {
-            br.readLine();
             String line;
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] data = line.split("[,;]"); 
                 if (data.length >= 5) {
@@ -156,12 +156,12 @@ public ModelAndView handlePostSaveTuteur(HttpServletRequest request) {
                     tuteur.setNom(data[1].trim());
                     tuteur.setPrenom(data[2].trim());
                     try {
-                        tuteur.setNbSujetSouhaite(Integer.parseInt(data[0].trim().replaceAll("\\s", "")));
+                        tuteur.setNbSujetSouhaite(Integer.parseInt(data[3].trim().replaceAll("\\s", "")));
                     } catch (NumberFormatException e) {
                         tuteur.setNbSujetSouhaite(-1);
                     }
                     List<Sujet> sujetCollection = new ArrayList<>();
-                    for (int i = 5; i < sujetCollection.size(); i++) { 
+                    for (int i = 4; i < 3+tuteur.getNbSujetSouhaite(); i++) { 
                         try {
                             int idSujet = Integer.parseInt(data[i].trim());
                             Sujet sujet = SujetRepository.findById(idSujet).orElse(null);

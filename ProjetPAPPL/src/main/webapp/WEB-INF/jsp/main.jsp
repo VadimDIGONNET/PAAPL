@@ -44,14 +44,9 @@
                         <button type="submit" name="create_sujet" class="btn btn-primary btn-lg">Ajouter</button>
                     </form>
                 </div>
-                <div class="col-md-4 bg-primary m-2">
+                <div class="col-md-4 bg-secondary m-2">
                     <form action="sujet.do" method="POST">
-                        <button type="submit" name="sujet" class="btn btn-primary btn-lg">Liste</button>
-                    </form>
-                </div>
-                <div class="col-md-4 bg-secondary m-2 text-center">
-                    <form action="importentreprise.do" method="POST">
-                        <button type="submit" class="btn btn-secondary btn-lg">Importer CSV</button>
+                        <button type="submit" name="sujet" class="btn btn-secondary btn-lg">Liste</button>
                     </form>
                 </div>
             </div>
@@ -68,9 +63,9 @@
                         <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
                     </form>
                 </div>
-                <div class="col-md-4 bg-primary m-2">
+                <div class="col-md-4 bg-secondary m-2">
                     <form action="eleve.do" method="POST">
-                        <button type="submit" class="btn btn-primary btn-lg">Liste</button>
+                        <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
                     </form>
                 </div>
                 <form action="importeleve.do" method="post" enctype="multipart/form-data">
@@ -95,9 +90,9 @@
                         <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
                     </form>
                 </div>
-                <div class="col-md-4 bg-primary m-2">
+                <div class="col-md-4 bg-secindary m-2">
                     <form action="tuteurs.do" method="POST">
-                        <button type="submit" class="btn btn-primary btn-lg">Liste</button>
+                        <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
                     </form>
                 </div>
                 <form action="importtuteur.do" method="post" enctype="multipart/form-data">
@@ -122,9 +117,9 @@
                         <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
                     </form>
                 </div>
-                <div class="col-md-4 bg-primary m-2">
+                <div class="col-md-4 bg-secondary m-2">
                     <form action="correspondant.do" method="POST">
-                        <button type="submit" class="btn btn-primary btn-lg">Liste</button>
+                        <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
                     </form>
                 </div>
             </div>
@@ -141,9 +136,9 @@
                         <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
                     </form>
                 </div>
-                <div class="col-md-4 bg-primary m-2">
+                <div class="col-md-4 bg-secondary m-2">
                     <form action="entreprise.do" method="POST">
-                        <button type="submit" class="btn btn-primary btn-lg">Liste</button>
+                        <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
                     </form>
                 </div>
                 <form action="importentreprise.do" method="post" enctype="multipart/form-data">

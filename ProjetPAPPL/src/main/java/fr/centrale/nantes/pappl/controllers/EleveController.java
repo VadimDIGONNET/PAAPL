@@ -164,8 +164,8 @@ public class EleveController {
         List<Eleve> eleves = new ArrayList<>();
         // Utilisation du StandardCharsets.UTF_8 pour éviter les problèmes d'accents
         try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream(), java.nio.charset.StandardCharsets.UTF_8))) {
-            br.readLine();
             String line;
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 // Utilisation d'une regex pour gérer virgule ou point-virgule
                 String[] data = line.split("[,;]"); 
@@ -198,7 +198,7 @@ public class EleveController {
                         eleve.setNumeroSujet(null);
                     }
                     
-                    List<ChoixEleveTypo> choixTypoList = new ArrayList<>();
+                    /* List<ChoixEleveTypo> choixTypoList = new ArrayList<>();
                     for (int i = 8; i < 10; i++) { 
                         try {
                             int idTypo = Integer.parseInt(data[i].trim());
@@ -222,7 +222,7 @@ public class EleveController {
                             }
                         } catch (NumberFormatException e) {}
                     }
-                    eleve.setChoixEleveDomaineCollection(choixDomaineList);
+                    eleve.setChoixEleveDomaineCollection(choixDomaineList); */
 
                     
                     eleves.add(eleve);
