@@ -4,116 +4,163 @@
  */
 package fr.centrale.nantes.pappl.controllers;
 
+import fr.centrale.nantes.pappl.items.Annee;
+import fr.centrale.nantes.pappl.items.Entreprise;
+import fr.centrale.nantes.pappl.items.Sujet;
+import fr.centrale.nantes.pappl.repositories.AnneeRepository;
+import fr.centrale.nantes.pappl.repositories.DescriptionSujetRepository;
+import fr.centrale.nantes.pappl.repositories.EntrepriseRepository;
+import fr.centrale.nantes.pappl.repositories.SujetRepository;
+import org.apache.poi.xwpf.usermodel.IBodyElement;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFSDT;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
-import org.springframework.stereotype.Controller;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-/**
- *
- * @author vadimdigonnet
- */
-
-
-@WebServlet("/ImportProjetServlet")
-@MultipartConfig // Indispensable pour l'upload de fichier
+@Controller
+@MultipartConfig // Indispensable pour recevoir le fichier
 public class ImportController extends HttpServlet {
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Autowired
+    private EntrepriseRepository entrepriseRepository;
+    
+    @Autowired
+    private SujetRepository sujetRepository;
+    
+    @Autowired
+    private DescriptionSujetRepository descriptionSujetRepository;
+    
+    @Autowired 
+    private AnneeRepository anneeRepository;
+    
+    @RequestMapping(value="ImportProjetServlet.do", method = RequestMethod.POST)
+    public ModelAndView HandleFileUpload(HttpServletRequest request) throws IOException, ServletException{
         
-        // 1. Récupération du fichier depuis le formulaire HTML
-        Part filePart = request.getPart("fichierProjet"); // Nom du champ <input type="file" name="fichierProjet">
-        
-        if (filePart == null || filePart.getSize() == 0) {
-            response.sendRedirect("erreur.jsp");
-            return;
-        }
+        Part filePart = request.getPart("fichierWord"); // Assurez-vous que <input name="fichierWord">
 
-        // Variables pour stocker les données
-        String structure = "";
+        
+
+        String entreprisestr = "";
         String titre = "";
-        StringBuilder contexte = new StringBuilder();
-        StringBuilder travail = new StringBuilder();
-
-        // Variable "interrupteur" pour savoir quelle zone on est en train de lire
-        String zoneActuelle = "RIEN";
+        String contexte = "";
+        String travail = "";
+        String livrable = "";
+        String nom="";
+        String prenom="";
+        String tel="";
+        String mail="";
+        String anneestr="";
+        String description="";
 
         try (InputStream is = filePart.getInputStream();
              XWPFDocument document = new XWPFDocument(is)) {
 
-            // 2. On lit le document paragraphe par paragraphe
-            for (XWPFParagraph paragraph : document.getParagraphs()) {
-                String ligne = paragraph.getText().trim();
-
-                // Ignorer les lignes vides
-                if (ligne.isEmpty()) continue;
-
-                // --- DÉTECTION DES BALISES ---
-
-                // Cas 1 : Données simples (sur la même ligne)
-                if (ligne.contains("{{STRUCTURE}}")) {
-                    // On enlève la balise pour ne garder que le texte
-                    structure = ligne.replace("{{STRUCTURE}}", "").trim();
-                    continue; // On passe au paragraphe suivant
-                }
-                if (ligne.contains("{{TITRE}}")) {
-                    titre = ligne.replace("{{TITRE}}", "").trim();
-                    continue;
-                }
-
-                // Cas 2 : Blocs de texte (Context, Travail, etc.)
-                // Si on trouve une balise de début, on active l'interrupteur
-                if (ligne.contains("{{DEBUT_CONTEXTE}}")) {
-                    zoneActuelle = "CONTEXTE";
-                    continue;
-                }
-                if (ligne.contains("{{FIN_CONTEXTE}}")) {
-                    zoneActuelle = "RIEN";
-                    continue;
-                }
-
-                if (ligne.contains("{{DEBUT_TRAVAIL}}")) {
-                    zoneActuelle = "TRAVAIL";
-                    continue;
-                }
-                if (ligne.contains("{{FIN_TRAVAIL}}")) {
-                    zoneActuelle = "RIEN";
-                    continue;
-                }
-
-                // --- ENREGISTREMENT DU TEXTE ---
+            // 2. Parcourir tous les éléments "racine" du document
+            // (Un élément peut être un Paragraphe, un Tableau, ou un SDT/Contrôle de contenu)
+            for (IBodyElement element : document.getBodyElements()) {
                 
-                // Si l'interrupteur est allumé sur une zone, on ajoute la ligne
-                if (zoneActuelle.equals("CONTEXTE")) {
-                    contexte.append(ligne).append("\n");
-                } else if (zoneActuelle.equals("TRAVAIL")) {
-                    travail.append(ligne).append("\n");
+                // On s'intéresse uniquement aux contrôles de contenu (SDT)
+                if (element instanceof XWPFSDT) {
+                    XWPFSDT controle = (XWPFSDT) element;
+                    
+                    // On récupère le TAG que vous avez mis dans les propriétés Word
+                    String tag = controle.getTag(); 
+
+                    if (tag != null) {
+                        // On nettoie le texte (supprime les espaces inutiles au début/fin)
+                        String contenu = controle.getContent().getText().trim();
+
+                        // 3. Ranger les données dans la bonne variable
+                        switch (tag) {
+                            case "entreprise":
+                                entreprisestr = contenu;
+                                break;
+                            case "description":
+                                description = contenu;
+                                break;
+                            case "titre":
+                                titre = contenu;
+                                break;
+                            case "contexte":
+                                contexte = contenu;
+                                break;
+                            case "travail":
+                                travail = contenu;
+                                break;
+                            case "livrable":
+                                livrable = contenu;
+                                break;
+                            case "nom":
+                                nom=contenu;
+                                break;
+                            case "prenom":
+                                prenom=contenu;
+                                break;
+                            case "telephone":
+                                tel=contenu;
+                                break;
+                            case "email":
+                                mail=contenu;
+                                break;    
+                            case "annee":
+                                anneestr=contenu;
+                                break;
+                            default:
+                                System.out.println("Tag inconnu trouvé : " + tag);
+                                break;
+                        }
+                    }
                 }
             }
+
         } catch (Exception e) {
-            e.printStackTrace(); // Affiche l'erreur dans la console serveur
+            e.printStackTrace();
+            // Gestion d'erreur (ex: format de fichier invalide)
         }
 
-        // --- 3. VÉRIFICATION ET SAUVEGARDE ---
-        
-        System.out.println("--- IMPORT RÉUSSI ---");
-        System.out.println("Structure : " + structure);
+      
+        System.out.println("=== RAPPORT D'IMPORTATION ===");
+        System.out.println("Structure : " + entreprisestr);
         System.out.println("Titre : " + titre);
-        System.out.println("Contexte : " + contexte.toString());
-
-        // ICI : Appeler votre classe DAO pour insérer en base de données
-        // projetDao.creerProjet(structure, titre, contexte.toString(), travail.toString());
-
-        // Redirection vers une page de succès
-        response.sendRedirect("liste-projets.jsp");
+        System.out.println("Contexte (aperçu) : " + (contexte.length() > 50 ? contexte.substring(0, 50) + "..." : contexte));
+        
+        int anneeint=Tools.getIntFromString(anneestr);
+        Annee annee = null;
+        if (anneestr != null && !anneestr.isEmpty()) {
+            try {
+                annee = anneeRepository.getReferenceById(anneeint);
+            } catch(Exception ex) {
+                // L'entreprise n'existe pas
+            }
+        }
+        Entreprise entreprise = null;
+        if (entreprisestr != null && !entreprisestr.isEmpty()) {
+            try {
+                entreprise = entrepriseRepository.getReferenceById(entreprisestr);
+            } catch(Exception ex) {
+            }
+        }
+        if (entreprise==null){
+            entrepriseRepository.create(entreprisestr,null,null,null,null,description);
+        }
+        
+        Sujet sujet =sujetRepository.create(null,titre,annee);
+        int id=sujet.getNumero();
+        descriptionSujetRepository.create(id, contexte, travail, livrable, entreprise);
+        
+        List<Object> listSujet = new ArrayList<Object>(descriptionSujetRepository.findAllWithSujet());
+        ModelAndView returned = new ModelAndView("liste_sujet");
+        returned.addObject("sujetList", listSujet);
+        return returned;
     }
 }

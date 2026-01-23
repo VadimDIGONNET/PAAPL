@@ -50,7 +50,7 @@
                     </form>
                 </div>
                 <div class="col-md-4 bg-secondary m-2 text-center">
-                    <form action="ImportProjetServlet" method="post" enctype="multipart/form-data">
+                    <form action="ImportProjetServlet.do" method="post" enctype="multipart/form-data">
     
     <label>Sélectionnez la fiche projet remplie (.docx) :</label>
     <input type="file" name="fichierWord" accept=".docx" required>
