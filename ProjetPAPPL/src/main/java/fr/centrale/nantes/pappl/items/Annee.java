@@ -50,6 +50,8 @@ public class Annee implements Serializable {
     private Collection<Sujet> sujetCollection;
 
     public Annee() {
+        Integer anneeEnCours = java.time.LocalDate.now().getYear();
+        this.annee=anneeEnCours;
     }
 
     public Annee(Integer annee) {

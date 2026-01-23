@@ -117,4 +117,20 @@ public ModelAndView handlePostSaveTuteur(HttpServletRequest request) {
         returned.addObject("tuteurList", listTuteur); 
         return returned;
     }
+    
+    @RequestMapping(value="reutilisertuteur.do",method=RequestMethod.POST)
+    public ModelAndView handleReuseTuteur(HttpServletRequest request){
+        String idst=request.getParameter("id");
+        int id = Tools.getIntFromString(idst);
+        if (id!=-1){
+            Tuteur tuteur=tuteurRepository.getReferenceById(id);
+            Annee annee=new Annee();
+            tuteurRepository.create(tuteur.getNom(),tuteur.getPrenom(),tuteur.getNbSujetSouhaite(),annee);
+        }
+        List<Tuteur> listTuteur = new ArrayList<>(tuteurRepository.findAll());
+        ModelAndView returned = new ModelAndView("liste_tuteurs");
+        Collections.sort(listTuteur, Tuteur.getComparator());
+        returned.addObject("tuteurList", listTuteur); 
+        return returned;
+    }
 }
