@@ -8,12 +8,9 @@ package fr.centrale.nantes.pappl.repositories;
  *
  * @author vadimdigonnet
  */
-<<<<<<< HEAD
 import fr.centrale.nantes.pappl.items.ChoixEleveDomaine;
 import fr.centrale.nantes.pappl.items.Eleve;
-=======
 import fr.centrale.nantes.pappl.items.Annee;
->>>>>>> origin/main
 import fr.centrale.nantes.pappl.items.Sujet;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -70,14 +67,6 @@ public class SujetRepositoryCustomImpl implements SujetRepositoryCustom{
         
         }
         return null;
-    }
-    
-    @Override
-    public void remove(Sujet sujet){
-        if (sujet != null) {
-            SujetRepository.delete(sujet);
-        }
-    
     }
     
 }
