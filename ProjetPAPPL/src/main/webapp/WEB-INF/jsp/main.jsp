@@ -83,16 +83,11 @@
                             <button type="submit" name="sujet" class="btn btn-primary btn-lg">Liste</button>
                         </form>
                     </div>
-                    <div class="col-md-4 bg-secondary m-2 text-center">
-                        <form action="importentreprise.do" method="POST">
-                            <button type="submit" class="btn btn-secondary btn-lg">Importer CSV</button>
-                        </form>
-                    </div>
                 </div>
                 <div class="mb-3">
                     <form action="ImportProjetServlet.do" method="post" enctype="multipart/form-data">
-                        <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
-                        <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                        <label for="file" class="form-label">Sélectionnez un fichier word :</label>
+                        <input type="file" class="form-control" id="file" name="file" accept=".docx" required>
                         <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
                     </form>
                 </div>
