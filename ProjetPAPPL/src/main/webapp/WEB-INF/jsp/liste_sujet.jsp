@@ -54,7 +54,12 @@
                             <button name="delete" class="btn" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce sujet ?');" formaction="deletesujet.do">
                                 <img src="img/delete.png" alt="delete" class="icon" />
                             </button>
+                            <button name="export" class="btn" formaction="ExportProjet.do" formmethod="POST">
+                            <input type="hidden" name="id" value="${sujet.numero}" />
+                                 Exporter Word
+                            </button>
                         </form>
+                        
 
                     </td>
                 </tr>
