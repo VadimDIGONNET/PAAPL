@@ -20,7 +20,7 @@ public class DescriptionSujetRepositoryCustomImpl implements DescriptionSujetRep
     private DescriptionSujetRepository DescriptionSujetRepository;
     
     @Override
-    public DescriptionSujet update(DescriptionSujet numero, String contexte, String travail, String livrable, Entreprise entreprise){
+    public DescriptionSujet update(DescriptionSujet numero, String contexte, String travail, String livrable, Entreprise entreprise,String confidentiel){
         if(numero !=null){
             numero = DescriptionSujetRepository.getReferenceById(numero.getNumero());
         }
@@ -28,6 +28,7 @@ public class DescriptionSujetRepositoryCustomImpl implements DescriptionSujetRep
             numero.setContexte(contexte);
             numero.setTravailRealiser(travail);
             numero.setLivrable(livrable);
+            numero.setConfidentiel(confidentiel);
             DescriptionSujetRepository.saveAndFlush(numero);
             numero=DescriptionSujetRepository.getReferenceById(numero.getNumero());
         }
@@ -36,7 +37,7 @@ public class DescriptionSujetRepositoryCustomImpl implements DescriptionSujetRep
     
     
     @Override
-    public DescriptionSujet create(Integer id, String contexte, String travail, String livrable, Entreprise entreprise){
+    public DescriptionSujet create(Integer id, String contexte, String travail, String livrable, Entreprise entreprise,String confidentiel){
         if((entreprise!=null)&&(contexte!=null)&&(!contexte.isEmpty())&&(id !=null)){
             DescriptionSujet item=new DescriptionSujet();
             item.setNumero(id);
@@ -44,6 +45,7 @@ public class DescriptionSujetRepositoryCustomImpl implements DescriptionSujetRep
             item.setTravailRealiser(travail);
             item.setLivrable(livrable);
             item.setNomEntreprise(entreprise);
+            item.setConfidentiel(confidentiel);
             DescriptionSujetRepository.saveAndFlush(item);
             //return DescriptionSujetRepository.getReferenceById(item.getNumero());
             return item;

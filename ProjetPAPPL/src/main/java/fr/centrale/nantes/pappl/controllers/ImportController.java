@@ -83,6 +83,7 @@ public class ImportController extends HttpServlet {
         String contexte = data.getOrDefault("contexte", "");
         String travail = data.getOrDefault("travail", "");
         String livrable = data.getOrDefault("livrable", "");
+        String confidentiel=data.getOrDefault("confidentiel","");
         String nom = data.getOrDefault("nom", "");
         String prenom = data.getOrDefault("prenom", "");
         String tel = data.getOrDefault("telephone", "");
@@ -136,7 +137,7 @@ public class ImportController extends HttpServlet {
                 
                 if (sujet != null) {
                     int id = sujet.getNumero();
-                    descriptionSujetRepository.create(id, contexte, travail, livrable, entreprise);
+                    descriptionSujetRepository.create(id, contexte, travail, livrable, entreprise,confidentiel);
                     System.out.println(">>> SUCCÈS : Sujet " + id + " enregistré.");
                 } else {
                     System.err.println("ERREUR : sujetRepository.create a renvoyé null.");
