@@ -34,6 +34,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -55,22 +57,21 @@ public class ImportController extends HttpServlet {
     @Autowired
     private CorrespondantRepository correspondantRepository;
     
-    @RequestMapping(value="ImportProjetServlet.do", method = RequestMethod.POST)
-    public ModelAndView HandleFileUpload(HttpServletRequest request) throws IOException, ServletException{
-        
-        Part filePart = request.getPart("fichierWord");
+    @RequestMapping(value="/ImportProjetServlet.do", method = RequestMethod.POST)
+    public ModelAndView handleFileUpload(
+        @RequestParam("file") MultipartFile file, 
+        HttpServletRequest request) {
 
-        // On utilise une Map pour stocker tout ce qu'on trouve
         Map<String, String> data = new HashMap<>();
 
-        try (InputStream is = filePart.getInputStream();
+        try (InputStream is = file.getInputStream();
              XWPFDocument document = new XWPFDocument(is)) {
 
-            // --- 1. SCAN DU DOCUMENT (Récursif) ---
-            // Cette méthode va chercher partout : racine, tableaux, paragraphes...
+            // Ton code de scan Word
             scanDocument(document.getBodyElements(), data);
 
         } catch (Exception e) {
+            System.err.println("Erreur lors de la lecture du fichier : " + e.getMessage());
             e.printStackTrace();
         }
 
