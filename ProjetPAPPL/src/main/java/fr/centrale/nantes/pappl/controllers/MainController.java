@@ -72,6 +72,7 @@ public class MainController {
         String livrable = request.getParameter("livrable");
         String intitule = request.getParameter("intitule");
         String anneestr = request.getParameter("annee");
+        String confidentiel=request.getParameter("confidentiel");
 
         String entrepriseNom = request.getParameter("entreprise");
         int numeroSujet = Tools.getIntFromString(numero_sujet);
@@ -98,13 +99,13 @@ public class MainController {
             sujet = sujetRepository.create(numeroSujet, intitule, annee);
             id = sujet.getNumero();
 
-            DescriptionSujet item = DescriptionSujetRepository.create(id, contexte, travail, livrable, entreprise);
+            DescriptionSujet item = DescriptionSujetRepository.create(id, contexte, travail, livrable, entreprise,confidentiel);
             //id = item.getNumero();
         } else {
 
             DescriptionSujet dSujet = DescriptionSujetRepository.getReferenceById(id);
             sujetRepository.update(dSujet.getSujet(), numeroSujet, intitule, annee);
-            DescriptionSujetRepository.update(dSujet, contexte, travail, livrable, entreprise);
+            DescriptionSujetRepository.update(dSujet, contexte, travail, livrable, entreprise,confidentiel);
         }
         ModelAndView returned = new ModelAndView("liste_sujet");
         Object sessionAnnee = request.getSession().getAttribute("anneeCourante");

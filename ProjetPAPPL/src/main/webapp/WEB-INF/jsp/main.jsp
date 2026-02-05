@@ -83,11 +83,6 @@
                             <button type="submit" name="sujet" class="btn btn-primary btn-lg">Liste</button>
                         </form>
                     </div>
-                    <div class="col-md-4 bg-secondary m-2 text-center">
-                        <form action="importentreprise.do" method="POST">
-                            <button type="submit" class="btn btn-secondary btn-lg">Importer CSV</button>
-                        </form>
-                    </div>
                 </div>
                 <div class="mb-3">
                     <form action="ImportProjetServlet.do" method="post" enctype="multipart/form-data">

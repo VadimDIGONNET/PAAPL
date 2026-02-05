@@ -51,6 +51,9 @@ public class DescriptionSujet implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "livrable")
     private String livrable;
+    @Size(max = 2147483647)
+    @Column(name = "confidentiel")
+    private String confidentiel;
     @JoinColumn(name = "nom_entreprise", referencedColumnName = "nom")
     @ManyToOne
     private Entreprise nomEntreprise;
@@ -99,6 +102,14 @@ public class DescriptionSujet implements Serializable {
 
     public Entreprise getNomEntreprise() {
         return nomEntreprise;
+    }
+    
+    public String getConfidentiel(){
+        return confidentiel;
+    }
+    
+    public void setConfidentiel(String conf){
+        this.confidentiel=conf;
     }
 
     public void setNomEntreprise(Entreprise nomEntreprise) {

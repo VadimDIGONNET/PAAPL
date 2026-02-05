@@ -71,6 +71,11 @@
             </div>
             
             <div class="form-group">
+                <label for="confidentiel"> Confidentialité :</label>
+                <input type="text" id="confidentiel" name="confidentiel" value="${DescriptionSujet.confidentiel}">
+            </div>
+            
+            <div class="form-group">
                 <label for="annee"> Année :</label>
                 <input type="text" id="annee" name="annee" value="${Sujet.annee}">
             </div>
