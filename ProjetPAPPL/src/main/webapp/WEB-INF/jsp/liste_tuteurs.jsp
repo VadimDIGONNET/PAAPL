@@ -26,6 +26,7 @@
             <th>Nom</th>
             <th>Prenom</th>
             <th>Nombre de sujet souhaite</th>
+            <th>Année</th>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +35,7 @@
                                             <td scope="col">${item.nom}</td>
                                             <td>${item.prenom}</td>
                                             <td>${item.nbSujetSouhaite}</td>
-                                            <td class="text-center"></td>
+                                            <td class="text-center">${item.annee.annee}</td>
                                             <td class="text-center">
                                                 <form action="editTuteur" method="POST">
                                                     <input type="hidden" name="id" value="${item.id}" />

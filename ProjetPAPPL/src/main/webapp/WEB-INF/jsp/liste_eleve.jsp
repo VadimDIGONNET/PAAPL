@@ -30,6 +30,7 @@
             <th>email</th>
             <th>td</th>
             <th>numero_sujet</th>
+            <th>Année</th>
         </tr>
     </thead>
     <tbody>
@@ -41,6 +42,7 @@
                                             <td>${item.email}</td>
                                             <td>${item.td}</td>
                                             <td>${item.numeroSujet.numeroDuSujet}</td>
+                                            <td>${item.annee.annee}</td>
                                             <td class="text-center">
     <form action="editEleve"method="POST">
         <input type="hidden" name="id" value="${item.id}" />
