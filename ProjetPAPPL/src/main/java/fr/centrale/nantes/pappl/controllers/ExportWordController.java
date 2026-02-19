@@ -60,7 +60,9 @@ public class ExportWordController {
             data.put("confidentiel", ds.getConfidentiel() != null ? ds.getConfidentiel() : "");
             data.put("annee", s.getAnnee() != null ? String.valueOf(s.getAnnee().getAnnee()) : "");
             data.put("description", e.getDescription() != null ? e.getDescription() : "");
-
+            data.put("adresse", e.getAdresse() !=null ? e.getAdresse() : "");
+            data.put("code_postal", e.getCodePostal() !=null ? String.valueOf(e.getCodePostal()) : "");
+            data.put("telentre", e.getTel()!=null ? String.valueOf(e.getTel()) :"");
             if (c != null) {
                 data.put("nom", c.getNom());
                 data.put("prenom", c.getPrenom());
@@ -68,7 +70,7 @@ public class ExportWordController {
                 data.put("email", c.getEmail());
             }
             
-            InputStream is = getClass().getResourceAsStream("/templates/mon_modele.docx");
+            InputStream is = getClass().getResourceAsStream("/templates/modele_export.docx");
             if (is == null) throw new FileNotFoundException("Modèle Word introuvable");
 
             byte[] docBytes = exportService.generateWordFromDb(is, data);

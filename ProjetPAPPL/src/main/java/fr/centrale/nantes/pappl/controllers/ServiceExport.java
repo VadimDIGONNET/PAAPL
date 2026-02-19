@@ -10,17 +10,13 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import org.apache.poi.xwpf.usermodel.IBodyElement;
-import org.apache.poi.xwpf.usermodel.IRunElement;
-import org.apache.poi.xwpf.usermodel.ISDTContent;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFSDT;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableCell;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.springframework.stereotype.Service;
-
-
 
 @Service
 public class ServiceExport {
@@ -28,69 +24,52 @@ public class ServiceExport {
     public byte[] generateWordFromDb(InputStream templateIs, Map<String, String> data) throws IOException {
         try (XWPFDocument document = new XWPFDocument(templateIs);
              ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-
-            // On utilise la même logique que ton import (récursivité)
-            fillDocument(document.getBodyElements(), data);
-
+            fillElements(document.getBodyElements(), data);
             document.write(out);
             return out.toByteArray();
         }
     }
 
-    private void fillDocument(List<IBodyElement> elements, Map<String, String> data) {
+    private void fillElements(List<IBodyElement> elements, Map<String, String> data) {
         for (IBodyElement element : elements) {
-            if (element instanceof XWPFSDT) {
-                fillSDT((XWPFSDT) element, data);
+            if (element instanceof XWPFParagraph) {
+                replaceInParagraph((XWPFParagraph) element, data);
             } else if (element instanceof XWPFTable) {
-                for (XWPFTableRow row : ((XWPFTable) element).getRows()) {
-                    for (XWPFTableCell cell : row.getTableCells()) {
-                        fillDocument(cell.getBodyElements(), data);
+                replaceInTable((XWPFTable) element, data);
+            }
+        }
+    }
+
+    private void replaceInParagraph(XWPFParagraph paragraph, Map<String, String> data) {
+        List<XWPFRun> runs = paragraph.getRuns();
+        if (runs == null || runs.isEmpty()) return;
+
+        for (XWPFRun run : runs) {
+            String text = run.getText(0);
+            if (text != null) {
+                boolean modified = false;
+                for (Map.Entry<String, String> entry : data.entrySet()) {
+                    String placeholder = "{{" + entry.getKey() + "}}";
+                    if (text.contains(placeholder)) {
+                        // On remplace la balise par la valeur (ou vide si null)
+                        String value = (entry.getValue() != null) ? entry.getValue() : "";
+                        text = text.replace(placeholder, value);
+                        modified = true;
                     }
                 }
-            } else if (element instanceof XWPFParagraph) {
-                for (IRunElement run : ((XWPFParagraph) element).getIRuns()) {
-                    if (run instanceof XWPFSDT) {
-                        fillSDT((XWPFSDT) run, data);
-                    }
+                if (modified) {
+                    run.setText(text, 0);
                 }
             }
         }
     }
 
-    private void fillSDT(XWPFSDT sdt, Map<String, String> data) {
-    String tag = sdt.getTag();
-    if (tag != null && data.containsKey(tag)) {
-        String newValue = data.getOrDefault(tag, "");
-        
-        // On récupère le contenu du contrôle
-        ISDTContent content = sdt.getContent();
-        
-        // Un contrôle de contenu contient généralement un ou plusieurs objets (Paragraphes ou Runs)
-        // On cherche le texte à l'intérieur pour le remplacer
-        if (content != null) {
-            // Approche robuste : on accède au texte via le XML interne si setText direct n'est pas dispo
-            // ou on itère sur les éléments du contenu
-            String currentFullText = content.getText();
-            if (currentFullText != null) {
-                // Pour les contrôles simples (Inline ou Block), cette méthode de réflexion 
-                // est souvent nécessaire sur les versions récentes de POI :
-                try {
-                    // On vide le contenu actuel et on met le nouveau
-                    // Note : Selon ta version exacte de POI, sdt.getContent().getText() est en lecture seule
-                    // La solution la plus fiable est d'utiliser le remplacement par balise {{TAG}} 
-                    // OU de manipuler le curseur.
-                    
-                    // Si ton SDT est un simple champ de texte :
-                    sdt.getContent().getText(); // Vérification présence
-                    
-                    // Technique de contournement si setText est absent : 
-                    // On accède aux éléments du corps à l'intérieur du SDT
-                    // (Cela fonctionne car ISDTContent expose souvent des méthodes via ses implémentations)
-                } catch (Exception e) {
-                    System.err.println("Erreur lors du remplissage du tag : " + tag);
-                }
+    private void replaceInTable(XWPFTable table, Map<String, String> data) {
+        for (XWPFTableRow row : table.getRows()) {
+            for (XWPFTableCell cell : row.getTableCells()) {
+                // Une cellule peut contenir des paragraphes ou d'autres tableaux
+                fillElements(cell.getBodyElements(), data);
             }
         }
     }
-}
 }
