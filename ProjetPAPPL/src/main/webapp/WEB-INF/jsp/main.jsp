@@ -235,7 +235,7 @@
                     <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                         <h5 class="mb-4">À Propos</h5>
                         <ul class="list-unstyled">
-                            <li class="mb-2"><a href="#" class="text-white-50">L'équipe projet</a></li>
+                            <li class="mb-2"><a href="equipe.jsp" class="text-white-50">L'équipe projet</a></li>
                             <li class="mb-2"><a href="#" class="text-white-50">Mentions Légales</a></li>
                         </ul>
                     </div>
