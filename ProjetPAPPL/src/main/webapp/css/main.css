@@ -139,7 +139,7 @@ form .btn-secondary.btn-lg:hover {
 
 /* FOOTER */
 footer, .py-5 {
-    background-color: #f8f9fa;
+    background-color: white;
     border-top: 1px solid #e9ecef;
 }
 .icon {

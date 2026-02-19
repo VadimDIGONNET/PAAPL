@@ -14,14 +14,15 @@
     </head>
     <body>
 
-         <div class="logo-container"> 
-            <a href="#"> 
-                <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> 
-            </a>
-        </div>
+        
 
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container-fluid">
+                <div class="logo-container"> 
+                    <a href="#"> 
+                        <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> 
+                    </a>
+                </div>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button> 
@@ -38,7 +39,8 @@
         </nav>
 
         
-        <div class="row">
+        <div class="py-4">
+            <div class="container">
                 <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                     <p>
                         <strong>Année sélectionnée :</strong>
@@ -48,23 +50,21 @@
                     <form action="clearAnnee.do" method="POST">
                         <button type="submit">Supprimer le filtre</button>
                     </form>
-                <!-- CAS 2 : aucun filtre -->
-                <c:if test="${sessionScope.anneeCourante == null}">
-                    <form action="setAnnee.do" method="POST">
-                        <label for="annee">Sélectionner une année :</label>
-                        <select id="annee" name="annee" required>
-                            <option value="">-- Choisir une année --</option>
-                            <c:forEach var="annee" items="${anneeList}">
-                                <option value="${annee.annee}">
-                                    ${annee.annee}
-                                </option>
-                            </c:forEach>
-                        </select>
-                        <button type="submit">Filtrer</button>
-                    </form>
-                </c:if>
-
-
+                    <c:if test="${sessionScope.anneeCourante == null}">
+                        <form action="setAnnee.do" method="POST">
+                            <label for="annee">Sélectionner une année :</label>
+                            <select id="annee" name="annee" required>
+                                <option value="">-- Choisir une année --</option>
+                                <c:forEach var="annee" items="${anneeList}">
+                                    <option value="${annee.annee}">
+                                        ${annee.annee}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                            <button type="submit">Filtrer</button>
+                        </form>
+                    </c:if>
+                </div>
             </div>
         </div>
         
@@ -86,9 +86,9 @@
                 </div>
                 <div class="mb-3">
                     <form action="ImportProjetServlet.do" method="post" enctype="multipart/form-data">
-                        <label for="file" class="form-label">Sélectionnez un fichier word :</label>
+                        <label for="file" class="form-label">Sélectionnez le formulaire Word (.docx) :</label>
                         <input type="file" class="form-control" id="file" name="file" accept=".docx" required>
-                        <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
+                        <button type="submit" class="btn btn-secondary btn-lg mt-2">Importer Word</button>
                     </form>
                 </div>
             </div>
@@ -197,7 +197,7 @@
 
     <footer class="bg-dark text-white py-5">
         <div class="bg-info p-4">
-            <div class="container">
+            <div class="container" style="color:white">
                 <div class="row">
                     <div class="p-0 col-lg-4 col-md-6">
                         <img class="img-fluid" src="img/LogoECN.png" alt="logo">
