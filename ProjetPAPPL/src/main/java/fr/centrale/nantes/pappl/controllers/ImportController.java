@@ -5,6 +5,7 @@
 package fr.centrale.nantes.pappl.controllers;
 
 import fr.centrale.nantes.pappl.items.Annee;
+import fr.centrale.nantes.pappl.items.Correspondant;
 import fr.centrale.nantes.pappl.items.Entreprise;
 import fr.centrale.nantes.pappl.items.Sujet;
 import fr.centrale.nantes.pappl.repositories.AnneeRepository;
@@ -117,35 +118,31 @@ public class ImportController extends HttpServlet {
                 }
             }
         }
-        
-        if (titre != null && !titre.isEmpty() && annee != null) {
-            try {
-                Sujet sujet = sujetRepository.create(null, titre, annee);
-                
-                if (sujet != null) {
-                    int id = sujet.getNumero();
-                    descriptionSujetRepository.create(id, contexte, travail, livrable, entreprise,confidentiel);
-                    System.out.println(">>> SUCCÈS : Sujet " + id + " enregistré.");
-                } else {
-                    System.err.println("ERREUR : sujetRepository.create a renvoyé null.");
+        Correspondant correspondant = null;
+            if (nom != null && !nom.isEmpty() && entreprise != null) {
+                try {
+                    int tele = Tools.getIntFromString(tel);
+                    correspondant = correspondantRepository.create(nom, prenom, tele, mail, entreprise);
+                     System.out.println(">>> Correspondant enregistré avec succès.");
+                } catch (Exception e) {
+                    System.err.println("Erreur enregistrement Correspondant : " + e.getMessage());
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.err.println("ECHEC IMPORT : Titre vide ou Année ("+anneeint+") introuvable.");
-        }
-        if (nom != null && !nom.isEmpty() && entreprise != null) {
-            System.out.println("Enregistrement du correspondant : " + nom);
-            try {
-
-                int tele = Tools.getIntFromString(tel);
-                correspondantRepository.create(nom, prenom, tele, mail, entreprise);
-                
-                System.out.println(">>> Correspondant enregistré avec succès.");
-                
-            } catch (Exception e) {
-                System.err.println("Erreur enregistrement Correspondant : " + e.getMessage());
+                if (titre != null && !titre.isEmpty() && annee != null) {
+                    try {
+                        Sujet sujet = sujetRepository.create(null, titre, annee,correspondant);
+                        if (sujet != null) {
+                            // 🔑 LE LIEN EST FAIT ICI
+                            if (correspondant != null) {
+                            sujet.setIdCorrespondant(correspondant);
+                            sujetRepository.save(sujet);
+                            }
+                        int id = sujet.getNumero();
+                        descriptionSujetRepository.create(id, contexte, travail, livrable, entreprise, confidentiel);
+                        System.out.println(">>> SUCCÈS : Sujet " + id + " enregistré avec correspondant lié.");
+                        }
+                    } catch (Exception e) {
+                    e.printStackTrace();
+                } 
             }
         }
         

@@ -5,6 +5,7 @@
 package fr.centrale.nantes.pappl.controllers;
 
 import fr.centrale.nantes.pappl.items.Annee;
+import fr.centrale.nantes.pappl.items.Correspondant;
 import fr.centrale.nantes.pappl.items.DescriptionSujet;
 import fr.centrale.nantes.pappl.items.Entreprise;
 import fr.centrale.nantes.pappl.repositories.*;
@@ -44,6 +45,9 @@ public class MainController {
 
     @Autowired
     private AnneeRepository anneeRepository;
+    
+    @Autowired
+    private CorrespondantRepository correspondantRepository;
 
     private int getIntFromString(String value) {
         int intValue = -1;
@@ -73,15 +77,24 @@ public class MainController {
         String intitule = request.getParameter("intitule");
         String anneestr = request.getParameter("annee");
         String confidentiel=request.getParameter("confidentiel");
+        String corresnom= request.getParameter("correspondant");
 
         String entrepriseNom = request.getParameter("entreprise");
         int numeroSujet = Tools.getIntFromString(numero_sujet);
         int id = Tools.getIntFromString(idStr);
         int anneeint = Tools.getIntFromString(anneestr);
         Entreprise entreprise = null;
+        Correspondant correspondant = null;
         if (entrepriseNom != null && !entrepriseNom.isEmpty()) {
             try {
                 entreprise = entrepriseRepository.getReferenceById(entrepriseNom);
+            } catch (Exception ex) {
+                // L'entreprise n'existe pas
+            }
+        }
+        if (corresnom != null && !corresnom.isEmpty()) {
+            try {         
+                correspondant = correspondantRepository.findByNom(corresnom);
             } catch (Exception ex) {
                 // L'entreprise n'existe pas
             }
@@ -96,7 +109,7 @@ public class MainController {
         }
         if ((idStr == null) || (id == -1)) {
             Sujet sujet = new Sujet();
-            sujet = sujetRepository.create(numeroSujet, intitule, annee);
+            sujet = sujetRepository.create(numeroSujet, intitule, annee,correspondant);
             id = sujet.getNumero();
 
             DescriptionSujet item = DescriptionSujetRepository.create(id, contexte, travail, livrable, entreprise,confidentiel);
@@ -104,7 +117,7 @@ public class MainController {
         } else {
 
             DescriptionSujet dSujet = DescriptionSujetRepository.getReferenceById(id);
-            sujetRepository.update(dSujet.getSujet(), numeroSujet, intitule, annee);
+            sujetRepository.update(dSujet.getSujet(), numeroSujet, intitule, annee, correspondant);
             DescriptionSujetRepository.update(dSujet, contexte, travail, livrable, entreprise,confidentiel);
         }
         ModelAndView returned = new ModelAndView("liste_sujet");
@@ -131,6 +144,7 @@ public class MainController {
         returned.addObject("ajout-sujet", nouveau);
         // Ajouter la liste des entreprises pour le dropdown
         returned.addObject("entrepriseList", entrepriseRepository.findAll());
+        returned.addObject("correspondantList", correspondantRepository.findAll());
         return returned;
     }
 
