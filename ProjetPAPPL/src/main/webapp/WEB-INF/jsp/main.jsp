@@ -11,6 +11,7 @@
         <link href="css/main.css" type="text/css" rel="stylesheet" />
         <script type="text/javascript" src="js/jquery-3.7.1.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
     </head>
     <body>
 
@@ -68,7 +69,13 @@
             </div>
         </div>
         
-            <div class="py-4" id="sujets">
+        <div class="mb-3">
+            <button id="btnExport" class="btn btn-success" onclick="telechargerExcel()"> 
+                Générer et Télécharger l'Excel 
+            </button>
+        </div>
+        
+        <div class="py-4" id="sujets">
             <div class="container">
                 <h2>Sujets</h2>
                 <hr>
@@ -94,127 +101,127 @@
             </div>
         </div>
 
-    <div class="py-4" id="eleves">
-        <div class="container">
-            <h2>Élèves</h2>
-            <hr>
-            <div class="row justify-content-center">
-                <div class="col-md-4 bg-primary m-2">
-                    <form action="ajouteleve.do" method="POST">
-                        <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
-                    </form>
-                </div>
-                <div class="col-md-4 bg-secondary m-2">
-                    <form action="eleve.do" method="POST">
-                        <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
-                    </form>
-                </div>
-                <form action="importeleve.do" method="post" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
-                        <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+        <div class="py-4" id="eleves">
+            <div class="container">
+                <h2>Élèves</h2>
+                <hr>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 bg-primary m-2">
+                        <form action="ajouteleve.do" method="POST">
+                            <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
-                </form>
-                <p th:text="${message}"></p>
-            </div>
-        </div>
-    </div>
-
-    <div class="py-4" id="tuteurs">
-        <div class="container">
-            <h2>Tuteurs</h2>
-            <hr>
-            <div class="row justify-content-center">
-                <div class="col-md-4 bg-primary m-2">
-                    <form action="ajouttuteur.do" method="POST">
-                        <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
-                    </form>
-                </div>
-                <div class="col-md-4 bg-secondary m-2">
-                    <form action="tuteurs.do" method="POST">
-                        <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
-                    </form>
-                </div>
-                <form action="importtuteur.do" method="post" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
-                        <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                    <div class="col-md-4 bg-secondary m-2">
+                        <form action="eleve.do" method="POST">
+                            <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
-                </form>
-                <p th:text="${message}"></p>
-            </div>
-        </div>
-    </div>
-
-    <div class="py-4" id="correspondants">
-        <div class="container">
-            <h2>Correspondants</h2>
-            <hr>
-            <div class="row justify-content-center">
-                <div class="col-md-4 bg-primary m-2">
-                    <form action="ajoutcorrespondant.do" method="POST">
-                        <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
+                    <form action="importeleve.do" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
+                            <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
                     </form>
-                </div>
-                <div class="col-md-4 bg-secondary m-2">
-                    <form action="correspondant.do" method="POST">
-                        <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
-                    </form>
+                    <p th:text="${message}"></p>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="py-4" id="partenaires">
-        <div class="container">
-            <h2>Partenaires</h2>
-            <hr>
-            <div class="row justify-content-center">
-                <div class="col-md-4 bg-primary m-2">
-                    <form action="ajoutentreprise.do" method="POST">
-                        <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
-                    </form>
-                </div>
-                <div class="col-md-4 bg-secondary m-2">
-                    <form action="entreprise.do" method="POST">
-                        <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
-                    </form>
-                </div>
-                <form action="importentreprise.do" method="post" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
-                        <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+        <div class="py-4" id="tuteurs">
+            <div class="container">
+                <h2>Tuteurs</h2>
+                <hr>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 bg-primary m-2">
+                        <form action="ajouttuteur.do" method="POST">
+                            <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
-                </form>
-                <p th:text="${message}"></p>
+                    <div class="col-md-4 bg-secondary m-2">
+                        <form action="tuteurs.do" method="POST">
+                            <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
+                        </form>
+                    </div>
+                    <form action="importtuteur.do" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
+                            <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
+                    </form>
+                    <p th:text="${message}"></p>
+                </div>
             </div>
         </div>
-    </div>
 
-
-    <footer class="bg-dark text-white py-5">
-        <div class="bg-info p-4">
-            <div class="container" style="color:white">
-                <div class="row">
-                    <div class="p-0 col-lg-4 col-md-6">
-                        <img class="img-fluid" src="img/LogoECN.png" alt="logo">
+        <div class="py-4" id="correspondants">
+            <div class="container">
+                <h2>Correspondants</h2>
+                <hr>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 bg-primary m-2">
+                        <form action="ajoutcorrespondant.do" method="POST">
+                            <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
+                        </form>
                     </div>
-                    <div class="col-md-5 align-self-center p-4 offset-md-1">
-                        <h4>Centrale Nantes</h4>
-                        <p class="mb-4 text-primary"> 1 Rue de la Noë,<br> 44300 Nantes, France<br> +33 (0)2 40 37 16 00 </p>
-                        <div class="d-flex justify-content-start">
-                            <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                            <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
-                            <a href="#" class="text-white me-3"><i class="fab fa-linkedin-in fa-lg"></i></a>
-                            <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <div class="col-md-4 bg-secondary m-2">
+                        <form action="correspondant.do" method="POST">
+                            <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-4" id="partenaires">
+            <div class="container">
+                <h2>Partenaires</h2>
+                <hr>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 bg-primary m-2">
+                        <form action="ajoutentreprise.do" method="POST">
+                            <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
+                        </form>
+                    </div>
+                    <div class="col-md-4 bg-secondary m-2">
+                        <form action="entreprise.do" method="POST">
+                            <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
+                        </form>
+                    </div>
+                    <form action="importentreprise.do" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
+                            <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
+                    </form>
+                    <p th:text="${message}"></p>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="bg-dark text-white py-5">
+            <div class="bg-info p-4">
+                <div class="container" style="color:white">
+                    <div class="row">
+                        <div class="p-0 col-lg-4 col-md-6">
+                            <img class="img-fluid" src="img/LogoECN.png" alt="logo">
+                        </div>
+                        <div class="col-md-5 align-self-center p-4 offset-md-1">
+                            <h4>Centrale Nantes</h4>
+                            <p class="mb-4 text-primary"> 1 Rue de la Noë,<br> 44300 Nantes, France<br> +33 (0)2 40 37 16 00 </p>
+                            <div class="d-flex justify-content-start">
+                                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                                <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                                <a href="#" class="text-white me-3"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                                <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
         <footer class="bg-dark text-white py-5">

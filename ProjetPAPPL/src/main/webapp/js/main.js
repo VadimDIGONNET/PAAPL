@@ -59,5 +59,23 @@ function returnBorrow(buttonRef, borrowId) {
 }
 
 
+function telechargerExcel() {
+    const btn = document.getElementById('btnExport');
+    if (btn) {
+        btn.disabled = true;
+        btn.innerText = "Génération en cours...";
+    }
+
+    // Redirection directe vers le contrôleur
+    window.location.href = "downloadExcel.do";
+
+    // Réactivation du bouton après 3 secondes
+    setTimeout(() => {
+        if (btn) {
+            btn.disabled = false;
+            btn.innerText = "Générer et Télécharger l'Excel";
+        }
+    }, 3000);
+}
 
 
