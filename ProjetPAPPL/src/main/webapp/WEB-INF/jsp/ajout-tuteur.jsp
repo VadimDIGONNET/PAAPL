@@ -36,7 +36,7 @@
         
         <div class="form-group">
             <label for="nbsujet">Annee :</label>
-            <input type="number" id="annee" name="annee" value="${tuteur.Annee}">
+            <input type="number" id="annee" name="annee" value="${tuteur.annee}">
         </div>
 
         <button type="submit">Enregistrer le tuteur</button>
