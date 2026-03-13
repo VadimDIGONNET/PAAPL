@@ -98,7 +98,7 @@ public class CorrespondantCasLimitesTest {
             sujet.getIdCorrespondant()
         );
         System.out.println("⚠️ CAS 1 : La suppression du correspondant met id_correspondant à NULL dans le sujet.");
-        System.out.println("   → À CORRIGER : bloquer la suppression si le correspondant est lié à un sujet.");
+        
     }
 
     /**
@@ -139,7 +139,7 @@ public class CorrespondantCasLimitesTest {
             sujet.getIdCorrespondant().getNom()
         );
         System.out.println("⚠️ CAS 2 : Impossible d'avoir 2 correspondants - le 2ème remplace le 1er.");
-        System.out.println("   → À CORRIGER : changer la relation en ManyToMany dans la BDD.");
+        
     }
 
     /**
@@ -177,7 +177,7 @@ public class CorrespondantCasLimitesTest {
             resultat instanceof Correspondant
         );
         System.out.println("⚠️ CAS 2 : Structure actuelle = ManyToOne → 1 seul correspondant max.");
-        System.out.println("   → Pour 2 correspondants : changer en ManyToMany.");
+        
     }
 
     // ================================================================
@@ -204,7 +204,7 @@ public class CorrespondantCasLimitesTest {
             sujet.getIdCorrespondant()
         );
         System.out.println("⚠️ CAS 3 : Impossible de garder 1 sur 2 avec la structure actuelle.");
-        System.out.println("   → À CORRIGER : passer en ManyToMany pour gérer plusieurs correspondants.");
+        
     }
 
     /**
@@ -224,7 +224,7 @@ public class CorrespondantCasLimitesTest {
 
     // ================================================================
     //  CAS 4 – Changer le correspondant d'un sujet (Tests 9 à 11)
-    //  Question : est-ce que ça fonctionne ?
+    // 
     // ================================================================
 
     /**
