@@ -46,7 +46,9 @@
                 <tr>
                     <td>${sujet.numeroDuSujet}</td>
                     <td>${sujet.intitule}</td>
-                    <td>${desc.contexte}</td>
+                    <td>
+                        ${desc.contexte}
+                    </td>
                     <td>${desc.travailRealiser}</td>
                     <td>${desc.livrable}</td>
                     <td >${desc.nomEntreprise.nom}</td>
@@ -60,11 +62,11 @@
                                 <img src="img/delete.png" alt="delete" class="icon" />
                             </button>
                             <button name="export" class="btn" formaction="ExportProjet.do" formmethod="POST">
-                            <input type="hidden" name="id" value="${sujet.numero}" />
-                                 Exporter Word
+                                <input type="hidden" name="id" value="${sujet.numero}" />
+                                Exporter Word
                             </button>
                         </form>
-                        
+
 
                     </td>
                 </tr>
