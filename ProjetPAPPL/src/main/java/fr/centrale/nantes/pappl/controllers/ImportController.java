@@ -131,7 +131,6 @@ public class ImportController extends HttpServlet {
                     try {
                         Sujet sujet = sujetRepository.create(null, titre, annee,correspondant);
                         if (sujet != null) {
-                            // 🔑 LE LIEN EST FAIT ICI
                             if (correspondant != null) {
                             sujet.setIdCorrespondant(correspondant);
                             sujetRepository.save(sujet);

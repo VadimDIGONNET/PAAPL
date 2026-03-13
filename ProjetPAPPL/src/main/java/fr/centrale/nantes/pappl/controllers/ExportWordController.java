@@ -50,7 +50,6 @@ public class ExportWordController {
             Entreprise e = ds.getNomEntreprise();
         
             Correspondant c = s.getIdCorrespondant();
-
             Map<String, String> data = new HashMap<>();
             data.put("entreprise", e.getNom() != null ? e.getNom() : "");
             data.put("titre", s.getIntitule() != null ? s.getIntitule() : "");
