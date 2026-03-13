@@ -205,10 +205,10 @@ public class TuteurController {
                         tuteur.setNbSujetSouhaite(-1);
                     }
                     List<Sujet> sujetCollection = new ArrayList<>();
-                    for (int i = 4; i < 3+tuteur.getNbSujetSouhaite(); i++) { 
+                    for (int i = 4; i < 4+tuteur.getNbSujetSouhaite(); i++) { 
                         try {
                             int idSujet = Integer.parseInt(data[i].trim());
-                            Sujet sujet = SujetRepository.findById(idSujet).orElse(null);
+                            Sujet sujet = SujetRepository.findByNumeroCustom(idSujet);
                             if (sujet != null) {
                                 //Ajouter le numéro du sujet et l'id du tuteur dans Choix_Sujet une fois la table créer
                                 sujetCollection.add(sujet);
