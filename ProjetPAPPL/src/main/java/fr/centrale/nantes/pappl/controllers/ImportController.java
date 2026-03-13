@@ -5,6 +5,7 @@
 package fr.centrale.nantes.pappl.controllers;
 
 import fr.centrale.nantes.pappl.items.Annee;
+import fr.centrale.nantes.pappl.items.Correspondant;
 import fr.centrale.nantes.pappl.items.Entreprise;
 import fr.centrale.nantes.pappl.items.Sujet;
 import fr.centrale.nantes.pappl.repositories.AnneeRepository;
@@ -74,10 +75,6 @@ public class ImportController extends HttpServlet {
             System.err.println("Erreur lors de la lecture du fichier : " + e.getMessage());
             e.printStackTrace();
         }
-
-        // --- 2. RÉCUPÉRATION DES VARIABLES DEPUIS LA MAP ---
-        // Attention : Les clés ("entreprise", "titre"...) doivent être IDENTIQUES 
-        // aux Tags dans les propriétés Word (majuscules/minuscules comprises).
         
         String entreprisestr = data.getOrDefault("entreprise", "");
         String titre = data.getOrDefault("titre", "");
@@ -92,78 +89,59 @@ public class ImportController extends HttpServlet {
         String anneestr = data.getOrDefault("annee", "");
         String description = data.getOrDefault("description", "");
 
-        // Debug console
         System.out.println("=== DONNÉES EXTRAITES ===");
         System.out.println("Map complète : " + data);
 
-        // --- 3. LOGIQUE BASE DE DONNÉES ---
-
-        // A. Gestion de l'année
         int anneeint = Tools.getIntFromString(anneestr);
         Annee annee = null;
         if (anneeint > 0) {
             try {
-                // Utilisation de findById si possible, ou gestion d'erreur avec getReference
                  annee = anneeRepository.getReferenceById(anneeint);
             } catch(Exception ex) {
                 System.out.println("Année introuvable en base : " + anneeint);
             }
         }
 
-        // B. Gestion de l'Entreprise
         Entreprise entreprise = null;
         if (entreprisestr != null && !entreprisestr.isEmpty()) {
             try {
                 entreprise = entrepriseRepository.getReferenceById(entreprisestr);
             } catch(Exception ex) {
-                // Pas trouvée
             }
             
-            // Si elle n'existe pas, ON LA CRÉE
             if (entreprise == null) {
                 System.out.println("Création de l'entreprise : " + entreprisestr);
                 try {
-                    // On n'oublie pas le "entreprise =" pour récupérer l'objet créé
                     entreprise = entrepriseRepository.create(entreprisestr, null, null, null, null, description);
                 } catch (Exception e) {
                     System.err.println("Erreur création entreprise : " + e.getMessage());
                 }
             }
         }
-        
-        // C. Création du Sujet
-        if (titre != null && !titre.isEmpty() && annee != null) {
-            try {
-                Sujet sujet = sujetRepository.create(null, titre, annee);
-                
-                if (sujet != null) {
-                    int id = sujet.getNumero();
-                    descriptionSujetRepository.create(id, contexte, travail, livrable, entreprise,confidentiel);
-                    System.out.println(">>> SUCCÈS : Sujet " + id + " enregistré.");
-                } else {
-                    System.err.println("ERREUR : sujetRepository.create a renvoyé null.");
+        Correspondant correspondant = null;
+            if (nom != null && !nom.isEmpty() && entreprise != null) {
+                try {
+                    int tele = Tools.getIntFromString(tel);
+                    correspondant = correspondantRepository.create(nom, prenom, tele, mail, entreprise);
+                     System.out.println(">>> Correspondant enregistré avec succès.");
+                } catch (Exception e) {
+                    System.err.println("Erreur enregistrement Correspondant : " + e.getMessage());
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.err.println("ECHEC IMPORT : Titre vide ou Année ("+anneeint+") introuvable.");
-        }
-        if (nom != null && !nom.isEmpty() && entreprise != null) {
-            System.out.println("Enregistrement du correspondant : " + nom);
-            try {
-                // 1. On essaie de voir s'il existe déjà (pour éviter les doublons)
-                // (Adaptez cette ligne selon les méthodes disponibles dans votre Repository)
-                // Ex: findByNomAndEntreprise(nom, entreprise) ou juste create
-                
-                // 2. Création directe (Adaptez les arguments selon votre méthode create)
-                int tele = Tools.getIntFromString(tel);
-                correspondantRepository.create(nom, prenom, tele, mail, entreprise);
-                
-                System.out.println(">>> Correspondant enregistré avec succès.");
-                
-            } catch (Exception e) {
-                System.err.println("Erreur enregistrement Correspondant : " + e.getMessage());
+                if (titre != null && !titre.isEmpty() && annee != null) {
+                    try {
+                        Sujet sujet = sujetRepository.create(null, titre, annee,correspondant);
+                        if (sujet != null) {
+                            if (correspondant != null) {
+                            sujet.setIdCorrespondant(correspondant);
+                            sujetRepository.save(sujet);
+                            }
+                        int id = sujet.getNumero();
+                        descriptionSujetRepository.create(id, contexte, travail, livrable, entreprise, confidentiel);
+                        System.out.println(">>> SUCCÈS : Sujet " + id + " enregistré avec correspondant lié.");
+                        }
+                    } catch (Exception e) {
+                    e.printStackTrace();
+                } 
             }
         }
         
@@ -174,30 +152,24 @@ public class ImportController extends HttpServlet {
         return returned;
     }
 
-    // =========================================================================
-    // LA MÉTHODE MAGIQUE (À placer à l'intérieur de la classe)
-    // =========================================================================
+
     private void scanDocument(List<IBodyElement> elements, Map<String, String> data) {
         for (IBodyElement element : elements) {
             
-            // CAS 1 : C'est une grosse zone de texte (SDT)
             if (element instanceof XWPFSDT) {
                 extractDataFromSDT((XWPFSDT) element, data);
             } 
             
-            // CAS 2 : C'est un Tableau -> On doit descendre dedans
             else if (element instanceof XWPFTable) {
                 XWPFTable table = (XWPFTable) element;
                 for (XWPFTableRow row : table.getRows()) {
                     for (XWPFTableCell cell : row.getTableCells()) {
-                        // Récursivité : on scanne le contenu de la cellule
                         scanDocument(cell.getBodyElements(), data);
                     }
                 }
             }
             
-            // CAS 3 : C'est un Paragraphe -> On cherche les petites zones (Inline SDT)
-            // C'est ce qui manquait pour "Entreprise" et "Année"
+
             else if (element instanceof XWPFParagraph) {
                 XWPFParagraph p = (XWPFParagraph) element;
                 for (IRunElement run : p.getIRuns()) {
@@ -209,12 +181,10 @@ public class ImportController extends HttpServlet {
         }
     }
 
-    // Petite méthode utilitaire pour éviter de répéter le code d'extraction
     private void extractDataFromSDT(XWPFSDT controle, Map<String, String> data) {
         String tag = controle.getTag();
         if (tag != null && !tag.isEmpty()) {
             String value = controle.getContent().getText().trim();
-            // On ajoute dans la Map (ex: clé="entreprise", valeur="Total")
             data.put(tag, value);
         }
     }

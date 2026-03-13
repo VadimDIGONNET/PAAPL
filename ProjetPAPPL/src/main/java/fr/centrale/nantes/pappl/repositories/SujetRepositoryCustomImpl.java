@@ -11,10 +11,13 @@ package fr.centrale.nantes.pappl.repositories;
 import fr.centrale.nantes.pappl.items.ChoixEleveDomaine;
 import fr.centrale.nantes.pappl.items.Eleve;
 import fr.centrale.nantes.pappl.items.Annee;
+import fr.centrale.nantes.pappl.items.Correspondant;
 import fr.centrale.nantes.pappl.items.Sujet;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
@@ -27,11 +30,12 @@ public class SujetRepositoryCustomImpl implements SujetRepositoryCustom{
     private EntityManager entityManager;
 
     @Override
-    public Sujet create(Integer numeroSujet , String intitule, Annee annee) {
+    public Sujet create(Integer numeroSujet , String intitule, Annee annee,Correspondant correspondant) {
             Sujet item=new Sujet();
             item.setNumeroDuSujet(numeroSujet);
             item.setIntitule(intitule);
             item.setAnnee(annee);
+            item.setIdCorrespondant(correspondant);
             SujetRepository.saveAndFlush(item);
             //return DescriptionSujetRepository.getReferenceById(item.getNumero());
             return item;
@@ -55,11 +59,13 @@ public class SujetRepositoryCustomImpl implements SujetRepositoryCustom{
     }
     
     @Override
-    public Sujet update(Sujet sujet ,Integer numeroSujet , String intitule,Annee annee){
+    public Sujet update(Sujet sujet ,Integer numeroSujet , String intitule,Annee annee,Correspondant correspondant){
         if (!(intitule.isEmpty()) && (numeroSujet !=null) && (intitule !=null)){
             sujet.setIntitule(intitule);
             sujet.setNumeroDuSujet(numeroSujet);
             sujet.setAnnee(annee);
+            sujet.setIdCorrespondant(correspondant);
+            
             SujetRepository.saveAndFlush(sujet);
             return sujet;
             

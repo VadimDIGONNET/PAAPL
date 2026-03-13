@@ -18,6 +18,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  *
@@ -148,5 +149,34 @@ public class DescriptionSujet implements Serializable {
     public String toString() {
         return "fr.centrale.nantes.pappl.items.DescriptionSujet[ numero=" + numero + " ]";
     }
+  
     
+    public int compareTo(Object object) {
+            if (object == null) {
+                return 1;
+            } else if (! (object instanceof Eleve)){
+                return 1;
+            }
+
+            DescriptionSujet itemId = (DescriptionSujet) object;
+            if (this.getNomEntreprise().equals(itemId.getNomEntreprise())) {
+                return this.getNumero().compareTo(itemId.getNumero());
+            } else {
+                return this.getNomEntreprise().compareTo(itemId.getNomEntreprise());
+            }
+        }
+
+        public static Comparator<DescriptionSujet> getComparator() {
+            return new Comparator<DescriptionSujet>() {
+                @Override
+                public int compare(DescriptionSujet object1, DescriptionSujet object2) {
+                    if (object1 == null) {
+                        return -1;
+                    } else {
+                        return object1.compareTo(object2);
+                    }
+                }
+            };
+        }
 }
+

@@ -54,6 +54,18 @@
                     </c:forEach>
                 </select>
             </div>
+            
+            <div class="form-group">
+                <label for="correspondant">Correspondant :</label>
+                <select id="correspondant" name="correspondant" required>
+                    <option value="">-- Sélectionner un correspondant--</option>
+                    <c:forEach var="correspondant" items="${correspondantList}">
+                        <option value="${correspondant.nom}">
+                            ${correspondant.nom}
+                        </option>
+                    </c:forEach>
+                </select>
+            </div>
 
             <div class="form-group">
                 <label for="adresse"> Description du sujet :</label>
