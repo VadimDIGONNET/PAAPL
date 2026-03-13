@@ -190,7 +190,7 @@ public class EleveController {
             while ((line = br.readLine()) != null) {
                 // Utilisation d'une regex pour gérer virgule ou point-virgule
                 String[] data = line.split("[,;]"); 
-                if (data.length >= 12) {
+                if (data.length >= 8) {
                     Eleve eleve = new Eleve();
                     try {
                         eleve.setId(Integer.parseInt(data[0].trim().replaceAll("\\s", "")));
