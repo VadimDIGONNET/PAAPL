@@ -73,6 +73,11 @@
                     Retourner au menu
                 </button>
             </form>   
+            <form action="Exportsujetgeneral.do" method="POST">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    Exporter tous les sujets (Word)
+                </button>
+            </form>
         </div>
     </div>
 </body>
