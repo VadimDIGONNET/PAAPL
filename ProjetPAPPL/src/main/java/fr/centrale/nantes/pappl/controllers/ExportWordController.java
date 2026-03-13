@@ -29,6 +29,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 /**
  *
  * @author agach
@@ -90,55 +91,36 @@ public class ExportWordController {
     }
     
     @RequestMapping(value = "Exportsujetgeneral.do", method = RequestMethod.POST)
-    public ResponseEntity<byte[]> handleExportAll() {
+    public ResponseEntity<byte[]> handleExportAll(HttpServletRequest request) {
         try {
-            // 1. Récupérer toutes les descriptions de sujets
-            List<DescriptionSujet> allDescriptions = descriptionSujetRepository.findAll();
+            Object sessionAnnee = request.getSession().getAttribute("anneeCourante");
             List<Map<String, String>> allData = new ArrayList<>();
 
-            // 2. Préparer les données pour chaque sujet
-            for (DescriptionSujet ds : allDescriptions) {
-                Map<String, String> data = new HashMap<>();
-                Sujet s = ds.getSujet();
-                Entreprise e = ds.getNomEntreprise();
-                Correspondant c = (s != null) ? s.getIdCorrespondant() : null;
-
-                // Données du Sujet et de la Description
-                data.put("titre", s.getIntitule() != null ? s.getIntitule() : "");
-                data.put("contexte", (ds.getContexte() != null) ? ds.getContexte() : "");
-                data.put("travail", (ds.getTravailRealiser() != null) ? ds.getTravailRealiser() : "");
-                data.put("livrable", (ds.getLivrable() != null) ? ds.getLivrable() : "");
-                data.put("annee", (s != null && s.getAnnee() != null) ? String.valueOf(s.getAnnee().getAnnee()) : "");
-                data.put("confidentiel", ds.getConfidentiel() != null ? ds.getConfidentiel() : "");
-
-
-                // Données de l'Entreprise
-                if (e != null) {
-                    data.put("entreprise", (e.getNom() != null) ? e.getNom() : "");
-                    data.put("description", (e.getDescription() != null) ? e.getDescription() : "");
-                    data.put("adresse", (e.getAdresse() != null) ? e.getAdresse() : "");
-                    data.put("code_postal", (e.getCodePostal() != null) ? String.valueOf(e.getCodePostal()) : "");
-                    data.put("telentre", (e.getTel() != null) ? String.valueOf(e.getTel()) : "");
+            if (sessionAnnee == null) {
+                // Cas 1 : Récupération classique (renvoie List<DescriptionSujet>)
+                List<DescriptionSujet> listFull = descriptionSujetRepository.findAll();
+                for (DescriptionSujet ds : listFull) {
+                    allData.add(prepareDataMap(ds));
                 }
-
-                // Données du Correspondant
-                if (c != null) {
-                    data.put("nom", (c.getNom() != null) ? c.getNom() : "");
-                    data.put("prenom", (c.getPrenom() != null) ? c.getPrenom() : "");
-                    data.put("telephone", (c.getTel() != null) ? String.valueOf(c.getTel()) : "");
-                    data.put("email", (c.getEmail() != null) ? c.getEmail() : "");
-                }
+            } else {
+                // Cas 2 : Filtrage par année (renvoie List<Object[]>)
+                int anneeVar = (Integer) sessionAnnee;
+                List<Object[]> results = descriptionSujetRepository.findAllWithSujetWithAnnee(anneeVar);
             
-                allData.add(data);
+                for (Object[] row : results) {
+                    // row[0] est le Sujet, row[1] est la DescriptionSujet (selon votre SELECT ds.sujet, ds)
+                    DescriptionSujet ds = (DescriptionSujet) row[1]; 
+                    if (ds != null) {
+                        allData.add(prepareDataMap(ds));
+                    }
+                }
             }
 
-            // 3. Appel au service pour générer le document unique
-            // On passe le chemin du template pour que le service puisse l'ouvrir proprement à chaque boucle
+            // Appel au service (utilise le chemin String vers le template)
             byte[] docBytes = exportService.generateAllWordFromDb("/templates/modele_export.docx", allData);
-
-            // 4. Retourner le fichier
+        
             return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"Catalogue_Sujets_Complet.docx\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"Catalogue_Sujets.docx\"")
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(docBytes);
 
@@ -146,5 +128,34 @@ public class ExportWordController {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+    
+    private Map<String, String> prepareDataMap(DescriptionSujet ds) {
+        Map<String, String> data = new HashMap<>();
+        Sujet s = ds.getSujet();
+        Entreprise e = ds.getNomEntreprise();
+        Correspondant c = (s != null) ? s.getIdCorrespondant() : null;
+
+        data.put("intitule", (s != null) ? s.getIntitule() : "");
+        data.put("contexte", ds.getContexte() != null ? ds.getContexte() : "");
+        data.put("travail", ds.getTravailRealiser() != null ? ds.getTravailRealiser() : "");
+        data.put("livrable", ds.getLivrable() != null ? ds.getLivrable() : "");
+        data.put("annee", (s != null && s.getAnnee() != null) ? String.valueOf(s.getAnnee().getAnnee()) : "");
+    
+        if (e != null) {
+            data.put("entreprise", e.getNom() != null ? e.getNom() : "");
+            data.put("description", e.getDescription() != null ? e.getDescription() : "");
+            data.put("adresse", e.getAdresse() != null ? e.getAdresse() : "");
+            data.put("code_postal", e.getCodePostal() != null ? String.valueOf(e.getCodePostal()) : "");
+            data.put("telentre", e.getTel() != null ? String.valueOf(e.getTel()) : "");
+        }
+
+        if (c != null) {
+            data.put("nom", c.getNom());
+            data.put("prenom", c.getPrenom());
+            data.put("telephone", c.getTel() != null ? String.valueOf(c.getTel()) : "");
+            data.put("email", c.getEmail());
+        }
+        return data;
     }
 }
