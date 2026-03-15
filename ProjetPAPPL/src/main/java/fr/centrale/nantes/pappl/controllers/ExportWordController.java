@@ -136,7 +136,9 @@ public class ExportWordController {
         Entreprise e = ds.getNomEntreprise();
         Correspondant c = (s != null) ? s.getIdCorrespondant() : null;
 
-        data.put("intitule", (s != null) ? s.getIntitule() : "");
+        data.put("titre", (s != null) ? s.getIntitule() : "");
+        data.put("confidentiel", ds.getConfidentiel() != null ? ds.getConfidentiel() : "");
+
         data.put("contexte", ds.getContexte() != null ? ds.getContexte() : "");
         data.put("travail", ds.getTravailRealiser() != null ? ds.getTravailRealiser() : "");
         data.put("livrable", ds.getLivrable() != null ? ds.getLivrable() : "");
