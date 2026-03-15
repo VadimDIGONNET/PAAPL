@@ -28,11 +28,8 @@ Connectez-vous au VPN de Centrale Nantes, puis lancez le serveur.
 |---|---|
 | Langage | Java (Jakarta EE) |
 | Framework Web | Spring MVC 4.x |
-| Persistance | JPA 3.0 avec EclipseLink |
 | Base de données | PostgreSQL (serveur Centrale Nantes) |
 | Vues | JSP + jQuery 3.7.1 |
-| Manipulation Word | Apache POI (XWPF) |
-| Manipulation Excel | Apache POI (XSSF) |
 | Serveur d'application | Apache Tomcat 10+ |
 
 ---
@@ -95,22 +92,13 @@ pappl/
 ```xml
 <property name="jakarta.persistence.jdbc.url"      value="jdbc:postgresql://appli-pfe.ec-nantes.fr:5432/p2t"/>
 <property name="jakarta.persistence.jdbc.user"     value="p2t"/>
-<property name="jakarta.persistence.jdbc.password" value="hzuwy"/>
+<property name="jakarta.persistence.jdbc.password" value="*****"/>
 <property name="jakarta.persistence.jdbc.driver"   value="org.postgresql.Driver"/>
 ```
 
 > ⚠️ Ne pas modifier ces valeurs. La connexion requiert le **VPN actif**.
 
-### Résolution des vues — `dispatcher-servlet.xml`
 
-Les JSP sont résolues depuis `/WEB-INF/jsp/` avec le suffixe `.jsp`.
-
-### Routing HTTP — `web.xml`
-
-Toutes les URLs en `*.do` sont routées vers le `DispatcherServlet` Spring.  
-Taille maximale d'upload : **5 Mo**. Timeout de session : **30 minutes**.
-
----
 
 ## 🚀 Lancement
 
@@ -138,24 +126,6 @@ Vous serez redirigé automatiquement vers `main.do`.
 
 ---
 
-## 🧭 Fonctionnement général
-
-L'application suit le pattern **Model-View-Controller** de Spring :
-```
-Navigateur → *.do → DispatcherServlet → Controller → Repository → BDD PostgreSQL
-                                              ↓
-                                         Vue JSP ← ModelAndView
-```
-
-1. L'utilisateur soumet un formulaire (URL en `.do`)
-2. Spring route vers le bon `@Controller` via `@RequestMapping`
-3. Le contrôleur appelle les repositories pour lire/écrire en base
-4. Il retourne un `ModelAndView` avec les données
-5. Le résolveur charge la JSP correspondante
-
-> Un **filtre par année** est stocké en session (`anneeCourante`) et s'applique à tous les listages de sujets.
-
----
 
 ## 📌 Fonctionnalités
 
