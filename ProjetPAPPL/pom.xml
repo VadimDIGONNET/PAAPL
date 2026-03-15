@@ -12,6 +12,8 @@
 <jakartaee>10.0.0</jakartaee>
 <springversion>6.2.7</springversion>
 <opensaml.version>4.2.0</opensaml.version>
+<sonar.projectKey>bzSafae_PAPPL</sonar.projectKey><sonar.organization>bzsafae</sonar.organization>
+<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 </properties>
 <developers>
 <developer>
