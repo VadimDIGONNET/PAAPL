@@ -193,6 +193,7 @@ public class MainController {
                 returned.addObject("DescriptionSujet", descriptionSujet);
                 returned.addObject("sujet", sujet);
 
+                returned.addObject("correspondantList", correspondantRepository.findAll());
                 returned.addObject("entrepriseList", entrepriseRepository.findAll());
             } catch (Exception ex) {
                 // Si le sujet n'existe pas
@@ -205,6 +206,7 @@ public class MainController {
             // Aucun ID fourni, créer un nouveau correspondant
             returned = new ModelAndView("ajout-sujet");
             returned.addObject("descriptionSujet", new DescriptionSujet());
+            returned.addObject("correspondantList", correspondantRepository.findAll());
             returned.addObject("entrepriseList", entrepriseRepository.findAll());
         }
 

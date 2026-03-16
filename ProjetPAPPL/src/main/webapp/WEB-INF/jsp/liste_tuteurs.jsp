@@ -6,6 +6,13 @@
     <head>
         <meta charset="UTF-8">
         <title>Liste des tuteurs</title>
+
+        <link rel="stylesheet"
+              href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="js/jquery-3.7.1.js"></script>
+
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
         <link href="css/liste.css" type="text/css" rel="stylesheet" />
     <div class="logo-container"> <a href="#"> 
             <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
@@ -20,7 +27,7 @@
             Ajouter un tuteur
         </button>
     </form>
-    <table>
+    <table id="tableTuteurs">
         <thead>
             <tr>
                 <th>Nom</th>
@@ -28,6 +35,7 @@
                 <th>Nombre de sujet souhaite</th>
                 <th>Année</th>
                 <th>Sujets souhaités</th>
+                <<th></th>
             </tr>
         </thead>
         <tbody>
@@ -53,6 +61,7 @@
 
                 </tr>
             </c:forEach>
+
         </tbody>
     </table>
     <div class="col-md-4 bg-primary m-2" style="">
@@ -64,5 +73,14 @@
             </form>   
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#tableTuteurs').DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json"
+                }
+            });
+        });
+    </script>
 </body>
 </html>
