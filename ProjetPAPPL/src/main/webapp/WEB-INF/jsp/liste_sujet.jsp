@@ -19,7 +19,7 @@
 </head>
 <body>
 
-    <h2>Liste des sujets</h2>
+    <h1>Liste des sujets</h1>
 
     <form action="createsujet.do" method="post">
         <button type="submit" name="ajouter un sujet" class="btn btn-primary btn-lg">

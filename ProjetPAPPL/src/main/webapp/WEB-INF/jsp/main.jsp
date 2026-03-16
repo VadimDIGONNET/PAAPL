@@ -13,9 +13,8 @@
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </head>
-    <body>
-
-        
+    <%-- Correction 1 : On utilise la variable envoyée par Spring pour la classe du body --%>
+    <body class="${themeClass}">
 
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" aria-label="Navigation principale">
             <div class="container-fluid">
@@ -262,14 +261,14 @@
                         </p>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                        <h5 class="mb-4">Ressources</h5>
+                        <h3 class="mb-4">Ressources</h3>
                         <ul class="list-unstyled">
                             <li class="mb-2"><a href="#" class="text-white-50">Guide Utilisateur</a></li>
-                            <li class="mb-2"><a href="#" class="text-white-50">Contact</a></li>
+                            <li class="mb-2"><a href="https://gemini.google.com" class="text-white-50">Contact</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                        <h5 class="mb-4">À Propos</h5>
+                        <h3 class="mb-4">À Propos</h3>
                         <ul class="list-unstyled">
                             <li class="mb-2"><a href="equipe.jsp" class="text-white-50">L'équipe projet</a></li>
                             <li class="mb-2"><a href="#" class="text-white-50">Mentions Légales</a></li>
@@ -285,9 +284,20 @@
         </footer>
 
 
+        <%-- Correction 3 : Script JavaScript pour le bouton --%>
+        <script>
+            const btn = document.getElementById('theme-btn');
+            btn.addEventListener('click', () => {
+                // Change l'apparence immédiatement
+                document.body.classList.toggle('dark-mode');
+                
+                // Sauvegarde le choix côté Spring (Session)
+                const isDark = document.body.classList.contains('dark-mode');
+                fetch('setTheme.do?mode=' + (isDark ? 'dark' : 'light'), { method: 'POST' });
+            });
+        </script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     </body>
 </html>
-
-
