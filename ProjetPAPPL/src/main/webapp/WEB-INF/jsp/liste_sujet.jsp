@@ -78,6 +78,11 @@
                     Exporter tous les sujets (Word)
                 </button>
             </form>
+            <form action="Exportmodelevide.do" method="POST">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    Exporter feuille modele
+                </button>
+            </form>
         </div>
     </div>
 </body>

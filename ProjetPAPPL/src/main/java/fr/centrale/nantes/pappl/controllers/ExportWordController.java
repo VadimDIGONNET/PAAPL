@@ -158,4 +158,17 @@ public class ExportWordController {
         }
         return data;
     }
+    
+    @RequestMapping(value="Exportmodelevide.do", method=RequestMethod.POST)
+    public ResponseEntity<byte[]> handleexportmodel(HttpServletRequest request) throws FileNotFoundException, IOException {
+        Map<String, String> data = new HashMap<>();
+        InputStream is = getClass().getResourceAsStream("/templates/mon_modele.docx");
+        if (is == null) throw new FileNotFoundException("Modèle Word introuvable");
+        byte[] docBytes = exportService.generateWordFromDb(is, data);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"Modele_sujet.docx\"")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(docBytes);
+    }
+
 }
