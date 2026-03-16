@@ -54,6 +54,16 @@ hr {
     text-align: right; 
 }
 
+/* CORRECTION CONTRASTE : focus visible pour la navigation clavier */
+.nav-link:focus,
+button:focus,
+a:focus,
+input:focus,
+select:focus {
+    outline: 3px solid #0066CC;
+    outline-offset: 2px;
+}
+
 
 
 /* CARTES */
@@ -73,9 +83,10 @@ hr {
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 .bg-primary { background-color: #0066CC !important; color: white; }
-.bg-secondary { background-color: #FFD700 !important; color: white; }
-.bg-dark { background-color: #343a40 !important; opacity: 0.9; color: white; } 
-
+/* CORRECTION CONTRASTE : bg-secondary (jaune) avec texte NOIR pour ratio suffisant */
+.bg-secondary { background-color: #FFD700 !important; color: #000000 !important; }
+ 
+.bg-dark { background-color: #343a40 !important; opacity: 0.9; color: white; }
 
 /* BOUTONS */
 .btn-lg {
@@ -113,7 +124,17 @@ form .btn-secondary.btn-lg:hover {
     border: 2px solid #FFD700;
 }
 
-
+/* CORRECTION CONTRASTE : texte noir sur fond jaune */
+form .btn-secondary.btn-lg {
+    background-color: #FFD700;
+    color: #000000;
+    border: 2px solid #000000;
+}
+form .btn-secondary.btn-lg:hover {
+    background-color: #0066CC;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+}
 /* LOGO */
 .logo-container {
     position: fixed;
@@ -136,7 +157,10 @@ form .btn-secondary.btn-lg:hover {
 .bg-info .text-primary {
     color: #FFD700 !important; 
 }
-
+/* CORRECTION CONTRASTE : blanc sur fond bleu (au lieu de jaune) */
+.bg-info .text-primary {
+    color: #FFFFFF !important;
+}
 /* FOOTER */
 footer, .py-5 {
     background-color: white;
