@@ -14,7 +14,7 @@
 <body>
 
     <div class="container">
-        <h2>
+        <h1>
             <c:choose>
                 <c:when test="${sujet.numero != null}">
                     Modifier le sujet
@@ -23,7 +23,7 @@
                     Ajouter un nouveau sujet
                 </c:otherwise>
             </c:choose>
-        </h2>
+        </h1>
 
         <form action="savesujet.do" method="POST">
             <input type="hidden" name="id" value=${sujet.numero}>

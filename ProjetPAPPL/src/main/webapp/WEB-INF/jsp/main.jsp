@@ -77,7 +77,7 @@
         
         <div class="py-4" id="sujets">
             <div class="container">
-                <h2>Sujets</h2>
+                <h1>Sujets</h1>
                 <hr>
                 <div class="row justify-content-center">
                     <div class="col-md-4 bg-primary m-2">
@@ -85,9 +85,9 @@
                             <button type="submit" name="create_sujet" class="btn btn-primary btn-lg">Ajouter</button>
                         </form>
                     </div>
-                    <div class="col-md-4 bg-primary m-2">
+                    <div class="col-md-4 bg-secondary m-2">
                         <form action="sujet.do" method="POST">
-                            <button type="submit" name="sujet" class="btn btn-primary btn-lg">Liste</button>
+                            <button type="submit" name="sujet" class="btn btn-secondary btn-lg">Liste</button>
                         </form>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
 
         <div class="py-4" id="tuteurs">
             <div class="container">
-                <h2>Tuteurs</h2>
+                <h3>Tuteurs</h3>
                 <hr>
                 <div class="row justify-content-center">
                     <div class="col-md-4 bg-primary m-2">
@@ -157,7 +157,7 @@
 
         <div class="py-4" id="correspondants">
             <div class="container">
-                <h2>Correspondants</h2>
+                <h4>Correspondants</h4>
                 <hr>
                 <div class="row justify-content-center">
                     <div class="col-md-4 bg-primary m-2">
@@ -176,7 +176,7 @@
 
         <div class="py-4" id="partenaires">
             <div class="container">
-                <h2>Partenaires</h2>
+                <h5>Partenaires</h5>
                 <hr>
                 <div class="row justify-content-center">
                     <div class="col-md-4 bg-primary m-2">
@@ -210,7 +210,7 @@
                             <img class="img-fluid" src="img/LogoECN.png" alt="logo">
                         </div>
                         <div class="col-md-5 align-self-center p-4 offset-md-1">
-                            <h4>Centrale Nantes</h4>
+                            <h6>Centrale Nantes</h6>
                             <p class="mb-4 text-primary"> 1 Rue de la Noë,<br> 44300 Nantes, France<br> +33 (0)2 40 37 16 00 </p>
                             <div class="d-flex justify-content-start">
                                 <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
@@ -233,14 +233,14 @@
                         </p>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                        <h5 class="mb-4">Ressources</h5>
+                        <h7 class="mb-4">Ressources</h7>
                         <ul class="list-unstyled">
                             <li class="mb-2"><a href="#" class="text-white-50">Guide Utilisateur</a></li>
                             <li class="mb-2"><a href="#" class="text-white-50">Contact</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                        <h5 class="mb-4">À Propos</h5>
+                        <h8 class="mb-4">À Propos</h8>
                         <ul class="list-unstyled">
                             <li class="mb-2"><a href="equipe.jsp" class="text-white-50">L'équipe projet</a></li>
                             <li class="mb-2"><a href="#" class="text-white-50">Mentions Légales</a></li>
