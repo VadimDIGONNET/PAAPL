@@ -13,9 +13,8 @@
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </head>
-    <body>
-
-        
+    <%-- Correction 1 : On utilise la variable envoyée par Spring pour la classe du body --%>
+    <body class="${themeClass}">
 
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container-fluid">
@@ -24,6 +23,12 @@
                         <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> 
                     </a>
                 </div>
+                
+                <%-- Correction 2 : Le bouton pour basculer le thème --%>
+                <button id="theme-btn" class="btn btn-dark" style="position: fixed; top: 80px; left: 15px; z-index: 2000;">
+                    🌓 Mode
+                </button>
+
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button> 
@@ -39,7 +44,6 @@
             </div>
         </nav>
 
-        
         <div class="py-4">
             <div class="container">
                 <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
@@ -47,7 +51,6 @@
                         <strong>Année sélectionnée :</strong>
                         ${sessionScope.anneeCourante}
                     </p>
-
                     <form action="clearAnnee.do" method="POST">
                         <button type="submit">Supprimer le filtre</button>
                     </form>
@@ -57,9 +60,7 @@
                             <select id="annee" name="annee" required>
                                 <option value="">-- Choisir une année --</option>
                                 <c:forEach var="annee" items="${anneeList}">
-                                    <option value="${annee.annee}">
-                                        ${annee.annee}
-                                    </option>
+                                    <option value="${annee.annee}">${annee.annee}</option>
                                 </c:forEach>
                             </select>
                             <button type="submit">Filtrer</button>
@@ -118,12 +119,11 @@
                     </div>
                     <form action="importeleve.do" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
-                            <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                            <label for="file_eleve" class="form-label">Sélectionnez un fichier CSV :</label>
+                            <input type="file" class="form-control" id="file_eleve" name="file" accept=".csv" required>
                         </div>
                         <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
                     </form>
-                    <p th:text="${message}"></p>
                 </div>
             </div>
         </div>
@@ -145,12 +145,11 @@
                     </div>
                     <form action="importtuteur.do" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
-                            <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                            <label for="file_tuteur" class="form-label">Sélectionnez un fichier CSV :</label>
+                            <input type="file" class="form-control" id="file_tuteur" name="file" accept=".csv" required>
                         </div>
                         <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
                     </form>
-                    <p th:text="${message}"></p>
                 </div>
             </div>
         </div>
@@ -191,18 +190,16 @@
                     </div>
                     <form action="importentreprise.do" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
-                            <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                            <label for="file_entreprise" class="form-label">Sélectionnez un fichier CSV :</label>
+                            <input type="file" class="form-control" id="file_entreprise" name="file" accept=".csv" required>
                         </div>
                         <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
                     </form>
-                    <p th:text="${message}"></p>
                 </div>
             </div>
         </div>
 
-
-        <footer class="bg-dark text-white py-5">
+         <footer class="bg-dark text-white py-5">
             <div class="bg-info p-4">
                 <div class="container" style="color:white">
                     <div class="row">
@@ -256,9 +253,20 @@
         </footer>
 
 
+        <%-- Correction 3 : Script JavaScript pour le bouton --%>
+        <script>
+            const btn = document.getElementById('theme-btn');
+            btn.addEventListener('click', () => {
+                // Change l'apparence immédiatement
+                document.body.classList.toggle('dark-mode');
+                
+                // Sauvegarde le choix côté Spring (Session)
+                const isDark = document.body.classList.contains('dark-mode');
+                fetch('setTheme.do?mode=' + (isDark ? 'dark' : 'light'), { method: 'POST' });
+            });
+        </script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     </body>
 </html>
-
-

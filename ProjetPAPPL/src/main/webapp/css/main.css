@@ -1,3 +1,5 @@
+/* --- TON CSS DE BASE (SANS RIEN SUPPRIMER) --- */
+
 body {
     background-color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -53,8 +55,6 @@ hr {
     width: 100%;
     text-align: right; 
 }
-
-
 
 /* CARTES */
 .col-md-4 {
@@ -113,7 +113,6 @@ form .btn-secondary.btn-lg:hover {
     border: 2px solid #FFD700;
 }
 
-
 /* LOGO */
 .logo-container {
     position: fixed;
@@ -147,3 +146,76 @@ footer, .py-5 {
     height: 1.5rem;
     filter: invert(0.3);
 }
+
+/*LE MODE NUANCES DE GRIS*/
+
+:root {
+    /* Couleurs par défaut (Clair) */
+    --bg-body: white;
+    --text-color: #333;
+    --title-color: #0066CC; /* Bleu d'origine */
+    --accent-color: #FFD700; /* Jaune d'origine */
+    --card-bg: white;
+    --footer-bg: white;
+    --border-color: #e9ecef;
+    --icon-filter: invert(0.3); /* Icônes sombres */
+}
+
+
+.dark-mode {
+    --bg-body: #f4f4f4; /* Gris très clair pour le fond */
+    --text-color: #333; /* Texte reste sombre pour le contraste */
+    --title-color: #555; /* Titres en gris moyen */
+    --accent-color: #aaa; /* Accents (hr) en gris clair */
+    --card-bg: white; /* Cartes restent blanches pour ressortir */
+    --footer-bg: #e0e0e0; /* Footer gris un peu plus soutenu */
+    --border-color: #ccc; /* Bordures gris moyen */
+    --icon-filter: grayscale(100%) opacity(0.7); /* Icônes en gris et adoucies */
+}
+
+/* Application des variables aux éléments existants */
+body {
+    background-color: var(--bg-body);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition douce */
+}
+
+h2 {
+    color: var(--title-color);
+}
+
+hr {
+    border-top: 3px solid var(--accent-color);
+}
+
+.col-md-4 {
+    background-color: var(--card-bg);
+    /* Optionnel : adoucir l'ombre en mode gris */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+footer, .py-5 {
+    background-color: var(--footer-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+.icon {
+    filter: var(--icon-filter);
+}
+
+form .btn-secondary.btn-lg {
+    background-color: var(--accent-color);
+    color: var(--card-bg);
+    border: 2px solid #0066CC;
+}
+
+/* Correction pour les bordures et textes spécifiques en mode gris */
+.dark-mode .py-4 {
+    border-color: var(--border-color);
+}
+
+/* Adoucir les boutons colorés en mode gris */
+.dark-mode .bg-primary { background-color: #777 !important; }
+.dark-mode .bg-secondary { background-color: #999 !important; }
+.dark-mode .bg-dark { background-color: #555 !important; }
+.dark-mode .bg-info { background-color: #666 !important; }
