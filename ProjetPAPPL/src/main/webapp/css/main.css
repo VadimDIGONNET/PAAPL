@@ -54,6 +54,16 @@ hr {
     text-align: right; 
 }
 
+/* CORRECTION CONTRASTE : focus visible pour la navigation clavier */
+.nav-link:focus,
+button:focus,
+a:focus,
+input:focus,
+select:focus {
+    outline: 3px solid #0066CC;
+    outline-offset: 2px;
+}
+
 
 
 /* CARTES */
@@ -73,9 +83,10 @@ hr {
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 .bg-primary { background-color: #0066CC !important; color: white; }
-.bg-secondary { background-color: #FFD700 !important; color: white; }
-.bg-dark { background-color: #343a40 !important; opacity: 0.9; color: white; } 
-
+/* CORRECTION CONTRASTE : bg-secondary (jaune) avec texte NOIR pour ratio suffisant */
+.bg-secondary { background-color: #FFD700 !important; color: #000000 !important; }
+ 
+.bg-dark { background-color: #343a40 !important; opacity: 0.9; color: white; }
 
 /* BOUTONS */
 .btn-lg {
@@ -91,29 +102,31 @@ hr {
 }
 .btn-lg:hover {
     background-color: #FFD700;
-    color: #0066CC;
+    color: #0066CC !important;;
 }
 form .btn-primary.btn-lg {
     background-color: transparent;
-    color: white;
+    color: white !important;
     border: 2px solid white;
 }
 form .btn-primary.btn-lg:hover {
     background-color: #FFD700;
-    color: #0066CC;
+    color: #0066CC !important;
 }
+
+
+
+/* CORRECTION CONTRASTE : texte noir sur fond jaune */
 form .btn-secondary.btn-lg {
     background-color: #FFD700;
-    color: #0066CC;
-    border: 2px solid #0066CC;
+    color: #000000 !important;
+    border: 2px solid #000000;
 }
 form .btn-secondary.btn-lg:hover {
     background-color: #0066CC;
-    color: #FFD700;
-    border: 2px solid #FFD700;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF;
 }
-
-
 /* LOGO */
 .logo-container {
     position: fixed;
@@ -129,14 +142,17 @@ form .btn-secondary.btn-lg:hover {
 /* INFO */
 .bg-info {
     background-color: #0066CC !important;
-    color: white;
+    color: white !important;
     border-radius: 15px;
     margin: 20px;
 }
 .bg-info .text-primary {
     color: #FFD700 !important; 
 }
-
+/* CORRECTION CONTRASTE : blanc sur fond bleu (au lieu de jaune) */
+.bg-info .text-primary {
+    color: #FFFFFF !important;
+}
 /* FOOTER */
 footer, .py-5 {
     background-color: white;
@@ -147,3 +163,76 @@ footer, .py-5 {
     height: 1.5rem;
     filter: invert(0.3);
 }
+
+/*LE MODE NUANCES DE GRIS*/
+
+:root {
+    /* Couleurs par défaut (Clair) */
+    --bg-body: white;
+    --text-color: #333;
+    --title-color: #0066CC; /* Bleu d'origine */
+    --accent-color: #FFD700; /* Jaune d'origine */
+    --card-bg: white;
+    --footer-bg: white;
+    --border-color: #e9ecef;
+    --icon-filter: invert(0.3); /* Icônes sombres */
+}
+
+
+.dark-mode {
+    --bg-body: #f4f4f4; /* Gris très clair pour le fond */
+    --text-color: #333; /* Texte reste sombre pour le contraste */
+    --title-color: #555; /* Titres en gris moyen */
+    --accent-color: #aaa; /* Accents (hr) en gris clair */
+    --card-bg: white; /* Cartes restent blanches pour ressortir */
+    --footer-bg: #e0e0e0; /* Footer gris un peu plus soutenu */
+    --border-color: #ccc; /* Bordures gris moyen */
+    --icon-filter: grayscale(100%) opacity(0.7); /* Icônes en gris et adoucies */
+}
+
+/* Application des variables aux éléments existants */
+body {
+    background-color: var(--bg-body);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition douce */
+}
+
+h2 {
+    color: var(--title-color);
+}
+
+hr {
+    border-top: 3px solid var(--accent-color);
+}
+
+.col-md-4 {
+    background-color: var(--card-bg);
+    /* Optionnel : adoucir l'ombre en mode gris */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+footer, .py-5 {
+    background-color: var(--footer-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+.icon {
+    filter: var(--icon-filter);
+}
+
+form .btn-secondary.btn-lg {
+    background-color: var(--accent-color);
+    color: var(--card-bg) !important;
+    border: 2px solid #0066CC;
+}
+
+/* Correction pour les bordures et textes spécifiques en mode gris */
+.dark-mode .py-4 {
+    border-color: var(--border-color);
+}
+
+/* Adoucir les boutons colorés en mode gris */
+.dark-mode .bg-primary { background-color: #777 !important; }
+.dark-mode .bg-secondary { background-color: #999 !important; }
+.dark-mode .bg-dark { background-color: #555 !important; }
+.dark-mode .bg-info { background-color: #666 !important; }

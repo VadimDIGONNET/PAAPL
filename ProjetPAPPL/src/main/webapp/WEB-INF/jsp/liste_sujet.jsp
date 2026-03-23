@@ -7,6 +7,11 @@
     <head>
         <meta charset="UTF-8">
         <title>Liste des sujets</title>
+        <link rel="stylesheet"
+              href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="js/jquery-3.7.1.js"></script>
+
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
         <link href="css/liste.css" type="text/css" rel="stylesheet" />
     <div class="logo-container"> <a href="#"> 
             <img src="img/LogoECN.png" alt="Logo Centrale Nantes" class="fixed-logo"> </a>
@@ -14,14 +19,14 @@
 </head>
 <body>
 
-    <h2>Liste des sujets</h2>
+    <h1>Liste des sujets</h1>
 
     <form action="createsujet.do" method="post">
         <button type="submit" name="ajouter un sujet" class="btn btn-primary btn-lg">
             Ajouter un sujet
         </button>
     </form>
-    <table>
+    <table id="tableSujets">
         <thead>
             <tr>
                 <th>Numéro de sujet</th>
@@ -41,7 +46,9 @@
                 <tr>
                     <td>${sujet.numeroDuSujet}</td>
                     <td>${sujet.intitule}</td>
-                    <td>${desc.contexte}</td>
+                    <td>
+                        ${desc.contexte}
+                    </td>
                     <td>${desc.travailRealiser}</td>
                     <td>${desc.livrable}</td>
                     <td >${desc.nomEntreprise.nom}</td>
@@ -55,11 +62,11 @@
                                 <img src="img/delete.png" alt="delete" class="icon" />
                             </button>
                             <button name="export" class="btn" formaction="ExportProjet.do" formmethod="POST">
-                            <input type="hidden" name="id" value="${sujet.numero}" />
-                                 Exporter Word
+                                <input type="hidden" name="id" value="${sujet.numero}" />
+                                Exporter Word
                             </button>
                         </form>
-                        
+
 
                     </td>
                 </tr>
@@ -78,8 +85,22 @@
                     Exporter tous les sujets (Word)
                 </button>
             </form>
+            <form action="Exportmodelevide.do" method="POST">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    Exporter feuille modele
+                </button>
+            </form>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#tableSujets').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json"
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 

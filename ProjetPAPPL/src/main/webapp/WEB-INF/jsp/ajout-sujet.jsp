@@ -14,16 +14,16 @@
 <body>
 
     <div class="container">
-        <h2>
-        <c:choose>
-            <c:when test="${sujet.numero != null}">
-                Modifier le sujet
-            </c:when>
-            <c:otherwise>
-                Ajouter un nouveau sujet
-            </c:otherwise>
-        </c:choose>
-        </h2>
+        <h1>
+            <c:choose>
+                <c:when test="${sujet.numero != null}">
+                    Modifier le sujet
+                </c:when>
+                <c:otherwise>
+                    Ajouter un nouveau sujet
+                </c:otherwise>
+            </c:choose>
+        </h1>
 
         <form action="savesujet.do" method="POST">
             <input type="hidden" name="id" value=${sujet.numero}>
@@ -33,7 +33,7 @@
                 <label for="nom">Intitulé du sujet :</label>
                 <input type="text" id="intitule" name="intitule" value="${sujet.intitule}" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="nom">Numero de sujet :</label>
                 <input type="number" id="numeroSujet" name="numeroSujet" value="${sujet.numeroDuSujet}" required>
@@ -45,7 +45,7 @@
                     <option value="">-- Sélectionner une entreprise --</option>
                     <c:forEach var="entreprise" items="${entrepriseList}">
                         <option value="${entreprise.nom}"
-                                <c:if test="${DescriptionSujet.nomEntreprise != null && DescriptionSujet.nomEntreprise == entreprise.nom}">
+                                <c:if test="${sujet.descriptionSujet.nomEntreprise.nom != null && sujet.descriptionSujet.nomEntreprise.nom == entreprise.nom}">
                                     selected
                                 </c:if>
                                 >
@@ -54,13 +54,17 @@
                     </c:forEach>
                 </select>
             </div>
-            
+
             <div class="form-group">
                 <label for="correspondant">Correspondant :</label>
                 <select id="correspondant" name="correspondant" required>
                     <option value="">-- Sélectionner un correspondant--</option>
                     <c:forEach var="correspondant" items="${correspondantList}">
-                        <option value="${correspondant.nom}">
+                        <option value="${correspondant.nom}"
+                                <c:if test="${sujet.idCorrespondant.nom != null && sujet.idCorrespondant.nom == correspondant.nom}">
+                                    selected
+                                </c:if>
+                                >
                             ${correspondant.nom}
                         </option>
                     </c:forEach>
@@ -81,12 +85,12 @@
                 <label for="adresse"> Livrables attendus :</label>
                 <input type="text" id="livrable" name="livrable" value="${DescriptionSujet.livrable}">
             </div>
-            
+
             <div class="form-group">
                 <label for="confidentiel"> Confidentialité :</label>
                 <input type="text" id="confidentiel" name="confidentiel" value="${DescriptionSujet.confidentiel}">
             </div>
-            
+
             <div class="form-group">
                 <label for="annee"> Année :</label>
                 <input type="text" id="annee" name="annee" value="${Sujet.annee}">

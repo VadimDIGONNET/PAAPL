@@ -12,6 +12,11 @@
 <jakartaee>10.0.0</jakartaee>
 <springversion>6.2.7</springversion>
 <opensaml.version>4.2.0</opensaml.version>
+<sonar.projectKey>bzSafae_PAPPL</sonar.projectKey><sonar.organization>bzsafae</sonar.organization>
+<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+<sonar.coverage.jacoco.xmlReportPaths>
+        ${project.build.directory}/site/jacoco/jacoco.xml
+    </sonar.coverage.jacoco.xmlReportPaths>
 </properties>
 <developers>
 <developer>
@@ -27,6 +32,7 @@
 <version>${jakartaee}</version>
 <scope>provided</scope>
 </dependency>
+
 <dependency>
 <groupId>jakarta.platform</groupId>
 <artifactId>jakarta.jakartaee-web-api</artifactId>
@@ -170,6 +176,12 @@
     <version>1.3</version>
     <scope>test</scope>
   </dependency>
+  <dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-core</artifactId>
+    <version>5.3.1</version>
+    <scope>test</scope>
+</dependency>
 </dependencies>
 <build>
 <plugins>
@@ -192,6 +204,25 @@
 <artifactId>maven-surefire-plugin</artifactId>
 <version>3.0.0-M5</version>
 </plugin>
+   <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.11</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
 </plugins>
 </build>
 </project>

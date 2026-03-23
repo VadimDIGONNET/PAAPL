@@ -31,6 +31,7 @@ public interface CorrespondantRepository extends JpaRepository<Correspondant, In
     @Query("SELECT c FROM Correspondant c WHERE c.entreprise = :entreprise")
     List<Correspondant> findByEntreprise(@Param("entreprise") Entreprise entreprise);
     
+    @Query("SELECT c FROM Correspondant c WHERE c.nom = :nom")
     Correspondant findByNom(String nom);
 
 }
