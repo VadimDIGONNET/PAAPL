@@ -275,7 +275,7 @@
                             <h3 class="mb-4">Ressources</h3>
                             <ul class="list-unstyled">
                                 <li class="mb-2"><a href="guide.do" class="text-white-50">Guide Utilisateur</a></li>
-                                <li class="mb-2"><a href=" " class="text-white-50">Contact</a></li>
+                                <li class="mb-2"><a href="https://gemini.google.com" class="text-white-50">Contact</a></li>
                             </ul>
                         </div>
                         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">

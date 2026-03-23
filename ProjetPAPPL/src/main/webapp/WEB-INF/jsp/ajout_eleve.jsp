@@ -47,7 +47,7 @@
             <label for="description">Numero Sujet</label>
 <input id="sujet" type="number" name="numero_sujet" 
        value="${eleve.numeroSujet}" />        </div>
-
+       
         <button type="submit">Enregistrer l'eleve</button>
         <a href="main.do" style="margin-left: 10px; color: #666; text-decoration: none;">Annuler</a>
     </form>

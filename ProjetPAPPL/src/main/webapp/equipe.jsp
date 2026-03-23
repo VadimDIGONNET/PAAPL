@@ -26,7 +26,7 @@
             <tr>
                 <td>Vadim Digonnet</td>
                 <td class="text-center">
-                    <a href="https://www.linkedin.com/in/vadim-digonnet-6931b0334/" target="_blank" class="btn btn-linkedin">
+                    <a href="https://www.linkedin.com/in/vadim-digonnet/" target="_blank" class="btn btn-linkedin">
                         Voir le profil LinkedIn
                     </a>
                 </td>

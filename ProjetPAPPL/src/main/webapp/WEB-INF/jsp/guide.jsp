@@ -100,6 +100,7 @@
                         <li>Utilisé uniquement pour les Sujets.</li>
                         <li>Le système extrait automatiquement le titre, le descriptif et le contact.</li>
                         <li>Évitez les fichiers avec des macros ou des protections par mot de passe.</li>
+                        <li>Permet d'ajouter à la fois un sujet, un correspondant, l'année, et l'entreprise.</li>
                     </ul>
                 
                 <h3>Import CSV (.csv)</h3>

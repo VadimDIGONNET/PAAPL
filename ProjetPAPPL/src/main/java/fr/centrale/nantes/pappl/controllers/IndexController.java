@@ -46,7 +46,7 @@ public class IndexController {
         String password = request.getParameter("password");
 
         if ((login != null) && (password != null) 
-                && (login.equals("admin")) && (password.equals("admin"))){
+                && (login.equals("admin")) && (password.equals("admin"))){   //ligne a modifier pour changer le login et mot de passe
             returned = new ModelAndView("redirect:main.do");
   
         }else{
