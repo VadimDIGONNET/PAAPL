@@ -94,9 +94,9 @@
                                         aria-label="Ajouter un sujet">Ajouter</button>
                             </form>
                         </div>
-                        <div class="col-md-4 bg-primary m-2">
+                        <div class="col-md-4 bg-secondary m-2">
                             <form action="sujet.do" method="POST">
-                                <button type="submit" name="sujet" class="btn btn-primary btn-lg"
+                                <button type="submit" name="sujet" class="btn btn-secondary btn-lg"
                                         aria-label="Voir la liste des sujets">Liste</button>
                             </form>
                         </div>
