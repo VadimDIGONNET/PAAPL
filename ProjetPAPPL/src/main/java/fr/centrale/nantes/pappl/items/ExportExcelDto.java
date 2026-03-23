@@ -14,34 +14,26 @@ public class ExportExcelDto {
     // --- Champs P2T / ENT ---
     private int p2tNum;
     private final String p2tNum2="P2T__"; 
-    private final String p2tConf="v";
+    private final String p2tConf="";//BD : confidentiel ou non (voir feuilles d'export word)
     private String entNom;
-    private final String p2tAmphi="choix entre 2 dates";
+    private final String p2tAmphi="";
     private final String p2tFiche="P2T1_Fiche_Synthétique.pdf";
     private final String p2tConvention="P2T1_Convention.pdf";
-    private String quiSuit;
-    private String p2tSujet;
-    private String entAdr1;
-    private final String entAdr2="pas dans les docs";
+    private final String quiSuit="";
+    private String p2tSujet; //Juste le titre du sujet
+    private String entAdr1;    
     private String entCp;
-    private final String entLogo=""; 
 
     // --- Correspondants (COR) ---
-    private final String corTitre="pas dans les docs";
     private String corNom;
     private String corTel;
-    private final String corFax="pas dans les docs";
     private String corEmail;
-    private final String cor2Email="pas dans les docs";
 
     // --- Enseignants (ENS) ---
-    /*private String ensNom;
-    private String ensDept;
-    private String ensTel;
-    private String ensEmail;*/
+    private String ensNom;
+    private String ensEmail;
 
     // --- Pilote et Élèves ---
-    private final String pilNom="";
     private String ele1Titre;
     private String ele1Nom;
     private String ele1Email;
@@ -59,31 +51,30 @@ public class ExportExcelDto {
     private String ele7Email;
 
     // --- Rencontre et Inscriptions ---
-    private final String dateRencontre="choix entre plusieurs dates"; //
-    private final String adresse="v";
-    private final String complement="v";
-    private final String inscriptionHippocampus = "v";    
-    private final String convention="v"; //
-    private final String evaluation="v"; //
+    private final String dateRencontre=""; 
+    private final String adresse="";
+    private final String complement="";
+    private final String convention=""; 
+    private final String evaluation=""; 
 
     // --- Dates (1 à 15) ---
-    private final String date1="6 février après-midi";//
-    private final String date2="13 février après-midi";//
-    private final String date3="27 février après-midi";//
-    private final String date4="5 mars après-midi";//
-    private final String date5="18 mars après-midi";//
-    private final String date6="25 mars après-midi";//
-    private final String date7="26 mars après-midi";//
-    private final String date8="1er avril matin";//
-    private final String date9="8 avril matin";//
-    private final String date10="10 avril matin";//
-    private final String date11="22 avril matin";//
-    private final String date12="22 avril après-midi";//
-    private final String date13="29 avril matin";//
-    private final String date14="22 mai matin";//
-    private final String date15="10 juin matin";//
+    private final String date1="";
+    private final String date2="";
+    private final String date3="";
+    private final String date4="";
+    private final String date5="";
+    private final String date6="";
+    private final String date7="";
+    private final String date8="";
+    private final String date9="";
+    private final String date10="";
+    private final String date11="";
+    private final String date12="";
+    private final String date13="";
+    private final String date14="";
+    private final String date15="";
 
-    private final String p2tAnProchain="v";
+    private final String p2tAnProchain="";
 
     public ExportExcelDto(
         int p2tNum, String p2tNum2, String p2tConf, String entNom, String p2tAmphi, 
@@ -100,17 +91,14 @@ public class ExportExcelDto {
     ) {
         this.p2tNum = p2tNum;
         this.entNom = entNom;
-        this.quiSuit = quiSuit;
         this.p2tSujet = p2tSujet;
         this.entAdr1 = entAdr1;
         this.entCp = entCp;
         this.corNom = corNom;
         this.corTel = corTel;
         this.corEmail = corEmail;
-        /*this.ensNom = ensNom;
-        this.ensDept = ensDept;
-        this.ensTel = ensTel;
-        this.ensEmail = ensEmail;*/
+        this.ensNom = ensNom;
+        this.ensEmail = ensEmail;
         this.ele1Titre = ele1Titre;
         this.ele1Nom = ele1Nom;
         this.ele1Email = ele1Email;
@@ -130,9 +118,6 @@ public class ExportExcelDto {
 
     public int getP2tNum() { return p2tNum; }
     public void setP2tNum(int p2tNum) { this.p2tNum = p2tNum; }
-
-    /*public String getP2tNum2() { return p2tNum2; }
-    public void setP2tNum2(String p2tNum2) { this.p2tNum2 = p2tNum2; }*/
 
     public String getP2tConf() {
         return p2tConf;
@@ -166,20 +151,8 @@ public class ExportExcelDto {
         return entAdr1;
     }
 
-    public String getEntAdr2() {
-        return entAdr2;
-    }
-
     public String getEntCp() {
         return entCp;
-    }
-
-    public String getEntLogo() {
-        return entLogo;
-    }
-
-    public String getCorTitre() {
-        return corTitre;
     }
 
     public String getCorNom() {
@@ -190,36 +163,16 @@ public class ExportExcelDto {
         return corTel;
     }
 
-    public String getCorFax() {
-        return corFax;
-    }
-
     public String getCorEmail() {
         return corEmail;
     }
 
-    public String getCor2Email() {
-        return cor2Email;
-    }
-
-    /*public String getEnsNom() {
+    public String getEnsNom() {
         return ensNom;
-    }
-
-    public String getEnsDept() {
-        return ensDept;
-    }
-
-    public String getEnsTel() {
-        return ensTel;
     }
 
     public String getEnsEmail() {
         return ensEmail;
-    }*/
-
-    public String getPilNom() {
-        return pilNom;
     }
 
     public String getEle1Titre() {
@@ -292,10 +245,6 @@ public class ExportExcelDto {
 
     public String getComplement() {
         return complement;
-    }
-
-    public String getInscriptionHippocampus() {
-        return inscriptionHippocampus;
     }
 
     public String getConvention() {

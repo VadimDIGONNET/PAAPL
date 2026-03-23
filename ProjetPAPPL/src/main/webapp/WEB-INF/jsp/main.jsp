@@ -119,7 +119,7 @@
                     <form action="importeleve.do" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
-                            <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                            <input type="file" class="form-control" id="file" name="file" accept=".csv">
                         </div>
                         <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
                     </form>
@@ -146,7 +146,7 @@
                     <form action="importtuteur.do" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
-                            <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                            <input type="file" class="form-control" id="file" name="file" accept=".csv">
                         </div>
                         <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
                     </form>
@@ -192,7 +192,7 @@
                     <form action="importentreprise.do" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
-                            <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                            <input type="file" class="form-control" id="file" name="file" accept=".csv">
                         </div>
                         <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
                     </form>

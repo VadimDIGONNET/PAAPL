@@ -14,6 +14,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.io.BufferedReader;
@@ -127,12 +128,23 @@ public class EntrepriseController {
     }
     
     @PostMapping(value = "importentreprise.do")
-    public ModelAndView importCsv(@RequestParam("file") MultipartFile file) {
+    public ModelAndView importCsv(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
         ModelAndView modelAndView = new ModelAndView("main"); // Définit la vue par défaut
 
         if (file.isEmpty()) {
-            modelAndView.addObject("message", "Veuillez sélectionner un fichier CSV.");
-            return modelAndView;
+            try {
+                response.setContentType("text/csv; charset=UTF-8");
+                response.setHeader("Content-Disposition", "attachment; filename=\"template_entreprises.csv\"");
+
+                // Format : nom, adresse, codePostal, tel, siteWeb, description
+                String header = "nom,adresse,codePostal,tel,siteWeb,description\n";
+                response.getWriter().write(header);
+                response.getWriter().flush();
+                return null;
+            } catch (IOException e) {
+                modelAndView.addObject("message", "Erreur template : " + e.getMessage());
+                return modelAndView;
+            }
         }
 
         List<Entreprise> entreprises = new ArrayList<>();

@@ -24,6 +24,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.constraints.Size;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -174,13 +175,24 @@ public class TuteurController {
     }
     
     @PostMapping(value = "importtuteur.do")
-    public ModelAndView importCsv(@RequestParam("file") MultipartFile file) {
+    public ModelAndView importCsv(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
         ModelAndView modelAndView = new ModelAndView("main"); // Définit la vue par défaut
 
         if (file.isEmpty()) {
-            modelAndView.addObject("message", "Veuillez sélectionner un fichier CSV.");
+        try {
+            response.setContentType("text/csv; charset=UTF-8");
+            response.setHeader("Content-Disposition", "attachment; filename=\"template_tuteurs.csv\"");
+            
+            // Format : id, nom, prenom, nbSujets, idSujet1, idSujet2...
+            String header = "id,nom,prenom,nbSujetSouhaite,idSujet1,idSujet2\n";
+            response.getWriter().write(header);
+            response.getWriter().flush();
+            return null; 
+        } catch (IOException e) {
+            modelAndView.addObject("message", "Erreur template : " + e.getMessage());
             return modelAndView;
         }
+    }
 
         List<Tuteur> tuteurs = new ArrayList<>();
         // Utilisation du StandardCharsets.UTF_8 pour éviter les problèmes d'accents

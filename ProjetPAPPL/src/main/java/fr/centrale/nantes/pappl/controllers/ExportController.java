@@ -30,12 +30,11 @@ public class ExportController {
             
             String[] headers = {
                 "P2T_Num", "P2T_Num2", "P2T_Conf", "ENT_Nom", "P2T_Amphi", "P2T_Fiche", "P2T_Convention", 
-                "Qui suit ?", "P2T_Sujet", "ENT_Adr1", "ENT_Adr2", "ENT_CP", "ENT_Logo", "COR_Titre", 
-                "COR_Nom", "COR_Tel", "COR_Fax", "COR_Email", "COR2_Email", "ENS_Nom", "ENS_Dept", "ENS_Tel", "ENS_Email",
-                "PIL_Nom", "Ele1_Titre", "Ele1_Nom", "Ele2_Nom", "Ele3_Nom", "Ele4_Nom", "Ele5_Nom", "Ele6_Nom", "Ele7_Nom",
+                "Qui suit ?", "P2T_Sujet", "ENT_Adr1", "ENT_CP",
+                "COR_Nom", "COR_Tel","COR_Email", "COR2_Email", "ENS_Nom", "ENS_Email", "Ele1_Titre", "Ele1_Nom", "Ele2_Nom", "Ele3_Nom", "Ele4_Nom", "Ele5_Nom", "Ele6_Nom", "Ele7_Nom",
                 "Ele1_Email", "Ele2_Email", "Ele3_Email", "Ele4_Email", "Ele5_Email", "Ele6_Email", "Ele7_Email", "Ele7_Matric",
                 "Ele8_Titre", "Ele8_Nom", "Ele8_Email", "Ele8_Matric", "Ele9_Titre", "Ele9_Nom", "Ele9_Email", "Ele9_Matric",
-                "DATE_RENCONTRE", "ADRESSE", "COMPLEMENT", "Inscription Hippocampus", "Convention", "Evaluation", 
+                "DATE_RENCONTRE", "ADRESSE", "COMPLEMENT", "Convention", "Evaluation", 
                 "Date_1", "Date_2", "Date_3", "Date_4", "Date_5", "Date_6", "Date_7", "Date_8", 
                 "Date_9", "Date_10", "Date_11", "Date_12", "Date_13", "Date_14", "Date_15", "P2T l'an prochain"
             };
@@ -53,31 +52,25 @@ public class ExportController {
                 // Infos P2T & Entreprise
                 row.createCell(col++).setCellValue(rowData[0] != null ? rowData[0].toString() : ""); // P2T_Num
                 row.createCell(col++).setCellValue("P2T__"); 
-                row.createCell(col++).setCellValue("v");
+                row.createCell(col++).setCellValue(""); //P2T_Conf
                 row.createCell(col++).setCellValue(rowData[1] != null ? rowData[1].toString() : ""); // ENT_Nom
-                row.createCell(col++).setCellValue("choix entre 2 dates");
+                row.createCell(col++).setCellValue("");
                 row.createCell(col++).setCellValue("P2T1_Fiche_Synthétique.pdf");
                 row.createCell(col++).setCellValue("P2T1_Convention.pdf");
-                row.createCell(col++).setCellValue(""); // Qui suit
+                row.createCell(col++).setCellValue(""); 
                 row.createCell(col++).setCellValue(rowData[2] != null ? rowData[2].toString() : ""); // Sujet
                 row.createCell(col++).setCellValue(rowData[3] != null ? rowData[3].toString() : ""); // Adr1
-                row.createCell(col++).setCellValue("pas dans les docs"); // Adr2
                 row.createCell(col++).setCellValue(rowData[4] != null ? rowData[4].toString() : ""); // CP
-                row.createCell(col++).setCellValue(""); // Logo
 
                 // Correspondant
-                row.createCell(col++).setCellValue("pas dans les docs"); // Titre
                 row.createCell(col++).setCellValue(rowData[5] != null ? rowData[5].toString() : ""); // Nom
                 row.createCell(col++).setCellValue(rowData[6] != null ? rowData[6].toString() : ""); // Tel
-                row.createCell(col++).setCellValue("pas dans les docs"); // Fax
                 row.createCell(col++).setCellValue(rowData[7] != null ? rowData[7].toString() : ""); // Email
-                row.createCell(col++).setCellValue("pas dans les docs"); // Email2
+                row.createCell(col++).setCellValue(""); // Email2
 
                 // Enseignants (Colonnes vides pour respecter le format)
                 row.createCell(col++).setCellValue(""); row.createCell(col++).setCellValue(""); 
-                row.createCell(col++).setCellValue(""); row.createCell(col++).setCellValue("");
 
-                row.createCell(col++).setCellValue(""); // PIL_Nom
 
                 // BLOC NOMS (Ele1 à Ele7) - Index 8 à 14
                 row.createCell(col++).setCellValue("M./Mme"); // Titre Ele1
@@ -95,18 +88,15 @@ public class ExportController {
                 for (int i = 0; i < 8; i++) row.createCell(col++).setCellValue("");
 
                 // Infos Finales
-                row.createCell(col++).setCellValue("choix entre plusieurs dates"); // Rencontre
+                row.createCell(col++).setCellValue(""); // Rencontre
                 row.createCell(col++).setCellValue(""); // Adresse
                 row.createCell(col++).setCellValue(""); // Complement
-                row.createCell(col++).setCellValue("v"); // Hippocampus
-                row.createCell(col++).setCellValue("v"); // Convention
-                row.createCell(col++).setCellValue("v"); // Evaluation
+                row.createCell(col++).setCellValue(""); // Convention
+                row.createCell(col++).setCellValue(""); // Evaluation
 
-                // Les 15 dates fixes
-                String[] dates = {"6 fév", "13 fév", "27 fév", "5 mar", "18 mar", "25 mar", "26 mar", "1 avr", "8 avr", "10 avr", "22 avr M", "22 avr AM", "29 avr", "22 mai", "10 juin"};
-                for (String d : dates) row.createCell(col++).setCellValue(d + " après-midi");
+                for (int i = 0;i < 16; i++) row.createCell(col++).setCellValue("");
 
-                row.createCell(col++).setCellValue("v"); // P2T an prochain
+                row.createCell(col++).setCellValue(""); // P2T an prochain
 
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 workbook.write(out);

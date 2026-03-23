@@ -15,6 +15,7 @@ import fr.centrale.nantes.pappl.repositories.SujetRepository;
 import fr.centrale.nantes.pappl.repositories.ChoixEleveDomaineRepository;
 import fr.centrale.nantes.pappl.repositories.ChoixEleveTypoRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 
 /**
  *
@@ -174,12 +176,21 @@ public class EleveController {
     }
     
     @PostMapping(value = "importeleve.do")
-    public ModelAndView importCsv(@RequestParam("file") MultipartFile file) {
+    public ModelAndView importCsv(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
         ModelAndView modelAndView = new ModelAndView("main"); // Définit la vue par défaut
 
         if (file.isEmpty()) {
-            modelAndView.addObject("message", "Veuillez sélectionner un fichier CSV.");
+            try {
+                response.setContentType("text/csv; charset=UTF-8");
+                response.setHeader("Content-Disposition", "attachment; filename=\"template_eleves.csv\"");
+                String header = "id,nom,prenom,nationalite,email,td,annee,numeroSujet\n";
+                response.getWriter().write(header);
+                response.getWriter().flush();
+                return null; 
+            } catch (IOException e) {
+            modelAndView.addObject("message", "Erreur lors de la génération du template : " + e.getMessage());
             return modelAndView;
+            }
         }
 
         List<Eleve> eleves = new ArrayList<>();

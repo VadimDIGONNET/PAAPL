@@ -14,16 +14,16 @@ import java.util.List;
 public interface ExportRepository extends JpaRepository<Eleve, Integer> {
 
     @Query(value = "SELECT " +
-           "    s.numero, " +                 // col 0
-           "    ent.nom as ent_nom, " +       // col 1
-           "    s.intitule, " +               // col 2
-           "    ent.adresse, " +              // col 3
-           "    ent.code_postal, " +          // col 4
-           "    c.nom as cor_nom, " +         // col 5
-           "    c.tel, " +                    // col 6
-           "    c.email, " +                  // col 7
-           "    el1.nom as e1n, el2.nom as e2n, el3.nom as e3n, el4.nom as e4n, el5.nom as e5n, el6.nom as e6n, el7.nom as e7n, " + // col 8-14
-           "    el1.email as e1e, el2.email as e2e, el3.email as e3e, el4.email as e4e, el5.email as e5e, el6.email as e6e, el7.email as e7e " + // col 15-21
+           "    s.numero, " + 
+           "    ent.nom as ent_nom, " + 
+           "    s.intitule, " + 
+           "    ent.adresse, " + 
+           "    ent.code_postal, " + 
+           "    c.nom as cor_nom, " + 
+           "    c.tel, " + 
+           "    c.email, " + 
+           "    el1.nom as e1n, el2.nom as e2n, el3.nom as e3n, el4.nom as e4n, el5.nom as e5n, el6.nom as e6n, el7.nom as e7n, " + 
+           "    el1.email as e1e, el2.email as e2e, el3.email as e3e, el4.email as e4e, el5.email as e5e, el6.email as e6e, el7.email as e7e " + 
            "FROM sujet s " +
            "JOIN correspondant c ON c.id = s.id_correspondant " +
            "JOIN entreprise ent ON ent.nom = c.entreprise " +
