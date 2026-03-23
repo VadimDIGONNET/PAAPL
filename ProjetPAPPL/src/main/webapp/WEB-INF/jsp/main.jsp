@@ -75,6 +75,12 @@
                     </div>
                 </div>
             </div>
+                        
+         <div class="mb-3">
+            <button id="btnExport" class="btn btn-success" onclick="telechargerExcel()">
+                Générer et Télécharger l'Excel
+            </button>
+        </div>
 
         <div class="py-4" id="eleves">
             <div class="container">
@@ -95,11 +101,7 @@
                         <div class="mb-3">
                             <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
                             <input type="file" class="form-control" id="file" name="file" accept=".csv">
-            <div class="mb-3">
-                <button id="btnExport" class="btn btn-success" onclick="telechargerExcel()">
-                    Générer et Télécharger l'Excel
-                </button>
-            </div>
+           
 
 
             <section class="py-4" id="sujets" aria-labelledby="titre-sujets">
@@ -139,6 +141,11 @@
                         <div class="mb-3">
                             <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
                             <input type="file" class="form-control" id="file" name="file" accept=".csv">
+                        <div class="col-md-4 bg-secondary m-2">
+                            <form action="sujet.do" method="POST">
+                                <button type="submit" name="sujet" class="btn btn-secondary btn-lg"
+                                        aria-label="Voir la liste des sujets">Liste</button>
+                            </form>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -191,7 +198,7 @@
                         <form action="importtuteur.do" method="post" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="file-tuteur" class="form-label">Sélectionnez un fichier CSV :</label>
-                                <input type="file" class="form-control" id="file-tuteur" name="file" accept=".csv">
+                                <input type="file" class="form-control" id="file-tuteur" name="file" accept=".csv" required>
                             </div>
                             <button type="submit" class="btn btn-secondary btn-lg"
                                     aria-label="Importer un fichier CSV pour les tuteurs">Importer</button>
