@@ -88,10 +88,14 @@ public class ImportController extends HttpServlet {
         String mail = data.getOrDefault("email", "");
         String anneestr = data.getOrDefault("annee", "");
         String description = data.getOrDefault("description", "");
+        String telEntre =data.getOrDefault("telEntreprise","");
+        String codePostal = data.getOrDefault("codePostal","");
+        String adresse =data.getOrDefault("adresse", "");
 
         System.out.println("=== DONNÉES EXTRAITES ===");
         System.out.println("Map complète : " + data);
-
+        int codePostalint = Tools.getIntFromString(codePostal);
+        int telEntreint = Tools.getIntFromString(telEntre);
         int anneeint = Tools.getIntFromString(anneestr);
         Annee annee = null;
         if (anneeint > 0) {
@@ -112,7 +116,7 @@ public class ImportController extends HttpServlet {
             if (entreprise == null) {
                 System.out.println("Création de l'entreprise : " + entreprisestr);
                 try {
-                    entreprise = entrepriseRepository.create(entreprisestr, null, null, null, null, description);
+                    entreprise = entrepriseRepository.create(entreprisestr, adresse, codePostalint, telEntreint, null, description);
                 } catch (Exception e) {
                     System.err.println("Erreur création entreprise : " + e.getMessage());
                 }
