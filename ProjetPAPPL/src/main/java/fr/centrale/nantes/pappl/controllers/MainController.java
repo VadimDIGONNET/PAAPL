@@ -249,4 +249,8 @@ public class MainController {
         return new ModelAndView("redirect:main.do");
     }
 
+    @RequestMapping(value = "/guide.do", method = RequestMethod.GET) 
+    public ModelAndView showGuide() {
+        return new ModelAndView("guide"); 
+    }
 }

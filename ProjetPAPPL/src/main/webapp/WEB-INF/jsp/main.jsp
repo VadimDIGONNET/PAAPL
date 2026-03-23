@@ -50,38 +50,40 @@
 
         <main id="contenu-principal">
 
-            <div class="py-4">
-                <div class="container">
-                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                        <p>
-                            <strong>Année sélectionnée :</strong>
-                            ${sessionScope.anneeCourante}
-                        </p>
+        <div class="py-4">
+            <div class="container">
+                <div class="card p-3 shadow-sm col-lg-4">
+                    <p><strong>Année sélectionnée :</strong> ${sessionScope.anneeCourante != null ? sessionScope.anneeCourante : "Aucune"}</p>
+
+                    <div class="d-flex gap-2">
                         <form action="clearAnnee.do" method="POST">
-                            <button type="submit">Supprimer le filtre</button>
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer le filtre</button>
                         </form>
+
                         <c:if test="${sessionScope.anneeCourante == null}">
-                            <form action="setAnnee.do" method="POST">
-                                <label for="annee">Sélectionner une année :</label>
-                                <select id="annee" name="annee" required>
-                                    <option value="">-- Choisir une année --</option>
+                            <form action="setAnnee.do" method="POST" class="d-flex gap-2">
+                                <select id="annee" name="annee" class="form-select form-select-sm" required>
+                                    <option value="">-- Année --</option>
                                     <c:forEach var="annee" items="${anneeList}">
                                         <option value="${annee.annee}">${annee.annee}</option>
                                     </c:forEach>
                                 </select>
-                                <button type="submit">Filtrer</button>
+                                <button type="submit" class="btn btn-sm btn-primary">Filtrer</button>
                             </form>
                         </c:if>
                     </div>
                 </div>
             </div>
+        </div>
                         
-         <div class="mb-3">
+        <div class="container mb-3 text-end">
             <button id="btnExport" class="btn btn-success" onclick="telechargerExcel()">
-                Générer et Télécharger l'Excel
+                📊 Exporter vers Excel
             </button>
         </div>
-
+        
+        <p class="container text-info">${message}</p>           
+        
         <div class="py-4" id="eleves">
             <div class="container">
                 <h2>Élèves</h2>
@@ -272,8 +274,8 @@
                         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                             <h3 class="mb-4">Ressources</h3>
                             <ul class="list-unstyled">
-                                <li class="mb-2"><a href="#" class="text-white-50">Guide Utilisateur</a></li>
-                                <li class="mb-2"><a href="https://gemini.google.com" class="text-white-50">Contact</a></li>
+                                <li class="mb-2"><a href="guide.do" class="text-white-50">Guide Utilisateur</a></li>
+                                <li class="mb-2"><a href=" " class="text-white-50">Contact</a></li>
                             </ul>
                         </div>
                         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
@@ -302,6 +304,8 @@
             });
         </script>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     </body>
