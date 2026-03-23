@@ -94,15 +94,21 @@
                     </div>
                     <div class="col-md-4 bg-secondary m-2">
                         <form action="eleve.do" method="POST">
-                            <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
-                        </form>
+                            <button type="submit" class="btn btn-secondary btn-lg"
+                                    aria-label="Voir la liste des élèves">Liste</button>
+                        </form>  
                     </div>
                     <form action="importeleve.do" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
-                            <input type="file" class="form-control" id="file" name="file" accept=".csv">
-           
-
+                            <label for="file-eleve" class="form-label">Sélectionnez un fichier CSV :</label>
+                            <input type="file" class="form-control" id="file-eleve" name="file" accept=".csv">
+                        </div>                            
+                        <button type="submit" class="btn btn-secondary btn-lg"
+                                aria-label="Importer un fichier CSV pour les élèves">Importer</button>
+                    </form>
+                </div>
+                </div>
+            </section>
 
             <section class="py-4" id="sujets" aria-labelledby="titre-sujets">
                 <div class="container">
@@ -115,147 +121,106 @@
                                         aria-label="Ajouter un sujet">Ajouter</button>
                             </form>
                         </div>
-                        <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
-                    </form>
-                    <p th:text="${message}"></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="py-4" id="tuteurs">
-            <div class="container">
-                <h2>Tuteurs</h2>
-                <hr>
-                <div class="row justify-content-center">
-                    <div class="col-md-4 bg-primary m-2">
-                        <form action="ajouttuteur.do" method="POST">
-                            <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
-                        </form>
-                    </div>
-                    <div class="col-md-4 bg-secondary m-2">
-                        <form action="tuteurs.do" method="POST">
-                            <button type="submit" class="btn btn-secondary btn-lg">Liste</button>
-                        </form>
-                    </div>
-                    <form action="importtuteur.do" method="post" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="file" class="form-label">Sélectionnez un fichier CSV :</label>
-                            <input type="file" class="form-control" id="file" name="file" accept=".csv">
                         <div class="col-md-4 bg-secondary m-2">
                             <form action="sujet.do" method="POST">
                                 <button type="submit" name="sujet" class="btn btn-secondary btn-lg"
                                         aria-label="Voir la liste des sujets">Liste</button>
                             </form>
                         </div>
-                    </div>
-                    <div class="mb-3">
+                        <button type="submit" class="btn btn-secondary btn-lg">Importer</button>
+                    </form>
+                    <p th:text="${message}"></p>
+                </div>
+                <div class="mb-3">
                         <form action="ImportProjetServlet.do" method="post" enctype="multipart/form-data">
                             <label for="file-sujet" class="form-label">Sélectionnez le formulaire Word (.docx) :</label>
                             <input type="file" class="form-control" id="file-sujet" name="file" accept=".docx" required>
                             <button type="submit" class="btn btn-secondary btn-lg mt-2"
                                     aria-label="Importer un fichier Word pour les sujets">Importer Word</button>
                         </form>
-                    </div>
                 </div>
-            </section>
+            </div>
+        </div>
+           
 
-                        </div>
-                        <div class="col-md-4 bg-secondary m-2">
-                            <form action="eleve.do" method="POST">
-                                <button type="submit" class="btn btn-secondary btn-lg"
-                                        aria-label="Voir la liste des élèves">Liste</button>
-                            </form>
-                        </div>
-                        <form action="importeleve.do" method="post" enctype="multipart/form-data">
-                            <div class="mb-3">
-                                <label for="file-eleve" class="form-label">Sélectionnez un fichier CSV :</label>
-                                <input type="file" class="form-control" id="file-eleve" name="file" accept=".csv" required>
-                            </div>
+        <section class="py-4" id="tuteurs" aria-labelledby="titre-tuteurs">
+            <div class="container">
+                <h2 id="titre-tuteurs">Tuteurs</h2>
+                <hr>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 bg-primary m-2">
+                        <form action="ajouttuteur.do" method="POST">
+                            <button type="submit" class="btn btn-primary btn-lg"
+                                    aria-label="Ajouter un tuteur">Ajouter</button>
+                        </form>
+                    </div>
+                    <div class="col-md-4 bg-secondary m-2">
+                        <form action="tuteurs.do" method="POST">
                             <button type="submit" class="btn btn-secondary btn-lg"
-                                    aria-label="Importer un fichier CSV pour les élèves">Importer</button>
+                                    aria-label="Voir la liste des tuteurs">Liste</button>
+                        </form>
+                    </div>
+                    <form action="importtuteur.do" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="file-tuteur" class="form-label">Sélectionnez un fichier CSV :</label>
+                            <input type="file" class="form-control" id="file-tuteur" name="file" accept=".csv">
+                        </div>
+                        <button type="submit" class="btn btn-secondary btn-lg"
+                                aria-label="Importer un fichier CSV pour les tuteurs">Importer</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-4" id="correspondants" aria-labelledby="titre-correspondants">
+            <div class="container">
+                <h2 id="titre-correspondants">Correspondants</h2>
+                <hr>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 bg-primary m-2">
+                        <form action="ajoutcorrespondant.do" method="POST">
+                            <button type="submit" class="btn btn-primary btn-lg"
+                                    aria-label="Ajouter un correspondant">Ajouter</button>
+                        </form>
+                    </div>
+                    <div class="col-md-4 bg-secondary m-2">
+                        <form action="correspondant.do" method="POST">
+                            <button type="submit" class="btn btn-secondary btn-lg"
+                                    aria-label="Voir la liste des correspondants">Liste</button>
                         </form>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="py-4" id="tuteurs" aria-labelledby="titre-tuteurs">
-                <div class="container">
-                    <h2 id="titre-tuteurs">Tuteurs</h2>
-                    <hr>
-                    <div class="row justify-content-center">
-                        <div class="col-md-4 bg-primary m-2">
-                            <form action="ajouttuteur.do" method="POST">
-                                <button type="submit" class="btn btn-primary btn-lg"
-                                        aria-label="Ajouter un tuteur">Ajouter</button>
-                            </form>
-                        </div>
-                        <div class="col-md-4 bg-secondary m-2">
-                            <form action="tuteurs.do" method="POST">
-                                <button type="submit" class="btn btn-secondary btn-lg"
-                                        aria-label="Voir la liste des tuteurs">Liste</button>
-                            </form>
-                        </div>
-                        <form action="importtuteur.do" method="post" enctype="multipart/form-data">
-                            <div class="mb-3">
-                                <label for="file-tuteur" class="form-label">Sélectionnez un fichier CSV :</label>
-                                <input type="file" class="form-control" id="file-tuteur" name="file" accept=".csv" required>
-                            </div>
-                            <button type="submit" class="btn btn-secondary btn-lg"
-                                    aria-label="Importer un fichier CSV pour les tuteurs">Importer</button>
+        <section class="py-4" id="partenaires" aria-labelledby="titre-partenaires">
+            <div class="container">
+                <h2 id="titre-partenaires">Partenaires</h2>
+                <hr>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 bg-primary m-2">
+                        <form action="ajoutentreprise.do" method="POST">
+                            <button type="submit" class="btn btn-primary btn-lg"
+                                    aria-label="Ajouter un partenaire">Ajouter</button>
                         </form>
                     </div>
-                </div>
-            </section>
-
-            <section class="py-4" id="correspondants" aria-labelledby="titre-correspondants">
-                <div class="container">
-                    <h2 id="titre-correspondants">Correspondants</h2>
-                    <hr>
-                    <div class="row justify-content-center">
-                        <div class="col-md-4 bg-primary m-2">
-                            <form action="ajoutcorrespondant.do" method="POST">
-                                <button type="submit" class="btn btn-primary btn-lg"
-                                        aria-label="Ajouter un correspondant">Ajouter</button>
-                            </form>
-                        </div>
-                        <div class="col-md-4 bg-secondary m-2">
-                            <form action="correspondant.do" method="POST">
-                                <button type="submit" class="btn btn-secondary btn-lg"
-                                        aria-label="Voir la liste des correspondants">Liste</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="py-4" id="partenaires" aria-labelledby="titre-partenaires">
-                <div class="container">
-                    <h2 id="titre-partenaires">Partenaires</h2>
-                    <hr>
-                    <div class="row justify-content-center">
-                        <div class="col-md-4 bg-primary m-2">
-                            <form action="ajoutentreprise.do" method="POST">
-                                <button type="submit" class="btn btn-primary btn-lg"
-                                        aria-label="Ajouter un partenaire">Ajouter</button>
-                            </form>
-                        </div>
-                        <div class="col-md-4 bg-secondary m-2">
-                            <form action="entreprise.do" method="POST">
-                                <button type="submit" class="btn btn-secondary btn-lg"
-                                        aria-label="Voir la liste des partenaires">Liste</button>
-                            </form>
-                        </div>
-                        <form action="importentreprise.do" method="post" enctype="multipart/form-data">
-                            <div class="mb-3">
-                                <label for="file-partenaire" class="form-label">Sélectionnez un fichier CSV :</label>
-                                <input type="file" class="form-control" id="file-partenaire" name="file" accept=".csv">
-                            </div>
+                    <div class="col-md-4 bg-secondary m-2">
+                        <form action="entreprise.do" method="POST">
                             <button type="submit" class="btn btn-secondary btn-lg"
-                                    aria-label="Importer un fichier CSV pour les partenaires">Importer</button>
+                                    aria-label="Voir la liste des partenaires">Liste</button>
                         </form>
                     </div>
+                    <form action="importentreprise.do" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="file-partenaire" class="form-label">Sélectionnez un fichier CSV :</label>
+                            <input type="file" class="form-control" id="file-partenaire" name="file" accept=".csv">
+                        </div>
+                        <button type="submit" class="btn btn-secondary btn-lg"
+                                aria-label="Importer un fichier CSV pour les partenaires">Importer</button>
+                    </form>
                 </div>
-            </section>
+            </div>
+        </section>
 
         </main>
 
