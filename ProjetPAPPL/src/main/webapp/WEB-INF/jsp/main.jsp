@@ -57,11 +57,12 @@
 
                     <div class="d-flex gap-2">
                         <form action="clearAnnee.do" method="POST">
-                            <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer le filtre</button>
+                            <button type="submit" class="btn btn-sm btn-danger">Supprimer le filtre</button>
                         </form>
 
                         <c:if test="${sessionScope.anneeCourante == null}">
                             <form action="setAnnee.do" method="POST" class="d-flex gap-2">
+                                <label for="annee" class="visually-hidden">Sélectionner une année</label>
                                 <select id="annee" name="annee" class="form-select form-select-sm" required>
                                     <option value="">-- Année --</option>
                                     <c:forEach var="annee" items="${anneeList}">
@@ -274,15 +275,15 @@
                         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                             <h3 class="mb-4">Ressources</h3>
                             <ul class="list-unstyled">
-                                <li class="mb-2"><a href="guide.do" class="text-white-50">Guide Utilisateur</a></li>
-                                <li class="mb-2"><a href="https://gemini.google.com" class="text-white-50">Contact</a></li>
+                                <li class="mb-2"><a href="guide.do" class="text-white">Guide Utilisateur</a></li>
+                                <li class="mb-2"><a href="https://gemini.google.com" class="text-white">Contact</a></li>
                             </ul>
                         </div>
                         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                             <h3 class="mb-4">À Propos</h3>
                             <ul class="list-unstyled">
-                                <li class="mb-2"><a href="equipe.jsp" class="text-white-50">L'équipe projet</a></li>
-                                <li class="mb-2"><a href="#" class="text-white-50">Mentions Légales</a></li>
+                                <li class="mb-2"><a href="equipe.jsp" class="text-white">L'équipe projet</a></li>
+                                <li class="mb-2"><a href="#" class="text-white">Mentions Légales</a></li>
                             </ul>
                         </div>
                     </div>
