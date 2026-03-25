@@ -62,7 +62,7 @@
             <tr>
                 <td>Safa Bouzidi</td>
                 <td class="text-center">
-                    <a href="" target="_blank" class="btn btn-linkedin">
+                    <a href="https://www.linkedin.com/in/safa-bouzidi-54967322b/" target="_blank" class="btn btn-linkedin">
                         Voir le profil LinkedIn
                     </a>
                 </td>
